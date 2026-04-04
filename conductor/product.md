@@ -2,7 +2,7 @@
 
 ## What It Is
 
-NEOS is a monorepo housing a governance platform with BFF (Backend For Frontend) architecture. A Python/Sanic API serves a React frontend, delivering AI-powered governance facilitation for non-sovereign communities.
+NEOS is a monorepo housing a governance platform with BFF (Backend For Frontend) architecture. A Python/Sanic API serves a React frontend, delivering AI-powered governance facilitation for sovereign communities.
 
 The platform enables groups to coordinate without centralized authority using a stack of 54 governance skills across 10 layers — from agreement creation to exit portability.
 
