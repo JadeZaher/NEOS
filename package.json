@@ -5,7 +5,7 @@
   "description": "NEOS — New Earth Operating System monorepo",
   "scripts": {
     "dev": "concurrently --names api,frontend --prefix-colors blue,green \"npm run dev:api\" \"npm run dev:frontend\"",
-    "dev:api": "cd neos-operating-system/agent && python -m neos_agent.main",
+    "dev:api": "cd neos-operating-system/agent && python -m neos_agent.main --dev",
     "dev:frontend": "cd charting-the-course && npx vite --host --port 5173",
     "generate:types": "cd neos-operating-system && python scripts/generate_types.py"
   },
