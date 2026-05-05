@@ -88,7 +88,18 @@
       "Bash(railway add:*)",
       "Bash(railway variable:*)",
       "Bash(railway domain:*)",
-      "Bash(railway variables:*)"
+      "Bash(railway variables:*)",
+      "Bash(find /c/Users/atooz/Programming/NEOS/neos-operating-system -name *test*auth* -o -name *auth*test*)",
+      "Bash(.venv/Scripts/python -m alembic upgrade head)",
+      "Bash(/c/Users/atooz/Programming/NEOS/neos-operating-system/.venv/Scripts/alembic.exe upgrade:*)",
+      "Bash(/c/Users/atooz/Programming/NEOS/neos-operating-system/.venv/Scripts/alembic.exe stamp:*)",
+      "Bash(/c/Users/atooz/Programming/NEOS/neos-operating-system/.venv/Scripts/python.exe -c \":*)",
+      "Bash(curl -s -c /tmp/neos_test -b /tmp/neos_test -X POST http://localhost:8000/api/v1/auth/login -H \"Content-Type: application/json\" -d '{\"\"username\"\":\"\"testuser1\"\",\"\"password\"\":\"\"password123\"\"}')",
+      "Bash(curl -s -c /tmp/neos_test -b /tmp/neos_test -X POST http://localhost:8000/api/v1/chat/send -H \"Content-Type: application/json\" -d '{\"\"message\"\":\"\"hello, respond in one sentence\"\"}')",
+      "Bash(curl -s -c /tmp/neos_test3 -b /tmp/neos_test3 -X POST http://localhost:8000/api/v1/auth/register -H \"Content-Type: application/json\" -d '{\"\"username\"\":\"\"chattest\"\",\"\"password\"\":\"\"password123\"\",\"\"display_name\"\":\"\"Chat Tester\"\"}')",
+      "Bash(curl -s -c /tmp/neos_test3 -b /tmp/neos_test3 -X POST http://localhost:8000/api/v1/chat/send -H \"Content-Type: application/json\" -d '{\"\"message\"\":\"\"say hi in one word\"\"}')",
+      "Bash(curl -s -X POST https://api.anthropic.com/v1/messages -H \"x-api-key: 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\" -H \"anthropic-version: 2023-06-01\" -H \"content-type: application/json\" -d '{\"\"model\"\":\"\"claude-sonnet-4-20250514\"\",\"\"max_tokens\"\":50,\"\"messages\"\":[{\"\"role\"\":\"\"user\"\",\"\"content\"\":\"\"say hi in one word\"\"}]}')",
+      "Bash(\"../.venv/Scripts/python.exe\" -m alembic upgrade head)"
     ]
   }
 }
