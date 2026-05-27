@@ -99,7 +99,25 @@
       "Bash(curl -s -c /tmp/neos_test3 -b /tmp/neos_test3 -X POST http://localhost:8000/api/v1/auth/register -H \"Content-Type: application/json\" -d '{\"\"username\"\":\"\"chattest\"\",\"\"password\"\":\"\"password123\"\",\"\"display_name\"\":\"\"Chat Tester\"\"}')",
       "Bash(curl -s -c /tmp/neos_test3 -b /tmp/neos_test3 -X POST http://localhost:8000/api/v1/chat/send -H \"Content-Type: application/json\" -d '{\"\"message\"\":\"\"say hi in one word\"\"}')",
       "Bash(curl -s -X POST https://api.anthropic.com/v1/messages -H \"x-api-key: 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\" -H \"anthropic-version: 2023-06-01\" -H \"content-type: application/json\" -d '{\"\"model\"\":\"\"claude-sonnet-4-20250514\"\",\"\"max_tokens\"\":50,\"\"messages\"\":[{\"\"role\"\":\"\"user\"\",\"\"content\"\":\"\"say hi in one word\"\"}]}')",
-      "Bash(\"../.venv/Scripts/python.exe\" -m alembic upgrade head)"
+      "Bash(\"../.venv/Scripts/python.exe\" -m alembic upgrade head)",
+      "Bash(DATABASE_URL=\"postgresql+asyncpg://postgres:MxYMtlfLhWmLVZeERbgUVIPXnhrAvswV@caboose.proxy.rlwy.net:21261/railway\" python -m alembic upgrade head)",
+      "Bash(DATABASE_URL=\"postgresql+asyncpg://postgres:MxYMtlfLhWmLVZeERbgUVIPXnhrAvswV@caboose.proxy.rlwy.net:21261/railway\" python -m scripts.seed_omnione --purge)",
+      "Bash(DATABASE_URL=\"postgresql+asyncpg://postgres:MxYMtlfLhWmLVZeERbgUVIPXnhrAvswV@caboose.proxy.rlwy.net:21261/railway\" python -c \":*)",
+      "Bash(DATABASE_URL=\"postgresql+asyncpg://postgres:MxYMtlfLhWmLVZeERbgUVIPXnhrAvswV@caboose.proxy.rlwy.net:21261/railway\" python -m scripts.seed_omnione)",
+      "Bash(python -m pytest tests/ -x --tb=short -q)",
+      "Bash(python -m pytest tests/conftest.py tests/test_members.py tests/test_views.py tests/test_messaging_views.py tests/test_messaging_models.py tests/test_messaging_ws.py tests/test_session.py -x --tb=short -q)",
+      "Bash(python -m pytest tests/test_members.py tests/test_views.py tests/test_messaging_models.py tests/test_messaging_ws.py tests/test_session.py -x --tb=short -q)",
+      "Bash(python -m pytest tests/test_messaging_models.py tests/test_messaging_ws.py tests/test_session.py --tb=short -q)",
+      "Bash(python -c \"from neos_agent.db.models import User, Member, AuthSession; print\\(''User fields:'', [c.key for c in User.__table__.columns]\\); print\\(''Member fields:'', [c.key for c in Member.__table__.columns]\\); print\\(''AuthSession fields:'', [c.key for c in AuthSession.__table__.columns]\\)\")",
+      "Bash(python -c \"import sys; sys.path.insert\\(0, ''tests''\\); import ast; [print\\(f''OK: {f}''\\) for f in [''tests/conftest.py'', ''tests/test_messaging_models.py'', ''tests/test_messaging_ws.py'', ''tests/test_session.py''] if ast.parse\\(open\\(f\\).read\\(\\)\\) or True]\")",
+      "Bash(python -c \"import ast; [print\\(f''OK: {f}''\\) for f in [''tests/test_members.py'', ''tests/test_views.py'', ''tests/test_messaging_views.py''] if ast.parse\\(open\\(f\\).read\\(\\)\\) or True]\")",
+      "Bash(python -m pytest tests/test_messaging_models.py tests/test_messaging_ws.py -v --tb=short)",
+      "Bash(pip show:*)",
+      "Bash(python -m neos_agent.main --dev --single-process --port 8000)",
+      "Bash(curl -s -X POST http://localhost:8000/api/v1/ai/assist -H \"Content-Type: application/json\" -d '{\"\"field_label\"\":\"\"test\"\",\"\"action\"\":\"\"generate\"\"}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://neos-operating-system-production.up.railway.app/api/v1/health)",
+      "Bash(curl -s https://neos-operating-system-production.up.railway.app/api/v1/health)",
+      "Bash(railway logs:*)"
     ]
   }
 }

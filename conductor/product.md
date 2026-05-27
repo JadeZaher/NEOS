@@ -12,9 +12,23 @@ The platform enables groups to coordinate without centralized authority using a 
 2. **Community Members** — Participants in NEOS-based ecosystems (starting with OmniOne in Bali) who use the platform daily for governance, learning, and coordination
 3. **AI Agents** — Claude-powered agents that guide participants through governance processes using the skill stack
 
-## First Ecosystem: OmniOne
+## Ecosystems
 
-Stewarded by Green Earth Vision (GEV), a 501(c)(3) non-profit. Operating in Bali with plans for Costa Rica, Mexico, Brazil. Physical presence via the SHUR (Synergy Hub Universal Residencies) network.
+### OmniOne (Primary)
+
+Stewarded by Green Earth Vision (GEV), a 501(c)(3) non-profit. Operating in Bali with plans for Costa Rica, Mexico, Brazil. Physical presence via the SHUR (Synergy Hub Universal Residencies) network. Focus: consensus-based governance.
+
+### Escherbridge
+
+A technology cooperative bridging vision and code through full-stack development, AI agentic systems, creative commons, and immersive experiences. Website: https://escherbridge.com/. Focus: creative arts, VR/AR, blockchain, and AI tooling. Uses CC BY-SA 4.0 licensing for collaborative works. Domains: Creative Tech Studio, Creative Arts Studio, Creative Fabrication Lab. Quarterly steward rotation.
+
+### Plan Systems
+
+Focus: systems design, protocol infrastructure, and Web4 interoperability.
+
+### Oasis
+
+Focus: Web4 protocol infrastructure and digital art provenance. Domains: Protocol, Integration, Community.
 
 ## Key Features
 
