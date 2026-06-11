@@ -124,3 +124,13 @@
   - Priority: P1
   - Status: Not started
   - Depends on: All UI tracks complete
+
+## System Integrity & Anti-Capture
+
+- [ ] **ai_self_audit_20260610** — AI Self-Audit & Anti-Capture Loop
+  - Automated AI self-audit scanning for all four capture types, SKILL.md-to-implementation drift detection, expired-emergency non-revert and exit-without-export integrity checks, AI independence verification. AI raises findings into SystemFinding model; humans + structural code-level checks resolve. Phased rollout: read-only scans → notifications → evidence bundles → safeguard-trigger integration.
+  - Spec: `conductor/tracks/ai_self_audit_20260610/spec.md`
+  - Plan: `conductor/tracks/ai_self_audit_20260610/plan.md`
+  - Priority: P0
+  - Status: Not started
+  - Depends on: governance_skill_data_models_20260427, multi_ecosystem_collaboration_20260425, emergency_management_ui_20260427, agent_skill_integration_20260427, exit_portability_ui_20260427
