@@ -16,6 +16,13 @@
   - Priority: P0
   - Status: Mostly complete (Phase 1-2 done, Phase 3 partial)
 
+- [ ] **human_in_the_loop_approval_20260712** — Human-in-the-Loop Approval Flow
+  - Add a structured HITL approval flow to the governance agent. When the agent needs a choice, approval, or agreement-question answer, it presents 2-4 concrete options and always includes an `Other` free-form text field. The backend emits an `approval_request` SSE event and the React chat panel renders the options.
+  - Spec: `conductor/tracks/human_in_the_loop_approval_20260712/spec.md`
+  - Plan: `conductor/tracks/human_in_the_loop_approval_20260712/plan.md`
+  - Priority: P0
+  - Status: Not started
+
 ## Backlog
 
 - [ ] **frontend_migration_20260403** — Frontend Migration: Sanic/Jinja2 to React (PARTIALLY SUPERSEDED)
