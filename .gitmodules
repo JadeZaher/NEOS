@@ -1,0 +1,8 @@
+[submodule "neos-operating-system"]
+	path = neos-operating-system
+	url = https://github.com/JadeZaher/neos-operating-system.git
+	branch = main
+[submodule "charting-the-course"]
+	path = charting-the-course
+	url = https://github.com/JadeZaher/charting-the-course.git
+	branch = main
