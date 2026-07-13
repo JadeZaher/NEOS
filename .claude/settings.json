@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($cli = \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\cache\\\\local\\\\pi-bridge\\\\1.0.0\\\\bin\\\\pi-cli.mjs\"; node \"$cli\" end neos-codegen; node \"$cli\" end neos-exec-tool; node \"$cli\" end neos-seed; node \"$cli\" end neos-emergency-patch; node \"$cli\" end neos-conductor-track)",
+      "PowerShell($cli = \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\cache\\\\local\\\\pi-bridge\\\\1.0.0\\\\bin\\\\pi-cli.mjs\"; node \"$cli\" new neos-codegen --model deepseek/deepseek-v4-pro --cwd \"c:\\\\Users\\\\atooz\\\\Programming\\\\NEOS\"; node \"$cli\" new neos-exec-tool --model deepseek/deepseek-v4-pro --cwd \"c:\\\\Users\\\\atooz\\\\Programming\\\\NEOS\"; node \"$cli\" new neos-seed --model deepseek/deepseek-v4-pro --cwd \"c:\\\\Users\\\\atooz\\\\Programming\\\\NEOS\"; node \"$cli\" new neos-emergency-patch --model deepseek/deepseek-v4-pro --cwd \"c:\\\\Users\\\\atooz\\\\Programming\\\\NEOS\"; node \"$cli\" new neos-conductor-track --model deepseek/deepseek-v4-pro --cwd \"c:\\\\Users\\\\atooz\\\\Programming\\\\NEOS\")",
+      "PowerShell($cli = \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\cache\\\\local\\\\pi-bridge\\\\1.0.0\\\\bin\\\\pi-cli.mjs\"; node \"$cli\" sessions)",
+      "PowerShell($cli = \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\cache\\\\local\\\\pi-bridge\\\\1.0.0\\\\bin\\\\pi-cli.mjs\"; node \"$cli\" state neos-codegen; node \"$cli\" state neos-seed)"
+    ]
+  }
+}
