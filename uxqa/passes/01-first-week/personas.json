@@ -1,0 +1,158 @@
+{
+ "seed": {
+  "marker": "uxqa-p1",
+  "ecosystem": "OmniOne",
+  "adapterNote": "uxqa/adapter/seed.py reads only personas[].handle, name and seed. The fixtures below are for the Prebake phase: create each one through the API a real client would call, signed in as the named qa persona with the selected-ecosystem cookie set to OmniOne, and keep (uxqa-p1) in every title.",
+  "prebake": {
+   "domains": [
+    { "name": "Newcomer Garden (uxqa-p1)", "ecosystem": "OmniOne", "createdAs": "qa-steward-amara", "steward": "qa-steward-amara", "purpose": "The domain Amara stewards. Sol joins it in lane arrival-and-welcome; no other lane joins it.", "fallback": "If the API refuses domain creation by Amara (role mod, profile collaborator), record that as a finding and name the existing OmniOne domain the lane should use instead." }
+   ],
+   "proposals": [
+    { "title": "Welcome walk schedule (uxqa-p1)", "author": "qa-steward-amara", "stage": "advice", "reservedFor": "arrival-and-welcome" },
+    { "title": "Compost bay rebuild (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "plain-words-week" },
+    { "title": "Rainwater tank sharing (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "plain-words-week" },
+    { "title": "Bulk seed order (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "probe" },
+    { "title": "Tool shed opening hours (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "unreserved gold pool" },
+    { "title": "Quiet hours at the commons (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "unreserved gold pool" },
+    { "title": "Orchard pruning day (uxqa-p1)", "author": "qa-member-oren", "stage": "advice", "reservedFor": "unreserved gold pool" },
+    { "title": "Newcomer buddy rota (uxqa-p1)", "author": "qa-member-oren", "stage": "draft", "reservedFor": "expert-first-week-audit" }
+   ],
+   "rules": [
+    "Give no advice on any advice-stage fixture during prebake: the first advice auto-advances a proposal to consent.",
+    "At least 3 unreserved OmniOne advice-stage proposals (the gold pool) must still be in advice when the swarm starts.",
+    "Never create anything titled '(uxqa gold)': gold-propose and gold-share create those, and the adapter withdraws them each seed."
+   ]
+  }
+ },
+ "personas": [
+  {
+   "handle": "qa-visitor", "name": "Visitor", "archetype": "signed-out visitor (gold)", "segment": "visitors",
+   "goal": "A friend told me about NEOS. I want my own account and to get into the app.",
+   "context": "Gold persona for gold-signup. Has no account, ordinary web skills, no idea what an ecosystem is yet. Signs up with a username starting uxqa_ and a display name carrying uxqa-p1. Kept unconstrained so gold trends stay comparable across passes (gold constraints come from the task config).",
+   "patience": 3, "constraints": {}, "modelTier": "sonnet",
+   "seed": { "anonymous": true }
+  },
+  {
+   "handle": "qa-gold-member", "name": "Gold Member", "archetype": "active member (gold)", "segment": "members",
+   "goal": "Put a proposal forward and open it for members' advice; offer seed-saving workshops publicly and check others can find the offer.",
+   "context": "Gold persona for gold-propose and gold-share. An ordinary OmniOne member (townhall) who has used NEOS a little but has never written a proposal or a share. Handle and seed kept stable for cross-pass gold trends.",
+   "patience": 3, "constraints": {}, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-gold-advisor", "name": "Gold Advisor", "archetype": "active member (gold)", "segment": "members",
+   "goal": "Give my advice on a proposal that is waiting for it, and change the name other members see for me.",
+   "context": "Gold persona for gold-advise and gold-profile. An ordinary OmniOne member (townhall) who reads proposals but rarely writes. The seed resets the display name to 'Gold Advisor' each pass so gold-profile starts from the same state.",
+   "patience": 3, "constraints": {}, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-gold-newcomer", "name": "Gold Newcomer", "archetype": "newcomer (gold)", "segment": "newcomers",
+   "goal": "Find out how to get oriented in an ecosystem I'm curious about and start its orientation journey.",
+   "context": "Gold persona for gold-orient. Signed in for the first time after a steward added them to OmniOne; knows nothing about ethos, orientation or ACT. The seed clears orientation progress each pass.",
+   "patience": 3, "constraints": {}, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-new-sol", "name": "Sol Navarro", "archetype": "self-signed-up newcomer on a phone", "segment": "newcomers",
+   "goal": "I found NEOS on my own. I want an account, to understand what OmniOne stands for, to say hello to someone who can help me start, and to join the garden domain and give my first bit of advice.",
+   "context": "26, does everything on a phone (390 px), comfortable with apps but impatient with desktop-shaped pages. No account yet: signs up himself with a password (username uxqa_p1_sol_<4 random chars>, display name 'Sol Navarro (uxqa-p1)'). Later follows a link from a message while signed out, which exercises the /login?redirect= question.",
+   "patience": 3, "constraints": { "width": 390 }, "modelTier": "sonnet",
+   "seed": { "anonymous": true }
+  },
+  {
+   "handle": "qa-steward-amara", "name": "Amara Teague", "archetype": "domain steward", "segment": "stewards",
+   "goal": "Spot this week's new arrivals, welcome them in messaging, point them to something they can help with, and see them join my domain.",
+   "context": "Has stewarded OmniOne's newcomer garden for two years and knows the ACT process well. Low vision: always browses at 200% zoom. Steward of 'Newcomer Garden (uxqa-p1)' and author of 'Welcome walk schedule (uxqa-p1)' (both prebaked). Role mod, profile collaborator (UI facilitator permissions).",
+   "patience": 4, "constraints": { "zoom": 2 }, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "mod", "profile": "collaborator", "status": "active" }] }
+  },
+  {
+   "handle": "qa-new-joy", "name": "Joy Adewale", "archetype": "steward-added newcomer with low literacy", "segment": "newcomers",
+   "goal": "Work out what this place is about, get into a group about growing food, and say what I think about one idea people are deciding on.",
+   "context": "A steward added her to OmniOne and she has just signed in. Reads slowly, skips long paragraphs, does not know words like 'ethos', 'domain', 'advice phase' or 'ACT'. Acts only on words she can see on screen (perceives through text()); icons without words mean nothing to her. Friends with Rafi.",
+   "patience": 2, "constraints": { "lowLiteracy": true }, "modelTier": "haiku",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-new-rafi", "name": "Rafi Haddad", "archetype": "steward-added newcomer, impatient, poor connection", "segment": "newcomers",
+   "goal": "Answer Joy, add my own advice to the proposal she mentioned, and ask the community for a lift to the work party.",
+   "context": "Added by a steward with Joy; uses NEOS from a rural connection (slow network) between shifts and gives up after one failed try. Taps buttons again when nothing seems to happen, which exercises loading states and double submits.",
+   "patience": 1, "constraints": { "slow": true }, "modelTier": "haiku",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-member-ines", "name": "Ines Valcourt", "archetype": "long-standing member, keyboard only", "segment": "members",
+   "goal": "Put my work-party rota proposal forward for advice, ask a newcomer for their view, and see their advice arrive.",
+   "context": "OmniOne member for three years (profile builder, role user), writes several proposals a year. Repetitive strain injury: keyboard only (Tab, Enter, Space, arrows), never a pointer. Expects the app to confirm when a proposal changes status.",
+   "patience": 4, "constraints": { "keyboardOnly": true }, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "builder", "status": "active" }] }
+  },
+  {
+   "handle": "qa-new-kofi", "name": "Kofi Asante", "archetype": "steward-added newcomer, blind screen-reader user", "segment": "newcomers",
+   "goal": "Get oriented, join a domain, give my first advice on Ines's proposal, and introduce myself with a profile and an offer of bike-repair help.",
+   "context": "Blind since birth, expert screen-reader and keyboard user (perceives only through outline(), acts through getByRole and the keyboard). A steward added him to OmniOne this week. Unlabelled controls, silent errors and selects that read raw ids stop him cold.",
+   "patience": 3, "constraints": { "a11yTreeOnly": true, "keyboardOnly": true }, "modelTier": "sonnet",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] }
+  },
+  {
+   "handle": "qa-member-oren", "name": "Oren Feldmann", "archetype": "founding co-creator and ACT facilitator (methodologist)", "segment": "members",
+   "goal": "Revise my newcomer buddy rota proposal and open it for advice, invite a newcomer's advice, and judge whether the first-week path teaches newcomers the ACT process faithfully.",
+   "context": "Founding OmniOne co-creator (profile co_creator, role user) who facilitates ACT rounds and trains stewards. Browser runs in German (de-DE), so he notices mixed date and number formats. Author of the prebaked draft 'Newcomer buddy rota (uxqa-p1)' and of several advice-stage proposals that other newcomers advise on this week, so advice arrives in his notification bell from across the community.",
+   "patience": 4, "constraints": { "locale": "de-DE" }, "modelTier": "opus",
+   "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "co_creator", "status": "active" }] }
+  },
+  {
+   "handle": "qa-new-priya", "name": "Priya Raman", "archetype": "self-signed-up technical newcomer (auditor)", "segment": "newcomers",
+   "goal": "Sign in with a decentralised identity, plan my first week, connect my personal AI agent safely, and give my first advice on Oren's proposal.",
+   "context": "Software engineer and privacy auditor, curious about OmniOne. No account yet: uses the DID option on /login and lets the app create an identity (display name 'Priya Raman (uxqa-p1)'). Reads every permission prompt and checks that secrets are shown once and can be revoked. Never prints or pastes a token value.",
+   "patience": 3, "constraints": {}, "modelTier": "opus",
+   "seed": { "anonymous": true }
+  },
+  {
+   "handle": "qa-probe-tess", "name": "Probe Tess", "archetype": "API capability probe", "segment": "probe",
+   "goal": "Check through the API that the capabilities the first week depends on exist, enforce permissions and return sane errors.",
+   "context": "Not a UX persona: drives the probe lane only. Three memberships give her the deny cases: active OmniOne townhall user, active Oasis co_creator with role user (UI legacy admin, API user), and prospective Escherbridge townhall member (must be refused domain participation).",
+   "patience": 5, "constraints": {}, "modelTier": "sonnet",
+   "seed": { "memberships": [
+    { "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" },
+    { "ecosystem": "Oasis", "role": "user", "profile": "co_creator", "status": "active" },
+    { "ecosystem": "Escherbridge", "role": "user", "profile": "townhall", "status": "prospective" }
+   ] }
+  }
+ ],
+ "lanes": [
+  {
+   "name": "arrival-and-welcome", "kind": "ux", "personas": ["qa-new-sol", "qa-steward-amara"], "modelTier": "sonnet",
+   "journey": "A cold sign-up and the steward who greets him. (1) Amara (200% zoom) opens /dashboard and the notification bell looking for this week's arrivals, then opens 'Newcomer Garden (uxqa-p1)' from /domains and checks she is shown as its steward. (2) Sol (390 px, signed out) opens /, signs himself up on /login with a password (username uxqa_p1_sol_<4 random chars>, display name 'Sol Navarro (uxqa-p1)'), lands on /dashboard, uses the ecosystem picker to work out which ecosystem sign-up put him in (joining OmniOne through the UI if it was another), reads OmniOne's /ethos page and starts its orientation journey. (3) Sol finds out who stewards 'Newcomer Garden (uxqa-p1)' and sends Amara a hello in /messaging ('hello from Sol, uxqa-p1'). (4) Amara finds the message and replies with a welcome (uxqa-p1) that pastes the URL of 'Welcome walk schedule (uxqa-p1)'. (5) Sol signs out, opens that proposal URL while signed out, signs in with the credentials he made, and records where he lands (carried question: is /login?redirect= honoured?). (6) Sol joins 'Newcomer Garden (uxqa-p1)', reloads to check the joined state sticks and Join is not offered again, then gives his first advice on 'Welcome walk schedule (uxqa-p1)' (text carries uxqa-p1). (7) Amara checks the bell and the domain page for Sol's join and advice. Both personas note the dashboard hero image, the 'All N ecosystems' wording and the sidebar brand as they see them. Message only qa-* personas. No assistant messages."
+  },
+  {
+   "name": "plain-words-week", "kind": "ux", "personas": ["qa-new-joy", "qa-new-rafi"], "modelTier": "haiku",
+   "journey": "Two friends a steward added to OmniOne, both already signed in. (1) Joy (low literacy: perceive only through text(), act only on words she can see, patience 2) opens /dashboard and tries to find out what OmniOne is about and how to start: its ethos page and orientation journey, using the route guide rail if she notices it. (2) Joy looks on /domains for a group about growing food or compost, joins it, reloads, and checks it still says she is in. (3) Joy finds a proposal waiting for advice, 'Compost bay rebuild (uxqa-p1)' if she can reach it from the dashboard or /proposals, and gives her first advice (with uxqa-p1). She may ask the in-app assistant one plain-words question (e.g. what 'advice' means); never paste persona data. (4) Joy messages Rafi in /messaging ('I gave advice on the compost one, uxqa-p1'). (5) Rafi (slow network, patience 1) opens the notification bell and /messaging and replies to Joy, then opens 'Compost bay rebuild (uxqa-p1)' to add his advice: record what the page tells him now that Joy's advice moved it on; press submit once before typing (does anything tell him?), then give advice on 'Rainwater tank sharing (uxqa-p1)' instead, watching for missing loading states and double submits. (6) Rafi posts a need 'Lift to the work party (uxqa-p1)' from /discover and records where the app leaves him and whether he can see his need listed. Message only qa-* personas. At most two assistant messages in the lane."
+  },
+  {
+   "name": "keyboard-and-screen-reader-week", "kind": "ux", "personas": ["qa-member-ines", "qa-new-kofi"], "modelTier": "sonnet",
+   "journey": "(1) Ines (keyboard only: Tab, Enter, Space, arrows, no pointer) creates the proposal 'Tuesday work-party rota (uxqa-p1)' from /proposals and opens it for advice; record whether the status change is confirmed (toast or announced text) and where focus lands. (2) Ines messages Kofi in /messaging asking for his advice and pasting the proposal URL. (3) Kofi (perceive only through outline(), act through getByRole and the keyboard) reads /dashboard and OmniOne's ethos page and starts its orientation journey; joins a domain he chooses on /domains and checks after reload that the page says he participates and does not offer Join again. (4) Kofi opens Ines's proposal from her message, presses the advice submit button once before typing (is any error announced?), then submits real advice with uxqa-p1. (5) Kofi introduces himself: on /me sets a headline or bio carrying uxqa-p1, then publishes a public offer 'Bike repair help (uxqa-p1)' from /discover, noting how the Domain select's options read in the accessibility tree, and checks the offer is listed where others find it. (6) Ines checks the notification bell and her proposal for Kofi's advice and replies to him in messaging. Message only qa-* personas. No assistant messages."
+  },
+  {
+   "name": "expert-first-week-audit", "kind": "ux", "personas": ["qa-member-oren", "qa-new-priya"], "modelTier": "opus",
+   "journey": "(1) Priya (signed out) uses the DID option on /login and lets the app create an identity with display name 'Priya Raman (uxqa-p1)'; on /dashboard she plans her week from the route guide rail, reads OmniOne's ethos page, starts its orientation journey and joins a domain other than 'Newcomer Garden (uxqa-p1)'. (2) On /me Priya sets up agent access for her personal AI agent: creates a token labelled uxqa-p1, checks what she is told it can do, then revokes it. Never print, log or paste the token value; if it is shown on screen record only that it was shown, and keep it out of screenshots taken afterwards. (3) Oren (browser locale de-DE) opens his draft 'Newcomer buddy rota (uxqa-p1)', edits it to add a sentence carrying uxqa-p1, and opens it for advice; he judges whether the status change is confirmed and whether dates and numbers render consistently in his locale across /proposals, the proposal page and /messaging. (4) Oren messages Priya with the proposal URL inviting her first advice. (5) Priya gives advice on it (uxqa-p1) and judges whether the advice form teaches a newcomer what useful advice looks like; she may ask the in-app assistant one question about the advice phase (no persona data). (6) Oren reads incoming advice through the notification bell, on this proposal and on his older advice-stage proposals that newcomers in other lanes advise on this week, and as methodologist judges whether the first-week path teaches the ACT process faithfully; he checks what the ecosystem picker's 'All N ecosystems' means for him. Message only qa-* personas. At most two assistant messages in the lane."
+  },
+  {
+   "name": "gold-propose-share-signup", "kind": "gold", "personas": ["qa-gold-member", "qa-visitor"], "modelTier": "sonnet",
+   "goldTasks": ["gold-propose", "gold-share", "gold-signup"],
+   "journey": "Run gold-propose and gold-share as qa-gold-member and gold-signup as qa-visitor with runGold, each from its start URL and goal text through the UI only (no request() or trpc() in a driver). The gold-signup username starts uxqa_ and its display name carries uxqa-p1."
+  },
+  {
+   "name": "gold-advise-profile-orient", "kind": "gold", "personas": ["qa-gold-advisor", "qa-gold-newcomer"], "modelTier": "sonnet",
+   "goldTasks": ["gold-advise", "gold-profile", "gold-orient"],
+   "journey": "Run gold-advise then gold-profile as qa-gold-advisor, and gold-orient as qa-gold-newcomer, with runGold through the UI only. Test isolation, not a hint: gold-advise never advises on a proposal titled '(uxqa gold)', because that is gold-propose's proposal in the parallel gold lane and the first advice would move it out of the advice phase. Prebake leaves at least 3 unreserved advice-stage proposals for this task."
+  },
+  {
+   "name": "first-week-capability-probe", "kind": "probe", "personas": ["qa-probe-tess"], "modelTier": "sonnet",
+   "journey": "API-only checks as qa-probe-tess (mode 'probe', the requests a real client makes; read source to find endpoints). Record status codes and response shapes; never print cookies, tokens or Set-Cookie headers. (1) Advice validation: POST empty and whitespace-only advice to 'Bulk seed order (uxqa-p1)': expect 4xx with a readable error rather than 2xx (carried question: empty advice). Then post one valid advice carrying uxqa-p1. (2) Status permission: as a non-author, try to change the status of 'Bulk seed order (uxqa-p1)': expect 403. (3) Domain participation: as the active OmniOne member, POST participation on a seeded OmniOne domain that has agreement gates (expect 409 with required_agreements) and on one without (expect 201); repeat (expect idempotent); then GET that domain's detail and the domain list and record whether either tells the caller they already participate (needed for a joined state that survives reload). As the prospective Escherbridge member, POST participation on an Escherbridge domain: expect 403. Never join 'Newcomer Garden (uxqa-p1)'. (4) Permission parity: the UI derives manage_content from profile (townhall included) and legacy admin from builder/co_creator. As the OmniOne townhall user try domain creation; with the Oasis co_creator membership (role user) call read-only admin endpoints. Record every place the UI would offer an action the API refuses, or the reverse, and say when unsure. Never change any member role or status. (5) Shares: POST a public offer 'Probe offer (uxqa-p1)' with a domain_id, confirm it is listed by GET /api/v1/discover/shares-needs including when another ecosystem is selected, record whether the domain options the shares form loads carry names or only ids, then withdraw the offer. (6) Sign-up: POST /api/v1/auth/register with a 7-character password (expect a server-side 400), then at most one successful registration as uxqa_p1_probe_<4 random chars> with display name 'Probe Signup (uxqa-p1)'; record which ecosystem the new member lands in (registration takes an unordered first ecosystem), then log that session out. (7) Agent tokens: create one labelled uxqa-p1, confirm the list never re-exposes the secret, revoke it and confirm the revoked token is refused; reduce every output to a status line. (8) Setup smoke: GET /api/v1/media/ecosystems/omnione.webp and record status plus whether the object exists in local media (OWNER versus product defect); GET /api/v1/ecosystems and record how many come back and whether the list is membership-scoped (explains 'All 1 ecosystems'). Message nobody."
+  }
+ ],
+ "retired": ["qa-uxqa-smoke"],
+ "rationale": "First designed cast for 01-first-week. 13 personas: the 4 mandatory gold personas, 1 probe persona, and 8 scenario personas, the minimum for 4 ux lanes of at least 2 collaborators. Every lane pairs a newcomer with whoever hands off to them (steward to cold sign-up; long-standing member to a steward-added newcomer; founding methodologist to a technical newcomer), or two newcomer friends whose first advice changes what the other sees. Each scenario hand-off (welcome message, invitation to advise, advice arriving in the bell) happens inside one lane. 7 of 13 are constrained (54%), spread over newcomers (390 px, low literacy, slow plus patience 1, accessibility tree plus keyboard), stewards (200% zoom) and members (keyboard only, de-DE). Gold and probe personas stay unconstrained so gold trends are comparable across passes. Tiers: haiku plays the low-literacy and impatient pair, opus the two experts (methodologist Oren, auditor Priya), sonnet everyone else. Seeds follow the code: frontend permissions derive from profile, so the steward is mod/collaborator and the long-standing members are builder and co_creator. Domain joins need active status plus agreement consents, so the probe holds a prospective Escherbridge membership for the deny case. Sign-up auto-joins an unordered first ecosystem, which Sol's lane and the probe both check. Because the first advice auto-advances a proposal to consent, prebake reserves a named advice-stage proposal per advising lane plus 3 unreserved for gold-advise, authored mostly by Oren so advice from across the week lands in his bell. Every carried question has an owner: login redirect (Sol), empty advice (Kofi via screen reader, Rafi on a slow network, probe via API), joined state after reload (Sol, Joy, Kofi, probe), share landing tab and domain-select labels (Kofi, Rafi, gold-share, probe), status-change confirmation (Ines, Oren), and the setup smoke issues (Amara, Sol, Oren, probe). Every focus area is reached: DID by Priya, agent access by Priya, ecosystem picker by Sol and Oren, route guide rail by Joy and Priya, notification bell by Amara, Rafi, Ines and Oren. qa-uxqa-smoke was a setup-only smoke persona and is retired."
+}

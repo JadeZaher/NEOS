@@ -1,0 +1,9 @@
+{
+  "name": "neos-uxqa",
+  "private": true,
+  "description": "Harness-only dependencies for the NEOS UX study; the product's own package.json is untouched.",
+  "type": "module",
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}

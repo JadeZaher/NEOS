@@ -1,0 +1,9 @@
+{
+ "personas": [
+  { "handle": "qa-uxqa-smoke", "name": "Smoke Tester", "archetype": "setup smoke", "segment": "members", "seed": { "memberships": [{ "ecosystem": "OmniOne" }] } },
+  { "handle": "qa-visitor", "name": "Visitor", "archetype": "signed-out visitor", "segment": "visitors", "seed": { "anonymous": true } },
+  { "handle": "qa-gold-member", "name": "Gold Member", "archetype": "active member", "segment": "members", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-gold-advisor", "name": "Gold Advisor", "archetype": "active member", "segment": "members", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-gold-newcomer", "name": "Gold Newcomer", "archetype": "newcomer", "segment": "newcomers", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] } }
+ ]
+}

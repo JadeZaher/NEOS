@@ -1,0 +1,7 @@
+# ux-qa-research: secrets and raw captures never leave the machine
+.secrets/
+passes/*/runs/
+passes/*/flows/
+# NEOS study: harness deps and the generated route shadow (rebuild with adapter/gen-routes.mjs)
+node_modules/
+routes/

@@ -1,0 +1,260 @@
+{
+ "pass": "01-first-week",
+ "marker": "uxqa-p1",
+ "createdAt": "2026-10-31T19:02:31.975Z",
+ "baseUrl": "http://localhost:5173",
+ "ecosystem": {
+  "name": "OmniOne",
+  "id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e"
+ },
+ "domains": [
+  {
+   "name": "Newcomer Garden (uxqa-p1)",
+   "id": "72584c1e-c20d-40ff-a22b-8af0e2af5221",
+   "code": "DOM-A4641B76",
+   "url": "http://localhost:5173/domains/72584c1e-c20d-40ff-a22b-8af0e2af5221",
+   "owner": "qa-steward-amara",
+   "steward": "Amara Teague",
+   "steward_member_id": "dc247c63-1d50-466e-a4d3-702529945127",
+   "status": "active",
+   "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+   "created": true,
+   "reservedFor": "arrival-and-welcome (Sol joins; no other lane joins it)"
+  }
+ ],
+ "proposals": [
+  {
+   "title": "Welcome walk schedule (uxqa-p1)",
+   "id": "dd9e2302-b75f-4abe-81a1-252a5f023136",
+   "code": "PROP-3B692888",
+   "url": "http://localhost:5173/proposals/dd9e2302-b75f-4abe-81a1-252a5f023136",
+   "owner": "qa-steward-amara",
+   "proposer": "Amara Teague",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "arrival-and-welcome",
+   "affected_domain": "Newcomer Garden (uxqa-p1)",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Compost bay rebuild (uxqa-p1)",
+   "id": "fbc0af46-93bc-4e64-8e16-571124be55d3",
+   "code": "PROP-977A18EB",
+   "url": "http://localhost:5173/proposals/fbc0af46-93bc-4e64-8e16-571124be55d3",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "plain-words-week",
+   "affected_domain": "Regenerative Agriculture Circle",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Rainwater tank sharing (uxqa-p1)",
+   "id": "01b847a9-fe95-44ad-b6b7-c31a3a68bc0c",
+   "code": "PROP-E7AFB339",
+   "url": "http://localhost:5173/proposals/01b847a9-fe95-44ad-b6b7-c31a3a68bc0c",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "plain-words-week",
+   "affected_domain": "Regenerative Agriculture Circle",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Bulk seed order (uxqa-p1)",
+   "id": "b01efeb7-e850-4f9c-9b49-ef4beca0ed18",
+   "code": "PROP-6959E071",
+   "url": "http://localhost:5173/proposals/b01efeb7-e850-4f9c-9b49-ef4beca0ed18",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "probe",
+   "affected_domain": "Regenerative Agriculture Circle",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Tool shed opening hours (uxqa-p1)",
+   "id": "52af2488-f315-42a4-9602-1ebbe52c3a4f",
+   "code": "PROP-19F1E0AA",
+   "url": "http://localhost:5173/proposals/52af2488-f315-42a4-9602-1ebbe52c3a4f",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Quiet hours at the commons (uxqa-p1)",
+   "id": "ac0b3d6c-4e62-4bdf-a2e0-75886daaba86",
+   "code": "PROP-AE5A9648",
+   "url": "http://localhost:5173/proposals/ac0b3d6c-4e62-4bdf-a2e0-75886daaba86",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Orchard pruning day (uxqa-p1)",
+   "id": "9b1d4df2-ac13-4b1d-937d-c03b5ee5d2c1",
+   "code": "PROP-1FADDD08",
+   "url": "http://localhost:5173/proposals/9b1d4df2-ac13-4b1d-937d-c03b5ee5d2c1",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Regenerative Agriculture Circle",
+   "advice_deadline": "2026-11-07",
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  },
+  {
+   "title": "Newcomer buddy rota (uxqa-p1)",
+   "id": "9ae73782-1c1e-439a-8dd2-66f67dcb926b",
+   "code": "PROP-0BB85429",
+   "url": "http://localhost:5173/proposals/9ae73782-1c1e-439a-8dd2-66f67dcb926b",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "stage": "draft",
+   "expectedStage": "draft",
+   "reservedFor": "expert-first-week-audit",
+   "affected_domain": "Newcomer Garden (uxqa-p1)",
+   "advice_deadline": null,
+   "adviceEntries": 0,
+   "advice_gate": {
+    "met": false,
+    "rounds": 0,
+    "required": 1,
+    "policy_source": "default"
+   },
+   "created": true
+  }
+ ],
+ "defects": [
+  {
+   "id": "PB-DOMAIN-NO-NAME",
+   "severity": "MEDIUM",
+   "title": "A new domain cannot be given a name: list card and detail heading show an opaque generated code",
+   "url": "http://localhost:5173/domains/72584c1e-c20d-40ff-a22b-8af0e2af5221",
+   "persona": "qa-steward-amara",
+   "steps": [
+    "As a steward create a domain from /domains/new (form offers Purpose, Current Steward, Status, Metric Definitions only) or POST /api/v1/domains",
+    "Open /domains and the new domain's page"
+   ],
+   "observed": "The domain's heading is the generated code 'DOM-A4641B76' (DomainList.tsx:77, DomainDetail.tsx:195 render domain_id); there is no name field in the form or DomainCreateRequest. Seeded domains carry readable codes (dom-omni-regen-001) only because the seed sets domain_id directly. The fixture's name 'Newcomer Garden (uxqa-p1)' lives only at the start of its purpose text.",
+   "expected": "A steward can name the domain, and members find it by that name on /domains and as the page heading",
+   "evidence": "GET /api/v1/domains/72584c1e-c20d-40ff-a22b-8af0e2af5221 -> 200, domain_id=DOM-A4641B76; screenshots uxqa/passes/01-first-week/runs/qa-steward-amara--prebake-4-look/domains-list.png and uxqa/passes/01-first-week/runs/qa-steward-amara--prebake-4-look/garden-detail.png (h1 \"DOM-A4641B76\")"
+  },
+  {
+   "id": "PB-BELL-STUB",
+   "severity": "HIGH",
+   "title": "Notification bell is a hard-coded empty placeholder: no fixture can make advice or arrivals appear in it",
+   "url": "http://localhost:5173/dashboard (header bell, every page)",
+   "persona": "qa-steward-amara, qa-member-oren (bell readers this pass)",
+   "steps": [
+    "Prebake opened 7 proposals for advice authored by Oren and Amara",
+    "Look for any API or data path that feeds the header bell"
+   ],
+   "observed": "charting-the-course/client/src/components/NotificationCenter.tsx:22-27 renders PLACEHOLDER_NOTIFICATIONS = [] (\"will be connected to real data later\") and makes no request, so the bell always reads \"No new notifications\" while promising \"governance updates, proposal activity, and community alerts\". Prebake could not stage advice-in-the-bell for Oren or arrivals-in-the-bell for Amara.",
+   "expected": "The bell lists activity on the member's proposals and domains (new advice, status changes, new participants), or is hidden until it does",
+   "evidence": "code read: NotificationCenter.tsx:22-27, mounted at App.tsx:445. Lanes arrival-and-welcome, keyboard-and-screen-reader-week and expert-first-week-audit confirm in the UI.",
+   "confidence": "code-read, not yet observed in a lane"
+  }
+ ],
+ "notes": [
+  "qa-steward-amara OmniOne member id dc247c63-1d50-466e-a4d3-702529945127",
+  "Domains have no name field: the fixture name lives at the start of purpose (seeded OmniOne domains follow the same \"Name — description\" convention). Lanes find it by the purpose text \"Newcomer Garden (uxqa-p1)\"; its heading and code is DOM-A4641B76.",
+  "steward_id (Amara's OmniOne member id) was set through the API; the UI domain form offers only free-text Current Steward, and the domain page shows the name \"Amara Teague\" with no link to her profile or messaging.",
+  "Proposal authorship is the free-text proposer field (\"Amara Teague\", \"Oren Feldmann\"); nothing links a proposal to the author's account, and POST /api/v1/proposals/:id/status has no author check (probe lane step 2 tests this).",
+  "No advice was given on any fixture. All 7 advice-stage fixtures use default gates (min_advice_rounds 1, policy_source default): the first advice entry on each auto-advances it to consent.",
+  "Advice-stage fixtures carry advice_deadline 2026-11-07 (7 days out) so de-DE date rendering can be judged; the draft has no deadline, a deliberately half-finished proposed_change and an empty rationale.",
+  "OmniOne also has 2 seeded (non-marker) advice-stage proposals; the gold pool of 3 unreserved marker proposals is in addition to those.",
+  "The steward herself is not a participant of Newcomer Garden: her domain page offers her \"Join this domain\" (participation is separate from stewardship).",
+  "Nothing titled \"(uxqa gold)\" was created. No messages, shares, domain participations or assistant calls were made during prebake."
+ ],
+ "verification": {
+  "by": "qa-new-joy",
+  "omnioneAdviceStageMarked": 7,
+  "unreservedGoldPoolInAdvice": 3,
+  "gardenVisibleOnDomainList": true,
+  "omnioneDomainCount": 4,
+  "goldTitledInAdvice": 0,
+  "ok": true
+ },
+ "runs": [
+  "uxqa/passes/01-first-week/runs/qa-steward-amara--prebake-0-recon",
+  "uxqa/passes/01-first-week/runs/qa-steward-amara--prebake-1-amara",
+  "uxqa/passes/01-first-week/runs/qa-member-oren--prebake-2-oren",
+  "uxqa/passes/01-first-week/runs/qa-new-joy--prebake-3-verify",
+  "uxqa/passes/01-first-week/runs/qa-steward-amara--prebake-4-look"
+ ],
+ "scripts": [
+  "uxqa/passes/01-first-week/flows/prebake/recon.mjs",
+  "uxqa/passes/01-first-week/flows/prebake/prebake.mjs",
+  "uxqa/passes/01-first-week/flows/prebake/look.mjs",
+  "uxqa/passes/01-first-week/flows/prebake/annotate.mjs"
+ ],
+ "annotated": true
+}
