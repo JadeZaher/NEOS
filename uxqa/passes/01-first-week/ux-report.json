@@ -1,7 +1,7 @@
 {
  "pass": "01-first-week",
  "frictionVersion": 1,
- "generatedAt": "2026-10-31T19:49:03.053Z",
+ "generatedAt": "2026-10-31T21:58:56.188Z",
  "runs": 85,
  "uxRuns": 76,
  "probeRuns": 9,
@@ -2777,15 +2777,6 @@
     "medianFriction": 10
    }
   },
-  "gold-advise-profile-orient-explore": {
-   "01-first-week": {
-    "runs": 1,
-    "successRate": 0,
-    "medianClicks": 1,
-    "medianSeconds": 6,
-    "medianFriction": 2
-   }
-  },
   "gold-profile": {
    "01-first-week": {
     "runs": 1,
@@ -2840,10 +2831,8 @@
   "goldSuccess": {
    "target": 0.8,
    "missing": [],
-   "below": [
-    "gold-advise-profile-orient-explore"
-   ],
-   "ok": false
+   "below": [],
+   "ok": true
   },
   "frictionTrend": {
    "previousPass": "00-setup",
@@ -2854,8 +2843,8 @@
   },
   "newHigh": {
    "target": 0,
-   "count": null,
-   "ok": null
+   "count": 3,
+   "ok": false
   },
   "routeCoverage": {
    "target": null,

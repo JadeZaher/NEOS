@@ -5,3 +5,5 @@ passes/*/flows/
 # NEOS study: harness deps and the generated route shadow (rebuild with adapter/gen-routes.mjs)
 node_modules/
 routes/
+# pass args are derived (study.md + prior ledger); rebuild with adapter/pass-args.mjs
+passes/*/args.json

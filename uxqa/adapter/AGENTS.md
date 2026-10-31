@@ -13,6 +13,7 @@ description: Why the session adapter, guards, route shadow and stack launcher fo
 | `verify-target.mjs` | Reads the `uxqa_environment` sentinel through the RUNNING server with a persona cookie. |
 | `gen-routes.mjs` | Builds `uxqa/routes/` (Next-pages-shaped shadow tree) from wouter routes + the Sanic route table. |
 | `stack.sh` | `api` / `web` / `status` for the isolated stack; run api/web as tracked background jobs. |
+| `pass-args.mjs` | `node pass-args.mjs <N>` builds `passes/<NN-slug>/args.json` for the pass Workflow from `study.md`, the rotation table and the prior pass's ledger. |
 
 ## Two guards, two failure modes
 
@@ -46,6 +47,21 @@ Every seed resets what gold tasks create: display name/bio/headline,
 `shares_needs` (set to withdrawn, not deleted, to keep collaboration FKs
 intact) and proposals titled `... (uxqa gold)`. Without the reset, pass N's
 success predicate would already be true from pass N-1's run.
+
+The resets are a registry: `@member_reset` steps run per seeded persona with
+its member ids, `@study_reset` steps run once per seed. **Adding a gold task
+means adding one decorated step** that removes whatever its success predicate
+looks for; `seed()` itself never changes. Profile fields are reset inside
+`upsert_user` because they are identity, not task output.
+
+## Pass args
+
+`pass-args.mjs` is the only place the scenario rotation lives (`ROTATION`):
+slug, name and the four lenses per pass, chosen so every lens recurs within
+three passes and the safety pass gets trust-behavioural + frontline-worker.
+It refuses to build args until `passes/<id>/scenario.md` exists, so a pass
+cannot launch without its brief. `args.json` is derived (it embeds the prior
+ledger) and gitignored.
 
 ## Route shadow
 
