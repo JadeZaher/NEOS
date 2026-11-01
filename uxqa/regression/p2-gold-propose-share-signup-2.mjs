@@ -1,5 +1,5 @@
 // p2-gold-propose-share-signup-2: the sidebar shows a member only the links whose page admits them.
-// A townhall member keeps "Manage Quizzes" and never sees "Manage Shares & Needs" (the admin panel); a builder sees both and the panel opens.
+// A townhall member sees neither "Manage Quizzes" (quiz writes need a steward or platform admin, pass 03 collab-10) nor "Manage Shares & Needs" (the admin panel); a builder sees both and the panel opens.
 import { BASE, regression } from "./support/fixtures.mjs";
 
 const sidebarLinks = async (page) => {
@@ -13,7 +13,7 @@ await regression("p2-gold-propose-share-signup-2", { pass: "02-act-lifecycle" },
   const member = await flow.as("qa-gold-member");  // townhall: manages content, not users
   member.step("Look through the sidebar as an ordinary member");
   const memberLinks = await sidebarLinks(member.page);
-  if (!memberLinks.includes("Manage Quizzes")) throw flow.red(`a townhall member lost "Manage Quizzes" (links: ${memberLinks.join(", ")})`);
+  if (memberLinks.includes("Manage Quizzes")) throw flow.red(`a townhall member is offered "Manage Quizzes", whose writes the server refuses (links: ${memberLinks.join(", ")})`);
   if (memberLinks.includes("Manage Shares & Needs")) throw flow.red('an ordinary member is offered "Manage Shares & Needs", which leads to Access Denied');
 
   const builder = await flow.as("qa-member-ines");  // builder: manages users, so the admin panel admits her
