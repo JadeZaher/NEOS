@@ -25,6 +25,8 @@ Newest block first. Each pass appends one block; nothing here is deleted.
 - Scenario and lens rotation live in one place: `ROTATION` in [adapter/pass-args.mjs](adapter/pass-args.mjs); `node uxqa/adapter/pass-args.mjs <N>` builds the pass args once `passes/<NN-slug>/scenario.md` exists.
 - Between passes (coordinator): apply new Alembic revisions to `neos_uxqa`; if backend files changed, `stack.sh stop-api` then relaunch `stack.sh api` as a tracked job; `stack.sh status`, plugin guard + adapter guard, `node uxqa/adapter/gen-routes.mjs`.
 - Craft phase (added 2026-10-31 at the owner's request): between passes, refactor toward single sources of truth per [craft/plan.md](craft/plan.md), in waves with disjoint file ownership, adversarial review, one sweep per wave.
+- Governance completeness + agent evals (added 2026-10-31 at the owner's request: "extend where governance is confusing or incomplete; easy to use with the agent; include an agent eval wave"). Order before pass 02: wave-0 review fixes -> governance reviews (layers 1-3, 4-10, agent; `governance/`, `agent-evals/`) -> craft wave 1 (refactor) -> governance extension wave (built on the wave-0 contracts) + agent-eval harness -> pass 02 with an agent-eval phase. Bar for extensions: the smallest change that makes a flow complete and understandable; no new subsystems.
+- Pushing (owner, 2026-10-31): push main after every green sweep, submodules first. A push deploys: backend via Railway (`alembic upgrade head` pre-deploy on production), frontend via `deploy-client.yml`.
 
 ## Study setup - 2026-10-31
 
