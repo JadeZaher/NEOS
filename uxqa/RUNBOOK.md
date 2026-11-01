@@ -8,6 +8,14 @@ description: Rolling state of the study - newest block first; one block per pass
 
 Newest block first. Each pass appends one block; nothing here is deleted.
 
+## Pass 02-act-lifecycle - 2026-11-01 - APPROVED
+
+- `pass 02: gold 6/6 at 1.0 (multi-run), friction/journey 13.99 -> 3.01, new HIGH 1 (owner: model key), coverage 23/77`
+- Fix commits: frontend `cbd05b3`, `7c807be`, `70298c2`; backend `5481acd`, `0dbfdf3`, `38a67fd`. Owner decisions 2026-11-01 (advice close, profile names, ceremonies copy; author's consent counts) in `c4f6951` / `44408cc` after an adversarial review that closed a deadline-backdating bypass, a stale revision deadline and a logout that never ended sessions with agent tokens.
+- Release monitoring (owner, 2026-11-01): "Deploy Client via SFTP" had failed on every push since July (`SFTP_SERVER` unset; now build-only unless the secret exists, `ccb17b8`); production cron logged an FK violation each run (`a7ff6c3`). Railway deploys themselves were SUCCESS.
+- Agent evals still OWNER_BLOCKED (no model key in `uxqa/.secrets/stack.env`).
+- Verdict: [passes/02-act-lifecycle/verdict.md](passes/02-act-lifecycle/verdict.md).
+
 ## Between passes 01 and 02 - craft + governance - 2026-10-31 (in progress)
 
 - Craft wave 0 (contracts) LANDED and PUSHED: backend `af47a92`, frontend `6f59976`, superproject `157cb97`. Sweep: tsc 0, npm test 33/33, build ok, pytest 481 passed.
@@ -18,6 +26,7 @@ Newest block first. Each pass appends one block; nothing here is deleted.
 - Governance wave A (G-ACT, G-Safety, G-Care, G-Agent) built; sweep green incl. PostgreSQL migration tests (pytest 715 passed, tsc 0, npm test 53/53, single head `r6c1e8a4f2d7`). Adversarial review REQUEST_CHANGES: H1 proposal text editable after ratification + register copies live text; H2 legacy /dashboard/* write routes bypass every rule; H3 self-assigned builder profile -> self-owner; M1 legacy chat trusts confirmed + agreement evidence activates without confirmation; M2 emergency/register races; M3 legacy conflict statuses; M4 remaining name-based identity. Three fix lanes (ACT+roles; legacy views+races+migrations; assistant+MCP) running; revisions p8d4/q2a7/r6c1 are undeployed and may be amended. Then: sweep (with PostgreSQL), commit, push, migrate neos_uxqa, restart API, wave B (G-Next).
 - Governance wave A + review fixes LANDED and PUSHED: backend `be45a44`, frontend `45c0b25`, superproject `463bf58` (migrations p8d4/q2a7/r6c1 run on production; final sweep pytest 776 passed 0 skipped incl. PostgreSQL migration + race tests, tsc 0, npm test 54/54). Study DB at `r6c1e8a4f2d7`, API restarted; eval dry-run 25/25 fixtures after `e26650a` (fixtures close advice as the proposer). Wave B (G-Next: next_steps service, /me/next-steps, /explain, bell, StatusBanner, assistant tools) running.
 - Governance wave B (G-Next) + review fixes LANDED and PUSHED 2026-11-01: backend `aa84a2b`, frontend `183ec5a`, superproject `bbeefa8` (sweep pytest 793 passed incl. PostgreSQL, tsc 0, npm test 60/60; review APPROVE, M1/M2/L1/L5 + a legacy-chat scoping leak fixed; LOWs logged in governance/plan.md). Study API restarted on it; eval dry-run 25/25. gold-propose now checks the status banner's "Advice stage" (the old "Your input is needed..." text no longer exists).
+- Pass 02-act-lifecycle LAUNCHED 2026-11-01: workflow task `wn0kudwvt`, run `wf_821011f7-b11` (args `passes/02-act-lifecycle/args.json`, 31 prior FIX items, agentEvals on). Close-out: read verdict.md §2, re-run claims (pytest with NEOS_TEST_POSTGRES_URL on a disposable DB, npm run check/test/build), write ledger.json from the triage result if missing, ux-report, RUNBOOK block, then migrate neos_uxqa + `stack.sh stop-api`/`api` if backend changed, and push.
 - OWNER, production settings (agents never touch Railway): `SIGNUP_DEFAULT_ECOSYSTEM_SLUG=omnione`; `FRONTEND_URL` (the retired legacy /dashboard routes' 410 page links to the app through it).
 - Agent-eval wave built ([agent-evals/AGENTS.md](agent-evals/AGENTS.md), plugin AgentEval phase). BLOCKED on the assistant's model key: the owner puts `AI_API_KEY=...` (optionally `AI_PROVIDER=`) in `uxqa/.secrets/stack.env`; then restart the API and run the baseline `node uxqa/agent-evals/run.mjs 01-first-week` before G-wave changes land if possible.
 

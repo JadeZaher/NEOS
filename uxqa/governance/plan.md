@@ -22,6 +22,10 @@ or cron framework. Builds on the craft contracts (`policy`, `caller_in`,
 | Test -> Ratified | A steward confirms the outcome; test reports are evidence, never self-certifying | `Lifecycle` + `policy` |
 | Who declares an emergency | Any active member of the ecosystem, with a co-signer (second active member); bounded timer | `policy.can_declare_emergency` + emergency co-sign step |
 | Who grants roles | Only roles below your own rank; only an owner grants owner; every grant is recorded | `policy.can_assign_role` |
+| Stewards closing advice (2026-11-01) | The proposer closes advice any time; a steward who did not write it only after a set advice deadline has passed; no deadline: proposer only. Enforced with: only the author edits the advice deadline; a revision round (send back) starts with no deadline. Consequence: a no-deadline proposal whose proposer is absent leaves advice only by withdrawal (revisit if it stalls real proposals) | `policy.can_close_advice` + deadline-edit rule |
+| Author's own consent (2026-11-01) | Counts toward the quorum (unchanged) | consent gate, `services/AGENTS.md` |
+| Agreement ceremonies (2026-11-01) | No separate "record a ceremony" action: ceremonies are the recorded stage moves with evidence; copy fixed | role card / agreement page copy |
+| Display name (2026-11-01) | Saving the profile name renames the member in every ecosystem | profile save endpoint |
 
 Defaults chosen without asking (one-line changes, listed for the owner): quorum
 comes from the governing agreement, else the engine default, and the assistant

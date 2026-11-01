@@ -1,0 +1,1100 @@
+{
+ "pass": "02-act-lifecycle",
+ "marker": "uxqa-p2",
+ "createdAt": "2026-11-01T06:27:43.980Z",
+ "baseUrl": "http://localhost:5173",
+ "ecosystem": {
+  "name": "OmniOne",
+  "id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e"
+ },
+ "personas": {
+  "qa-new-rafi": {
+   "name": "Rafi Haddad",
+   "omnioneMemberId": "fa36c017-aa96-468a-931b-236f55ccfbe3"
+  },
+  "qa-steward-amara": {
+   "name": "Amara Teague",
+   "omnioneMemberId": "dc247c63-1d50-466e-a4d3-702529945127"
+  },
+  "qa-member-oren": {
+   "name": "Oren Feldmann",
+   "omnioneMemberId": "36a47faa-86dd-4957-b1dc-d145b27891d9"
+  },
+  "qa-probe-tess": {
+   "name": "Tess Marlow",
+   "omnioneMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386"
+  },
+  "qa-new-sol": {
+   "name": "Sol Navarro",
+   "omnioneMemberId": "45ae7db3-63ec-470c-966a-fdec7d89eb52"
+  },
+  "qa-new-joy": {
+   "name": "Joy Adewale",
+   "omnioneMemberId": "3b043720-a881-424a-a0ee-3b25a091284c"
+  }
+ },
+ "proposals": [
+  {
+   "title": "Lift share for tool pickups (uxqa-p2)",
+   "id": "c6db1b88-abc7-458b-8ea5-261c49cd0537",
+   "code": "PROP-0175B320",
+   "url": "http://localhost:5173/proposals/c6db1b88-abc7-458b-8ea5-261c49cd0537",
+   "owner": "qa-new-rafi",
+   "proposer": "Rafi Haddad",
+   "proposerMemberId": "fa36c017-aa96-468a-931b-236f55ccfbe3",
+   "version": "1.0",
+   "stage": "draft",
+   "expectedStage": "draft",
+   "reservedFor": "lift-share-plain-words",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": false,
+     "rounds": 0
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "advice",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Tool shed key holders (uxqa-p2)",
+   "id": "4e4d8604-05b4-4fd4-84ee-134b3f6e3305",
+   "code": "PROP-F113E337",
+   "url": "http://localhost:5173/proposals/4e4d8604-05b4-4fd4-84ee-134b3f6e3305",
+   "owner": "qa-steward-amara",
+   "proposer": "Amara Teague",
+   "proposerMemberId": "dc247c63-1d50-466e-a4d3-702529945127",
+   "version": "1.0",
+   "stage": "test",
+   "expectedStage": "test",
+   "reservedFor": "stewards-confirm-and-register",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Oren Feldmann",
+     "member_id": "36a47faa-86dd-4957-b1dc-d145b27891d9"
+    }
+   ],
+   "positions": [
+    {
+     "member": "Oren Feldmann",
+     "position": "consent",
+     "hasReason": false
+    }
+   ],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": true,
+     "positions": 1,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "advice",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "ratified",
+     "ready": false,
+     "blocked": "needs_another_steward"
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Tool library late fees (uxqa-p2)",
+   "id": "68804b5a-0a90-45d9-8c66-4c72d1b0992e",
+   "code": "PROP-6653BE72",
+   "url": "http://localhost:5173/proposals/68804b5a-0a90-45d9-8c66-4c72d1b0992e",
+   "owner": "qa-steward-amara",
+   "proposer": "Amara Teague",
+   "proposerMemberId": "dc247c63-1d50-466e-a4d3-702529945127",
+   "version": "1.0",
+   "stage": "test",
+   "expectedStage": "test",
+   "reservedFor": "stewards-confirm-and-register (Oren confirms it through the assistant)",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Oren Feldmann",
+     "member_id": "36a47faa-86dd-4957-b1dc-d145b27891d9"
+    }
+   ],
+   "positions": [
+    {
+     "member": "Oren Feldmann",
+     "position": "consent",
+     "hasReason": false
+    }
+   ],
+   "testReports": [
+    {
+     "reporter": "Oren Feldmann",
+     "outcome": "passed"
+    }
+   ],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": true,
+     "positions": 1,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": true,
+     "reports": 1
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "advice",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "ratified",
+     "ready": true,
+     "blocked": "needs_another_steward"
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Tool library insurance cover (uxqa-p2)",
+   "id": "1c0b619b-861d-4107-822b-89da029bf777",
+   "code": "PROP-3E2DBB96",
+   "url": "http://localhost:5173/proposals/1c0b619b-861d-4107-822b-89da029bf777",
+   "owner": "qa-member-oren",
+   "proposer": "Oren Feldmann",
+   "proposerMemberId": "36a47faa-86dd-4957-b1dc-d145b27891d9",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "stewards-confirm-and-register",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Amara Teague",
+     "member_id": "dc247c63-1d50-466e-a4d3-702529945127"
+    }
+   ],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Tool library opening hours (uxqa-p2)",
+   "id": "b1e037ac-fadd-469d-a0e6-1a05200eb38c",
+   "code": "PROP-AEB006D8",
+   "url": "http://localhost:5173/proposals/b1e037ac-fadd-469d-a0e6-1a05200eb38c",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "stewards-confirm-and-register (facilitation check)",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Sol Navarro",
+     "member_id": "45ae7db3-63ec-470c-966a-fdec7d89eb52"
+    }
+   ],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Probe steward-written test (uxqa-p2)",
+   "id": "e531f2e8-9fea-4e5c-8909-0af72968b694",
+   "code": "PROP-B8B6FC24",
+   "url": "http://localhost:5173/proposals/e531f2e8-9fea-4e5c-8909-0af72968b694",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "test",
+   "expectedStage": "test",
+   "reservedFor": "act-authority-probe",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Sol Navarro",
+     "member_id": "45ae7db3-63ec-470c-966a-fdec7d89eb52"
+    }
+   ],
+   "positions": [
+    {
+     "member": "Sol Navarro",
+     "position": "consent",
+     "hasReason": false
+    }
+   ],
+   "testReports": [
+    {
+     "reporter": "Sol Navarro",
+     "outcome": "passed"
+    }
+   ],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": true,
+     "positions": 1,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": true,
+     "reports": 1
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "advice",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "ratified",
+     "ready": true,
+     "blocked": "needs_another_steward"
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Probe consent table (uxqa-p2)",
+   "id": "8bf56543-eb26-4ca0-bd03-82495aad2eb5",
+   "code": "PROP-76A872D4",
+   "url": "http://localhost:5173/proposals/8bf56543-eb26-4ca0-bd03-82495aad2eb5",
+   "owner": "qa-steward-amara",
+   "proposer": "Amara Teague",
+   "proposerMemberId": "dc247c63-1d50-466e-a4d3-702529945127",
+   "version": "1.0",
+   "stage": "consent",
+   "expectedStage": "consent",
+   "reservedFor": "act-authority-probe",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Sol Navarro",
+     "member_id": "45ae7db3-63ec-470c-966a-fdec7d89eb52"
+    }
+   ],
+   "positions": [
+    {
+     "member": "Sol Navarro",
+     "position": "object",
+     "hasReason": true
+    }
+   ],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": false,
+     "positions": 1,
+     "quorum": 1,
+     "open_objections": 1
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "advice",
+     "ready": true,
+     "blocked": null
+    },
+    {
+     "to": "test",
+     "ready": false,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Probe ratified text (uxqa-p2)",
+   "id": "f35ba7e7-23e6-470b-90fc-43903f52113a",
+   "code": "PROP-ED3FB3B4",
+   "url": "http://localhost:5173/proposals/f35ba7e7-23e6-470b-90fc-43903f52113a",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "ratified",
+   "expectedStage": "ratified",
+   "reservedFor": "act-authority-probe",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [
+    {
+     "advisor": "Sol Navarro",
+     "member_id": "45ae7db3-63ec-470c-966a-fdec7d89eb52"
+    }
+   ],
+   "positions": [
+    {
+     "member": "Sol Navarro",
+     "position": "consent",
+     "hasReason": false
+    }
+   ],
+   "testReports": [
+    {
+     "reporter": "Sol Navarro",
+     "outcome": "passed"
+    }
+   ],
+   "gates": {
+    "advice": {
+     "met": true,
+     "rounds": 1
+    },
+    "consent": {
+     "met": true,
+     "positions": 1,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": true,
+     "reports": 1
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Seed library shelf (uxqa-p2)",
+   "id": "3979355f-29e5-41b5-84ff-ba76f0841abf",
+   "code": "PROP-AB1678C6",
+   "url": "http://localhost:5173/proposals/3979355f-29e5-41b5-84ff-ba76f0841abf",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": false,
+     "rounds": 0
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": false,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Bike trailer booking (uxqa-p2)",
+   "id": "43e60446-fac5-49b1-b35e-2a4babc5325d",
+   "code": "PROP-29B7A94D",
+   "url": "http://localhost:5173/proposals/43e60446-fac5-49b1-b35e-2a4babc5325d",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": false,
+     "rounds": 0
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": false,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Ladder safety checks (uxqa-p2)",
+   "id": "1e868513-30f1-475e-a580-1090063b680c",
+   "code": "PROP-C48E7070",
+   "url": "http://localhost:5173/proposals/1e868513-30f1-475e-a580-1090063b680c",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": false,
+     "rounds": 0
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": false,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  },
+  {
+   "title": "Workshop quiet hours (uxqa-p2)",
+   "id": "642022b0-4bf3-4b3c-9700-7fae5ab1c440",
+   "code": "PROP-9FAF483C",
+   "url": "http://localhost:5173/proposals/642022b0-4bf3-4b3c-9700-7fae5ab1c440",
+   "owner": "qa-probe-tess",
+   "proposer": "Tess Marlow",
+   "proposerMemberId": "8ed85f37-6978-4e02-8504-2dc3a8e69386",
+   "version": "1.0",
+   "stage": "advice",
+   "expectedStage": "advice",
+   "reservedFor": "unreserved gold pool",
+   "affected_domain": "Core Operations (SHUR)",
+   "advice_deadline": "2026-11-08",
+   "advice": [],
+   "positions": [],
+   "testReports": [],
+   "gates": {
+    "advice": {
+     "met": false,
+     "rounds": 0
+    },
+    "consent": {
+     "met": false,
+     "positions": 0,
+     "quorum": 1,
+     "open_objections": 0
+    },
+    "test": {
+     "met": false,
+     "reports": 0
+    },
+    "policy_source": "default"
+   },
+   "authorAllowedNext": [
+    {
+     "to": "consent",
+     "ready": false,
+     "blocked": null
+    },
+    {
+     "to": "withdrawn",
+     "ready": true,
+     "blocked": null
+    }
+   ],
+   "registeredAgreementId": null,
+   "createdInPrebake": true
+  }
+ ],
+ "defects": [
+  {
+   "id": "PB-BELL-CLOSE-ADVICE-DEADLINE",
+   "severity": "MEDIUM",
+   "verdict": "CONFIRMED in API + code; lanes confirm the visible bell",
+   "title": "A proposer who set an advice deadline gets no bell/queue prompt to close advice once advice is in; the proposal page does prompt",
+   "url": "http://localhost:5173/proposals/1c0b619b-861d-4107-822b-89da029bf777",
+   "persona": "qa-member-oren",
+   "steps": [
+    "Oren creates a proposal with an advice deadline (the form's optional Advice Deadline field) and opens it for advice",
+    "Amara gives advice (advice gate met: rounds 1 of 1)",
+    "Oren opens the bell / dashboard queue (GET /api/v1/me/next-steps)"
+   ],
+   "observed": "next-steps for Oren (200) lists no close_advice item for PROP-3E2DBB96, while the proposal detail offers him 'consent' with ready=true and the page shows 'Enough advice to move on' (client/src/lib/proposal-vocab.ts adviceClosePrompt fires whenever the gate is met). services/next_steps.py proposal_items only prompts when advice_deadline is None or past, so with a deadline 2026-11-08 the bell stays silent until then.",
+   "expected": "Per the pass brief, the bell prompts the proposer once advice is in or the deadline passes, consistent with the page; nothing tells Oren from the bell that advice is ready to close",
+   "evidence": "GET /api/v1/me/next-steps as qa-member-oren -> 200 (no close_advice for PROP-3E2DBB96); GET /api/v1/proposals/1c0b619b-861d-4107-822b-89da029bf777 allowed_next consent ready=true"
+  }
+ ],
+ "notes": [
+  "OBSERVATION (not filed): nothing in Amara's bell/queue asks for a test report on her own 'Tool shed key holders (uxqa-p2)' (Test, no report); services/next_steps.py proposal_items has no test-report item for anyone, only confirm_ratification for a non-author steward once a passed report exists. The stewards lane step (1) judges whether she knows a report is what it waits for.",
+  "CROSS-LANE HAZARD: qa-member-oren's bell lists probe fixtures (record_position: Probe consent table (uxqa-p2); confirm_ratification: Probe steward-written test (uxqa-p2)). If the stewards lane confirms 'Probe steward-written test' or records a position on 'Probe consent table', probe checks (1) and (2) start from a different state. The lane brief says to leave 'Probe consent table' alone; it should leave 'Probe steward-written test' alone too.",
+  "CROSS-LANE HAZARD: qa-steward-amara's bell lists probe fixtures (record_position: Probe consent table (uxqa-p2); confirm_ratification: Probe steward-written test (uxqa-p2)). If the stewards lane confirms 'Probe steward-written test' or records a position on 'Probe consent table', probe checks (1) and (2) start from a different state. The lane brief says to leave 'Probe consent table' alone; it should leave 'Probe steward-written test' alone too.",
+  "Bell noise for ordinary members: qa-new-rafi: record_position Probe consent table (uxqa-p2). Every OmniOne member who has not taken a position is asked to on 'Probe consent table'; a lane persona recording one there does not move it (Sol's objection stays open) but adds a position the probe will see.",
+  "Every fixture carries advice_deadline 2026-11-08 (the form's optional field), including Rafi's draft, so its proposer's bell has no close-advice item before that date even with advice in (see PB-BELL-CLOSE-ADVICE-DEADLINE); proposals Ines and Sol create through the form without a deadline will get the bell prompt once advice is in.",
+  "GET /api/v1/proposals/:id does not expose ratified_text (not in ProposalDetail); the probe checks the captured text through register-agreement, as planned.",
+  "qa-probe-tess: /auth/me reports a non-OmniOne membership as her primary (oldest) member; her OmniOne member id here comes from her proposals' proposer_member_id."
+ ],
+ "log": [
+  "omnione=8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e domains=16 toolDomain=Core Operations (SHUR)",
+  "reuse liftShare c6db1b88-abc7-458b-8ea5-261c49cd0537 status=draft",
+  "reuse keyHolders 4e4d8604-05b4-4fd4-84ee-134b3f6e3305 status=test",
+  "reuse lateFees 68804b5a-0a90-45d9-8c66-4c72d1b0992e status=test",
+  "reuse insurance 1c0b619b-861d-4107-822b-89da029bf777 status=advice",
+  "reuse openingHours b1e037ac-fadd-469d-a0e6-1a05200eb38c status=advice",
+  "reuse probeStewardTest e531f2e8-9fea-4e5c-8909-0af72968b694 status=test",
+  "reuse probeConsentTable 8bf56543-eb26-4ca0-bd03-82495aad2eb5 status=consent",
+  "reuse probeRatifiedText f35ba7e7-23e6-470b-90fc-43903f52113a status=ratified",
+  "reuse seedShelf 3979355f-29e5-41b5-84ff-ba76f0841abf status=advice",
+  "reuse bikeTrailer 43e60446-fac5-49b1-b35e-2a4babc5325d status=advice",
+  "reuse ladderSafety 1e868513-30f1-475e-a580-1090063b680c status=advice",
+  "reuse quietHours 642022b0-4bf3-4b3c-9700-7fae5ab1c440 status=advice",
+  "skip advice keyHolders by qa-member-oren (already=true status=test)",
+  "skip advice lateFees by qa-member-oren (already=true status=test)",
+  "skip advice insurance by qa-steward-amara (already=true status=advice)",
+  "skip advice openingHours by qa-new-sol (already=true status=advice)",
+  "skip advice probeStewardTest by qa-new-sol (already=true status=test)",
+  "skip advice probeConsentTable by qa-new-sol (already=true status=consent)",
+  "skip advice probeRatifiedText by qa-new-sol (already=true status=ratified)",
+  "skip closeAdvice keyHolders (status=test)",
+  "skip closeAdvice lateFees (status=test)",
+  "skip closeAdvice probeStewardTest (status=test)",
+  "skip closeAdvice probeConsentTable (status=consent)",
+  "skip closeAdvice probeRatifiedText (status=ratified)",
+  "skip object probeConsentTable by qa-new-sol (position held)",
+  "skip consent keyHolders by qa-member-oren (status=test)",
+  "skip consent lateFees by qa-member-oren (status=test)",
+  "skip consent probeStewardTest by qa-new-sol (status=test)",
+  "skip consent probeRatifiedText by qa-new-sol (status=ratified)",
+  "skip report lateFees by qa-member-oren (already=true status=test)",
+  "skip report probeStewardTest by qa-new-sol (already=true status=test)",
+  "skip report probeRatifiedText by qa-new-sol (already=true status=ratified)",
+  "skip ratify probeRatifiedText (already ratified)",
+  "fixture liftShare PROP-0175B320 c6db1b88-abc7-458b-8ea5-261c49cd0537 stage=draft expected=draft advice=0 positions=- reports=-",
+  "fixture keyHolders PROP-F113E337 4e4d8604-05b4-4fd4-84ee-134b3f6e3305 stage=test expected=test advice=1 positions=consent reports=-",
+  "fixture lateFees PROP-6653BE72 68804b5a-0a90-45d9-8c66-4c72d1b0992e stage=test expected=test advice=1 positions=consent reports=passed",
+  "fixture insurance PROP-3E2DBB96 1c0b619b-861d-4107-822b-89da029bf777 stage=advice expected=advice advice=1 positions=- reports=-",
+  "fixture openingHours PROP-AEB006D8 b1e037ac-fadd-469d-a0e6-1a05200eb38c stage=advice expected=advice advice=1 positions=- reports=-",
+  "fixture probeStewardTest PROP-B8B6FC24 e531f2e8-9fea-4e5c-8909-0af72968b694 stage=test expected=test advice=1 positions=consent reports=passed",
+  "fixture probeConsentTable PROP-76A872D4 8bf56543-eb26-4ca0-bd03-82495aad2eb5 stage=consent expected=consent advice=1 positions=object reports=-",
+  "fixture probeRatifiedText PROP-ED3FB3B4 f35ba7e7-23e6-470b-90fc-43903f52113a stage=ratified expected=ratified advice=1 positions=consent reports=passed",
+  "fixture seedShelf PROP-AB1678C6 3979355f-29e5-41b5-84ff-ba76f0841abf stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture bikeTrailer PROP-29B7A94D 43e60446-fac5-49b1-b35e-2a4babc5325d stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture ladderSafety PROP-C48E7070 1e868513-30f1-475e-a580-1090063b680c stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture quietHours PROP-9FAF483C 642022b0-4bf3-4b3c-9700-7fae5ab1c440 stage=advice expected=advice advice=0 positions=- reports=-",
+  "verify {\"by\":\"qa-new-joy\",\"omnioneAdviceStageTotal\":13,\"adviceStageMarkedP2\":6,\"unreservedGoldPoolInAdvice\":4,\"olderAdviceStage\":7,\"goldTitledInAdvice\":0,\"allStagesAsExpected\":true,\"ok\":true}",
+  "next-steps qa-member-oren -> 200 total=15 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Probe steward-written test (uxqa-p2) | confirm_ratification:Tool library late fees (uxqa-p2)",
+  "next-steps qa-steward-amara -> 200 total=19 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Probe steward-written test (uxqa-p2)",
+  "next-steps qa-new-rafi -> 200 total=19 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library insurance cover (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2)",
+  "next-steps qa-new-sol -> 200 total=17 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library insurance cover (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2)",
+  "next-steps qa-probe-tess -> 200 total=20 p2=give_advice:Tool library insurance cover (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Tool library late fees (uxqa-p2)"
+ ],
+ "verification": {
+  "by": "qa-new-joy",
+  "omnioneAdviceStageTotal": 13,
+  "adviceStageMarkedP2": 6,
+  "unreservedGoldPoolInAdvice": 4,
+  "olderAdviceStage": [
+   "Newcomer buddy rota (uxqa-p1)",
+   "Orchard pruning day (uxqa-p1)",
+   "Quiet hours at the commons (uxqa-p1)",
+   "Rainwater tank sharing (uxqa-p1)",
+   "Compost bay rebuild (uxqa-p1)",
+   "Water Management Cooperative Framework",
+   "Community Energy Sharing Protocol"
+  ],
+  "goldTitledInAdvice": 0,
+  "allStagesAsExpected": true,
+  "ok": true
+ },
+ "nextSteps": {
+  "qa-member-oren": {
+   "status": 200,
+   "total": 15,
+   "p2Items": [
+    {
+     "title": "Bike trailer booking (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/43e60446-fac5-49b1-b35e-2a4babc5325d"
+    },
+    {
+     "title": "Ladder safety checks (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1e868513-30f1-475e-a580-1090063b680c"
+    },
+    {
+     "title": "Seed library shelf (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/3979355f-29e5-41b5-84ff-ba76f0841abf"
+    },
+    {
+     "title": "Tool library opening hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/b1e037ac-fadd-469d-a0e6-1a05200eb38c"
+    },
+    {
+     "title": "Workshop quiet hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/642022b0-4bf3-4b3c-9700-7fae5ab1c440"
+    },
+    {
+     "title": "Probe consent table (uxqa-p2)",
+     "action": "record_position",
+     "what": "Record your position: consent, stand aside or object",
+     "link": "/proposals/8bf56543-eb26-4ca0-bd03-82495aad2eb5"
+    },
+    {
+     "title": "Probe steward-written test (uxqa-p2)",
+     "action": "confirm_ratification",
+     "what": "Confirm ratification",
+     "link": "/proposals/e531f2e8-9fea-4e5c-8909-0af72968b694"
+    },
+    {
+     "title": "Tool library late fees (uxqa-p2)",
+     "action": "confirm_ratification",
+     "what": "Confirm ratification",
+     "link": "/proposals/68804b5a-0a90-45d9-8c66-4c72d1b0992e"
+    }
+   ]
+  },
+  "qa-steward-amara": {
+   "status": 200,
+   "total": 19,
+   "p2Items": [
+    {
+     "title": "Bike trailer booking (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/43e60446-fac5-49b1-b35e-2a4babc5325d"
+    },
+    {
+     "title": "Ladder safety checks (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1e868513-30f1-475e-a580-1090063b680c"
+    },
+    {
+     "title": "Seed library shelf (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/3979355f-29e5-41b5-84ff-ba76f0841abf"
+    },
+    {
+     "title": "Tool library opening hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/b1e037ac-fadd-469d-a0e6-1a05200eb38c"
+    },
+    {
+     "title": "Workshop quiet hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/642022b0-4bf3-4b3c-9700-7fae5ab1c440"
+    },
+    {
+     "title": "Probe consent table (uxqa-p2)",
+     "action": "record_position",
+     "what": "Record your position: consent, stand aside or object",
+     "link": "/proposals/8bf56543-eb26-4ca0-bd03-82495aad2eb5"
+    },
+    {
+     "title": "Probe steward-written test (uxqa-p2)",
+     "action": "confirm_ratification",
+     "what": "Confirm ratification",
+     "link": "/proposals/e531f2e8-9fea-4e5c-8909-0af72968b694"
+    }
+   ]
+  },
+  "qa-new-rafi": {
+   "status": 200,
+   "total": 19,
+   "p2Items": [
+    {
+     "title": "Bike trailer booking (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/43e60446-fac5-49b1-b35e-2a4babc5325d"
+    },
+    {
+     "title": "Ladder safety checks (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1e868513-30f1-475e-a580-1090063b680c"
+    },
+    {
+     "title": "Seed library shelf (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/3979355f-29e5-41b5-84ff-ba76f0841abf"
+    },
+    {
+     "title": "Tool library insurance cover (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1c0b619b-861d-4107-822b-89da029bf777"
+    },
+    {
+     "title": "Tool library opening hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/b1e037ac-fadd-469d-a0e6-1a05200eb38c"
+    },
+    {
+     "title": "Workshop quiet hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/642022b0-4bf3-4b3c-9700-7fae5ab1c440"
+    },
+    {
+     "title": "Probe consent table (uxqa-p2)",
+     "action": "record_position",
+     "what": "Record your position: consent, stand aside or object",
+     "link": "/proposals/8bf56543-eb26-4ca0-bd03-82495aad2eb5"
+    }
+   ]
+  },
+  "qa-new-sol": {
+   "status": 200,
+   "total": 17,
+   "p2Items": [
+    {
+     "title": "Bike trailer booking (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/43e60446-fac5-49b1-b35e-2a4babc5325d"
+    },
+    {
+     "title": "Ladder safety checks (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1e868513-30f1-475e-a580-1090063b680c"
+    },
+    {
+     "title": "Seed library shelf (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/3979355f-29e5-41b5-84ff-ba76f0841abf"
+    },
+    {
+     "title": "Tool library insurance cover (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1c0b619b-861d-4107-822b-89da029bf777"
+    },
+    {
+     "title": "Workshop quiet hours (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/642022b0-4bf3-4b3c-9700-7fae5ab1c440"
+    }
+   ]
+  },
+  "qa-probe-tess": {
+   "status": 200,
+   "total": 20,
+   "p2Items": [
+    {
+     "title": "Tool library insurance cover (uxqa-p2)",
+     "action": "give_advice",
+     "what": "Give your advice",
+     "link": "/proposals/1c0b619b-861d-4107-822b-89da029bf777"
+    },
+    {
+     "title": "Probe consent table (uxqa-p2)",
+     "action": "record_position",
+     "what": "Record your position: consent, stand aside or object",
+     "link": "/proposals/8bf56543-eb26-4ca0-bd03-82495aad2eb5"
+    },
+    {
+     "title": "Tool library late fees (uxqa-p2)",
+     "action": "confirm_ratification",
+     "what": "Confirm ratification",
+     "link": "/proposals/68804b5a-0a90-45d9-8c66-4c72d1b0992e"
+    }
+   ]
+  }
+ },
+ "finishedAt": "2026-11-01T06:28:18.033Z",
+ "creationLog": [
+  "omnione=8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e domains=16 toolDomain=Core Operations (SHUR)",
+  "create liftShare as qa-new-rafi -> 201 PROP-0175B320",
+  "create keyHolders as qa-steward-amara -> 201 PROP-F113E337",
+  "open advice keyHolders as qa-steward-amara -> 200 status=advice auto=[]",
+  "create lateFees as qa-steward-amara -> 201 PROP-6653BE72",
+  "open advice lateFees as qa-steward-amara -> 200 status=advice auto=[]",
+  "create insurance as qa-member-oren -> 201 PROP-3E2DBB96",
+  "open advice insurance as qa-member-oren -> 200 status=advice auto=[]",
+  "create openingHours as qa-probe-tess -> 201 PROP-AEB006D8",
+  "open advice openingHours as qa-probe-tess -> 200 status=advice auto=[]",
+  "create probeStewardTest as qa-probe-tess -> 201 PROP-B8B6FC24",
+  "open advice probeStewardTest as qa-probe-tess -> 200 status=advice auto=[]",
+  "create probeConsentTable as qa-steward-amara -> 201 PROP-76A872D4",
+  "open advice probeConsentTable as qa-steward-amara -> 200 status=advice auto=[]",
+  "create probeRatifiedText as qa-probe-tess -> 201 PROP-ED3FB3B4",
+  "open advice probeRatifiedText as qa-probe-tess -> 200 status=advice auto=[]",
+  "create seedShelf as qa-probe-tess -> 201 PROP-AB1678C6",
+  "open advice seedShelf as qa-probe-tess -> 200 status=advice auto=[]",
+  "create bikeTrailer as qa-probe-tess -> 201 PROP-29B7A94D",
+  "open advice bikeTrailer as qa-probe-tess -> 200 status=advice auto=[]",
+  "create ladderSafety as qa-probe-tess -> 201 PROP-C48E7070",
+  "open advice ladderSafety as qa-probe-tess -> 200 status=advice auto=[]",
+  "create quietHours as qa-probe-tess -> 201 PROP-9FAF483C",
+  "open advice quietHours as qa-probe-tess -> 200 status=advice auto=[]",
+  "advice keyHolders by qa-member-oren -> 201 rounds=1 met=true auto=[]",
+  "advice lateFees by qa-member-oren -> 201 rounds=1 met=true auto=[]",
+  "advice insurance by qa-steward-amara -> 201 rounds=1 met=true auto=[]",
+  "advice openingHours by qa-new-sol -> 201 rounds=1 met=true auto=[]",
+  "advice probeStewardTest by qa-new-sol -> 201 rounds=1 met=true auto=[]",
+  "advice probeConsentTable by qa-new-sol -> 201 rounds=1 met=true auto=[]",
+  "advice probeRatifiedText by qa-new-sol -> 201 rounds=1 met=true auto=[]",
+  "closeAdvice offered to qa-steward-amara on keyHolders: {\"ready\":true} allowed_next=[\"consent\",\"withdrawn\"]",
+  "close advice keyHolders as qa-steward-amara -> 200 status=consent auto=[]",
+  "closeAdvice offered to qa-steward-amara on lateFees: {\"ready\":true} allowed_next=[\"consent\",\"withdrawn\"]",
+  "close advice lateFees as qa-steward-amara -> 200 status=consent auto=[]",
+  "closeAdvice offered to qa-probe-tess on probeStewardTest: {\"ready\":true} allowed_next=[\"consent\",\"withdrawn\"]",
+  "close advice probeStewardTest as qa-probe-tess -> 200 status=consent auto=[]",
+  "closeAdvice offered to qa-steward-amara on probeConsentTable: {\"ready\":true} allowed_next=[\"consent\",\"withdrawn\"]",
+  "close advice probeConsentTable as qa-steward-amara -> 200 status=consent auto=[]",
+  "closeAdvice offered to qa-probe-tess on probeRatifiedText: {\"ready\":true} allowed_next=[\"consent\",\"withdrawn\"]",
+  "close advice probeRatifiedText as qa-probe-tess -> 200 status=consent auto=[]",
+  "object probeConsentTable by qa-new-sol -> 201 positions=1 objections=1 auto=[]",
+  "consent keyHolders by qa-member-oren -> 201 positions=1 objections=0 auto=[\"consent->test\"]",
+  "consent lateFees by qa-member-oren -> 201 positions=1 objections=0 auto=[\"consent->test\"]",
+  "consent probeStewardTest by qa-new-sol -> 201 positions=1 objections=0 auto=[\"consent->test\"]",
+  "consent probeRatifiedText by qa-new-sol -> 201 positions=1 objections=0 auto=[\"consent->test\"]",
+  "report lateFees by qa-member-oren -> 201 test_met=true auto=[]",
+  "report probeStewardTest by qa-new-sol -> 201 test_met=true auto=[]",
+  "report probeRatifiedText by qa-new-sol -> 201 test_met=true auto=[]",
+  "ratify offered to qa-steward-amara on probeRatifiedText: {\"ready\":true}",
+  "confirm ratification probeRatifiedText as qa-steward-amara -> 200 status=ratified auto=[]",
+  "fixture liftShare PROP-0175B320 c6db1b88-abc7-458b-8ea5-261c49cd0537 stage=draft expected=draft advice=0 positions=- reports=-",
+  "fixture keyHolders PROP-F113E337 4e4d8604-05b4-4fd4-84ee-134b3f6e3305 stage=test expected=test advice=1 positions=consent reports=-",
+  "fixture lateFees PROP-6653BE72 68804b5a-0a90-45d9-8c66-4c72d1b0992e stage=test expected=test advice=1 positions=consent reports=passed",
+  "fixture insurance PROP-3E2DBB96 1c0b619b-861d-4107-822b-89da029bf777 stage=advice expected=advice advice=1 positions=- reports=-",
+  "fixture openingHours PROP-AEB006D8 b1e037ac-fadd-469d-a0e6-1a05200eb38c stage=advice expected=advice advice=1 positions=- reports=-",
+  "fixture probeStewardTest PROP-B8B6FC24 e531f2e8-9fea-4e5c-8909-0af72968b694 stage=test expected=test advice=1 positions=consent reports=passed",
+  "fixture probeConsentTable PROP-76A872D4 8bf56543-eb26-4ca0-bd03-82495aad2eb5 stage=consent expected=consent advice=1 positions=object reports=-",
+  "fixture probeRatifiedText PROP-ED3FB3B4 f35ba7e7-23e6-470b-90fc-43903f52113a stage=ratified expected=ratified advice=1 positions=consent reports=passed",
+  "fixture seedShelf PROP-AB1678C6 3979355f-29e5-41b5-84ff-ba76f0841abf stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture bikeTrailer PROP-29B7A94D 43e60446-fac5-49b1-b35e-2a4babc5325d stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture ladderSafety PROP-C48E7070 1e868513-30f1-475e-a580-1090063b680c stage=advice expected=advice advice=0 positions=- reports=-",
+  "fixture quietHours PROP-9FAF483C 642022b0-4bf3-4b3c-9700-7fae5ab1c440 stage=advice expected=advice advice=0 positions=- reports=-",
+  "verify {\"by\":\"qa-new-joy\",\"omnioneAdviceStageTotal\":13,\"adviceStageMarkedP2\":6,\"unreservedGoldPoolInAdvice\":4,\"olderAdviceStage\":7,\"goldTitledInAdvice\":0,\"allStagesAsExpected\":true,\"ok\":true}",
+  "next-steps qa-member-oren -> 200 total=15 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Probe steward-written test (uxqa-p2) | confirm_ratification:Tool library late fees (uxqa-p2)",
+  "next-steps qa-steward-amara -> 200 total=19 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Probe steward-written test (uxqa-p2)",
+  "next-steps qa-new-rafi -> 200 total=19 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library insurance cover (uxqa-p2) | give_advice:Tool library opening hours (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2) | record_position:Probe consent table (uxqa-p2)",
+  "next-steps qa-new-sol -> 200 total=17 p2=give_advice:Bike trailer booking (uxqa-p2) | give_advice:Ladder safety checks (uxqa-p2) | give_advice:Seed library shelf (uxqa-p2) | give_advice:Tool library insurance cover (uxqa-p2) | give_advice:Workshop quiet hours (uxqa-p2)",
+  "next-steps qa-probe-tess -> 200 total=20 p2=give_advice:Tool library insurance cover (uxqa-p2) | record_position:Probe consent table (uxqa-p2) | confirm_ratification:Tool library late fees (uxqa-p2)"
+ ],
+ "creationLogFile": "uxqa/passes/02-act-lifecycle/flows/prebake/prebake.out.txt",
+ "script": "uxqa/passes/02-act-lifecycle/flows/prebake/prebake.mjs"
+}
