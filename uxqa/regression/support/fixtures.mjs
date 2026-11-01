@@ -12,7 +12,7 @@ export { BASE };
 export const MARKER = "uxqa";
 export const ADVICE_DEADLINE = new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10);
 
-const ecosystemCookie = (id) => ({ name: "neos_selected_ecosystems", value: encodeURIComponent(JSON.stringify([id])), domain: "localhost", path: "/", sameSite: "Lax" });
+export const ecosystemCookie = (id) => ({ name: "neos_selected_ecosystems", value: encodeURIComponent(JSON.stringify([id])), domain: "localhost", path: "/", sameSite: "Lax" });
 
 /**
  * One flow for one defect. `run(flow)` drives the UI and throws `flow.red(reason)` when the fixed behaviour does not hold.

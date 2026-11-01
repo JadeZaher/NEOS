@@ -5,7 +5,7 @@
 //    regression persona stands in. qa-new-priya (Oasis; OmniOne selected by the harness) posts a need in Oasis, Sol
 //    answers it, and Priya sees one unread conversation in Messages whatever her selection, opens it from the bell's
 //    link, and the badge and the bell item clear. Fixtures carry the uxqa marker; Priya's need is withdrawn at the end.
-import { BASE, MARKER, eventually, regression } from "./support/fixtures.mjs";
+import { BASE, MARKER, ecosystemCookie, eventually, regression } from "./support/fixtures.mjs";
 
 const GOLD_NEED = "Rainwater harvesting help (uxqa gold)";
 const BADGE = /^1( unread)?$/i;  // "1 unread" (the badge may render it upper-case)
@@ -35,7 +35,8 @@ await regression("c-respond-unread", { pass: "03-cross-ecosystem-exchange" }, as
     await compose.getByRole("link", { name: "Open the conversation" }).click();
   } else {
     // Answered in an earlier sweep since the last seed: the post offers the conversation instead of the button.
-    await detail.getByRole("link", { name: `Open the conversation: ${GOLD_NEED}` }).click();
+    // The visually hidden ": <title>" suffix reaches the accessible name with or without a space before the colon.
+    await detail.getByRole("link", { name: /^Open the conversation\s*:\s*Rainwater harvesting help/ }).click();
   }
   responder.step("The conversation itself opens, not just the list");
   await page.waitForURL(/\/messaging/, { timeout: 10000 });
@@ -50,7 +51,10 @@ await regression("c-respond-unread", { pass: "03-cross-ecosystem-exchange" }, as
   const inOmniOne = (me.body?.ecosystems || []).some((e) => e.id === flow.omniId && e.membership_status === "active");
   const selection = inOmniOne ? "OmniOne, not the post's ecosystem" : home.name;  // the harness selects OmniOne when it can
   const title = `Regression answer check ${Date.now().toString(36)} (${MARKER})`;
-  const domains = (await author.request("GET", `/api/v1/domains?ecosystem_id=${home.id}&per_page=100`)).body?.items || [];
+  // The domain list follows the header selection: select the post's ecosystem to find its domains, then go back to OmniOne.
+  await author.page.context().addCookies([ecosystemCookie(home.id)]);
+  const listed = (await author.request("GET", "/api/v1/domains?per_page=100")).body?.items || [];
+  const domains = listed.filter((domain) => domain.ecosystem_id === home.id);
   let post = null;
   for (const domain of domains) {
     const created = await author.request("POST", "/api/v1/discover/shares-needs", {
@@ -60,6 +64,7 @@ await regression("c-respond-unread", { pass: "03-cross-ecosystem-exchange" }, as
     if (created.status === 201) { post = created.body; break; }
   }
   if (!post) throw new Error(`no ${home.name} domain accepted a need from ${author.displayName}`);
+  if (inOmniOne) await author.page.context().addCookies([ecosystemCookie(flow.omniId)]);
 
   try {
     const answered = await responder.request("POST", `/api/v1/discover/shares-needs/${post.id}/respond`, { message: `Regression answer. ${MARKER}` });
