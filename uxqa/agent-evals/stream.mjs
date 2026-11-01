@@ -1,7 +1,7 @@
 // Reads the server-sent events of POST /api/v1/chat/send into one assistant turn. See uxqa/agent-evals/AGENTS.md sec. Stream.
 
 const OWNER_BLOCKED = /The assistant is unavailable right now|AI chat is not configured/;
-const MODEL_RESULT_LIMIT = 2000; // api/chat.py replaces a larger tool result with a one-line summary before the model sees it
+const CLIP_MARKER = /… \[\d+ more characters\]/; // api/chat.py _fit_tool_result clips long values with this marker; model and browser see the same clipped result
 
 /** Incremental SSE parser: feed() text chunks, get back the completed {type, data} events. */
 export function createSseParser() {
@@ -56,7 +56,7 @@ export function collectTurn(events) {
 			call.success = Boolean(result.success);
 			call.error = result.error ?? null;
 			call.data = result.data ?? null;
-			call.truncatedForModel = JSON.stringify({ success: result.success, data: result.data ?? null }).length > MODEL_RESULT_LIMIT;
+			call.truncatedForModel = CLIP_MARKER.test(JSON.stringify(result.data ?? null));
 		} else if (type === 'usage') turn.tokens += parseJson(data).total_tokens || 0;
 		else if (type === 'session') turn.sessionId = parseJson(data).session_id || null;
 		else if (type === 'done') turn.done = true;

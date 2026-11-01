@@ -32,6 +32,16 @@ only; a ratified proposal does not silently become an agreement: stewards get a
 "Register as agreement" action, and the page stops claiming "now active" until
 it is; audits default to a human auditor, AI analysis is optional.
 
+## Rules for every G lane
+
+- Read this plan (owner decisions, your lane, the hand-offs), the review sections for your area, and the contracts: `charting-the-course/client/src/AGENTS.md`, `neos-operating-system/agent/src/neos_agent/api/AGENTS.md`, `agent/src/neos_agent/services/AGENTS.md`, `agent/alembic/AGENTS.md`.
+- Own only your files. Shared files are append-only under a `# <lane>` / `// <lane>` section header: `api/policy.py` (G-ACT may also edit `can_assign_role`), `client/src/lib/api-client.ts`, `client/src/types/api.ts`, `client/src/lib/query-keys.ts` (add keys; keep the test invariants green). `hooks/use-governance.ts` belongs to G-ACT: other lanes put new hooks in their own hook file (`hooks/use-emergency.ts`, `hooks/use-exit.ts`, `hooks/use-care.ts`, ...) and switch their pages to them.
+- Migrations: only your reserved revision (G-ACT `p8d4f1b6e3a9`, G-Safety `q2a7c5e9d1b3`, G-Care `r6c1e8a4f2d7`; already chained, single head). Inspect-before-alter; test on SQLite and a disposable PostgreSQL DB on 127.0.0.1:5433 that you create and drop.
+- Build on the contracts (`policy`, `caller_in`, `ApiError`, `get_scoped_or_404`, the `Lifecycle` tables, `useApiMutation`, `QueryState`, `keys`). Plain-language copy; every new button has a state, an error and a confirmation; destructive or irreversible acts confirm.
+- Tests model real flows through the real blueprints (actor x action tables for every authority rule; each owner decision has a test that goes red if flipped) and node:test for pure frontend logic. No tautologies.
+- No git add/commit/stash/checkout/reset/push. Never read `agent/.env`; never contact `*.rlwy.net`; backend tests with `DATABASE_URL=sqlite+aiosqlite://` and the `py` launcher.
+- Verify once at the end: your targeted backend tests, the migration test on PostgreSQL if you wrote one, `npm run check` and `npm test` in charting-the-course (errors in files you do not own are other lanes' in-flight work: report, never fix). Report exact commands with result lines, files changed, behaviour changes, and hand-offs.
+
 ## Lanes (wave A, parallel, disjoint files; each lane owns its backend AND its pages)
 
 **G-ACT (opus)** - ACT integrity and the owner's ACT decisions.
@@ -72,6 +82,9 @@ Owns `api/chat.py`, `agent/system_prompt*`, `agent/governance_tools.py`, `mcp_se
 - G-Agent: chat `update_agreement_status` runs the agreement gates (review-core item 7); tools for test reports and agreement evidence; read tools' fail-open `if ecosystem_ids:` filters become `restrict_to_ecosystems`.
 - G-Agent also: `agent/router.py` still routes a "consent -> active" skill pattern that can no longer happen.
 - OWNER (data): proposals that moved past consent over a legacy `objection` row (normalized to `object` by `o7c3e9a5d2f8`) were not reopened; an audit query listing ratified proposals with `object` participants is the trigger to decide.
+- G-Next (assistant parity): MCP `record_agreement_ceremony`, `attest_agreement_consent` and `transition_agreement` can still put an agreement in force without `confirm` (only `transition_proposal` requires it); reuse `governance_tools._evidence_puts_in_force` to apply the same bar. `api/AGENTS.md` chat-tools rows for `create_conflict_case` / `record_agreement_evidence` should say "needs confirmation (when it names parties / when it would put the agreement in force)".
+- G-Next: reuse `api/emergency.describe()` and `api/exit.NEXT_STEP` for `/explain`, so the page and the assistant use the same words; assistant tools for emergency co-sign / end authority / review call `emergency.cosign` / `end_authority` / `record_review` on a row loaded FOR UPDATE.
+- Craft wave 2 (app-wide): the API emits naive UTC datetimes without `Z`, so browsers render them as local time; fix once in the JSON serialization (aware UTC, `Z`) with a test, not per page. Concurrent emergency declarations in one ecosystem can both create a pending row (no row to lock): a partial unique index on (ecosystem_id) where state in active states. `client/src/AGENTS.md` "Client tests" list misses `lib/emergency-phase.ts` and `lib/exit-status.ts`.
 - Craft wave 2 (unchanged list in `craft/wave1.md`) plus: notifications, messaging and onboarding rows still keyed on the default member row (same pattern as `o7c3e9a5d2f8`); chat sessions saved on the default row; the ConsentGate shows a failed join twice (toast + inline); founding helper extracted from `ecosystems.create_ecosystem` and reused by the chat tool; chat domain draft uses `can_create_domain`; domain/ecosystem quiz assign/unassign authorization; journey-map write routes scoped; ethos admin grant checks the member belongs to the ecosystem.
 
 ## Wave B (after wave A)

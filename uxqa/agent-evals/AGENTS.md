@@ -90,8 +90,8 @@ facts are filled per run.
 Same parsing as `charting-the-course/client/src/hooks/use-chat.ts`, except an empty data payload still
 dispatches (so `done` is seen). `append` chunks concatenate exactly as the member sees them. A `tool_start`
 pairs with the next `tool_result` of the same name; one that never gets a result counts as failed.
-`truncatedForModel` marks results over 2000 characters, which `api/chat.py` replaces before the model sees
-them (review fix 2). "The assistant is unavailable right now" or "AI chat is not configured" aborts the run
+`truncatedForModel` marks results that `api/chat.py` `_fit_tool_result` clipped (values end in `… [N more characters]`; the model and the
+browser see the same clipped result, max 6000 characters). "The assistant is unavailable right now" or "AI chat is not configured" aborts the run
 as `OWNER_BLOCKED` (ledger `p1-expert-first-week-audit-19`).
 
 ## Teardown

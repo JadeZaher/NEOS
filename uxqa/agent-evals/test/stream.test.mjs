@@ -8,7 +8,7 @@ const sse = (event, data) => `event: ${event}\n${data.split('\n').map((line) => 
 const TURN = [
 	sse('thinking', '{"step": "Analyzing your request..."}'),
 	sse('tool_start', JSON.stringify({ name: 'get_proposal', args: { proposal_id: 'PROP-1A2B3C4D' } })),
-	sse('tool_result', JSON.stringify({ name: 'get_proposal', success: true, data: { status: 'advice', blob: 'x'.repeat(2100) }, error: null })),
+	sse('tool_result', JSON.stringify({ name: 'get_proposal', success: true, data: { status: 'advice', blob: `${'x'.repeat(400)}… [1700 more characters]` }, error: null })),
 	sse('append', 'It is in advice.\nRound 1 of 2 is done.'),
 	sse('session', '{"session_id": "s-1"}'),
 	sse('usage', '{"prompt_tokens": 900, "completion_tokens": 100, "total_tokens": 1000}'),
