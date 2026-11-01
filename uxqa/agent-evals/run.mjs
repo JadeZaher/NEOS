@@ -1,7 +1,7 @@
 // Agent-eval runner: fixed tasks against the real in-app assistant on the isolated local stack -> passes/<pass>/agent-eval.json.
 // node uxqa/agent-evals/run.mjs <pass> [--only R1,M2] [--repeats N] [--token-cap N] [--base URL] [--dry-run]
 // node uxqa/agent-evals/run.mjs <pass> --finalize        (merges agent-eval-judge.json)      Why: uxqa/agent-evals/AGENTS.md
-// Exit: 0 ran (tasks may fail), 1 harness error, 2 refused (guard, scope, tasks file), 3 aborted (owner blocked, emergency left open).
+// Exit: 0 ran (tasks may fail), 1 harness error, 2 refused, 3 aborted (configuration, availability, open emergency).
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,6 +10,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createdIds, evaluateReply, evaluateState, isRowCheck, parseCheck, runOutcome, taskOutcome, validateTasks } from './grading.mjs';
 import { applyJudgeScores, buildTrend, defectsFor, exitChecks, judgeBrief, RESULT_VERSION, summarize, summaryLine } from './report.mjs';
 import { ACTIVE_EMERGENCY, assertLocal, buildFixtures, createClient, loadPeople, observe, stewardIn, teardown } from './neos-api.mjs';
+import { retainedQueueSkipReason } from './preconditions.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = process.env.UXQA_PLUGIN_ROOT || 'C:/Users/atooz/.claude/plugins/cache/local/ux-qa-research/0.1.0';
@@ -227,12 +228,18 @@ async function runOnce(task, runIndex) {
 			run.tokens += turn.tokens;
 			budget.tokensUsed += turn.tokens;
 			if (turn.ownerBlocked) throw new Abort('OWNER_BLOCKED');
+			if (turn.serviceUnavailable) throw new Abort('SERVICE_UNAVAILABLE');
 			history.push({ role: 'user', content: message }, { role: 'assistant', content: turn.text });
 			sessionId = turn.sessionId || sessionId;
 			run.state.push(...await gradeState(checks.state.filter((c) => c.turn === index + 1), refs, task, baseline));
 		}
 		run.turns = turns.length;
 		run.state.push(...await gradeState(checks.state.filter((c) => !c.turn), refs, task, baseline));
+		const queueSkipReason = retainedQueueSkipReason(task, turns, refs, run.state);
+		if (queueSkipReason) {
+			Object.assign(run, { outcome: 'SKIPPED', skipReason: queueSkipReason });
+			return run;
+		}
 		run.reply = checks.reply.map((check) => evaluateReply(check, turns, refs));
 		Object.assign(run, runOutcome(task, run.state, run.reply));
 	} catch (error) {
@@ -285,6 +292,7 @@ for (const task of tasks) {
 			if (run.abort) abortReason = run.abort;
 		}
 		record.outcome = options.dryRun ? 'DRY' : taskOutcome(record.runs);
+		if (record.outcome === 'SKIPPED') record.skipReason = record.runs.find((run) => run.skipReason)?.skipReason;
 		record.stateViolation = record.runs.some((run) => run.stateViolation);
 	}
 	budget.requests = client.stats.requests;
@@ -304,4 +312,4 @@ if (options.dryRun) {
 }
 writeResult(result);
 console.log(summaryLine(result, repoPath(resultFile)));
-process.exit(abortReason === 'OWNER_BLOCKED' || abortReason === 'EMERGENCY LEFT OPEN' ? 3 : 0);
+process.exit(['OWNER_BLOCKED', 'SERVICE_UNAVAILABLE', 'EMERGENCY LEFT OPEN'].includes(abortReason) ? 3 : 0);

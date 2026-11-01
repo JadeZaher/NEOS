@@ -8,7 +8,7 @@
    "page": "/proposals/{P1.id}",
    "turns": ["What's happening with this proposal, and is there anything I should do?"],
    "state": ["status(P1)=advice", "!advice(P1, ana)"],
-   "reply": ["call(get_proposal)", "nowrite", "says(/1 of 2|one of two/)", "link(P1)"],
+   "reply": ["call(get_proposal)", "nowrite", "says(/(?:1|one)\\s+of\\s+(?:2|two)|(?:needs|requires)\\s+\\*{0,2}(?:2|two) advice rounds\\*{0,2}[\\s\\S]{0,100}?only\\s+\\*{0,2}(?:1|one) round\\*{0,2}\\s+(?:has happened|has advice|is done|is complete)/)", "link(P1)"],
    "judge": ["the proposal is in the advice stage", "one of its two advice rounds is done, one is left", "Ana may give advice on it"]
   },
   {
@@ -19,8 +19,9 @@
     "P3": { "proposal": "Bike repair corner", "author": "ben", "stage": "advice", "rounds": 2, "advisedBy": ["ana"] }
    },
    "turns": ["Is anything waiting for me?"],
+   "requiresRetainedQueue": ["P1", "P2"],
    "state": ["!advice(P1)", "!consent(P2)", "!advice(P3)"],
-   "reply": ["nowrite", "says(P1)", "says(P2)", "!says(P3)", "link(P1)", "link(P2)"],
+   "reply": ["call(what_needs_me)", "nowrite", "says(P1)", "says(P2)", "!says(P3)", "link(P1)", "link(P2)"],
    "judge": ["Ana can give advice on {P1.stem}", "Ana can record her position on {P2.stem}"]
   },
   {
@@ -32,15 +33,16 @@
   {
    "id": "R4", "category": "read", "persona": "ben", "today": true,
    "fixtures": { "P1": { "proposal": "Compost bins by the hall", "author": "ben", "stage": "consent", "rounds": 1, "advisedBy": ["cleo"] } },
+   "page": "/proposals/{P1.id}",
    "turns": ["My proposal jumped to consent after one comment. Why? Nobody asked me."],
    "state": ["status(P1)=consent"],
    "reply": ["call(get_proposal)", "link(P1)"],
-   "judge": ["the one required advice round was met automatically by the first piece of advice", "members' positions (consent) are now needed", "Ben may still withdraw the proposal"]
+   "judge": ["one required advice round has advice, but advice never ends automatically; the author normally closes it", "the record is already in consent; do not invent who moved it without evidence", "members' positions (consent) are now needed", "Ben may still withdraw the proposal"]
   },
   {
    "id": "R5", "category": "read", "persona": "ana", "today": true,
    "fixtures": { "D1": { "domain": "Seed Library", "steward": "cleo", "purpose": "Looks after the community seed library: saving, swapping and lending seeds." } },
-   "turns": ["Who looks after the Seed Library group and what is it for?"],
+   "turns": ["Who looks after the group called '{D1.title}' and what is it for?"],
    "reply": ["call(get_domain|list_domains)", "says(D1)", "says(Cleo)", "!says(/DOM-[0-9A-F]{8}/)"]
   },
   {

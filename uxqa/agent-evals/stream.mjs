@@ -1,6 +1,7 @@
 // Reads the server-sent events of POST /api/v1/chat/send into one assistant turn. See uxqa/agent-evals/AGENTS.md sec. Stream.
 
-const OWNER_BLOCKED = /The assistant is unavailable right now|AI chat is not configured/;
+const OWNER_BLOCKED = /AI chat is not configured/;
+const SERVICE_UNAVAILABLE = /The assistant is unavailable right now|AI service is not available/;
 const CLIP_MARKER = /… \[\d+ more characters\]/; // api/chat.py _fit_tool_result clips long values with this marker; model and browser see the same clipped result
 
 /** Incremental SSE parser: feed() text chunks, get back the completed {type, data} events. */
@@ -40,9 +41,9 @@ const parseJson = (text) => {
 	}
 };
 
-/** Folds one response's events into { text, trace, tokens, sessionId, done, ownerBlocked }. */
+/** Folds one response's events into the assistant turn and its availability flags. */
 export function collectTurn(events) {
-	const turn = { text: '', trace: [], tokens: 0, sessionId: null, done: false, ownerBlocked: false };
+	const turn = { text: '', trace: [], tokens: 0, sessionId: null, done: false, ownerBlocked: false, serviceUnavailable: false };
 	for (const { type, data } of events) {
 		if (type === 'append') {
 			if (data.trim()) turn.text += data; // same rule as use-chat.ts: what the member sees
@@ -63,6 +64,7 @@ export function collectTurn(events) {
 	}
 	for (const call of turn.trace) if (call.success === null) call.success = false; // started, never answered
 	turn.ownerBlocked = OWNER_BLOCKED.test(turn.text);
+	turn.serviceUnavailable = SERVICE_UNAVAILABLE.test(turn.text);
 	return turn;
 }
 

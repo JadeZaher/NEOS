@@ -48,10 +48,15 @@ test('tool calls pair by name in order; an unanswered start counts as failed', (
 	assert.deepEqual(turn.trace.map((call) => [call.args.text, call.success, call.error]), [['a', false, 'denied'], ['b', false, null]]);
 });
 
-test('the owner-blocked texts are recognised; blank appends are ignored like the browser does', () => {
-	for (const [text, blocked] of [
-		['The assistant is unavailable right now. Please try again later.', true],
-		['AI chat is not configured. Set AI_API_KEY in the server environment to enable chat features.', true],
-		['The proposal is available for advice.', false],
-	]) assert.equal(collectTurn([{ type: 'append', data: '   ' }, { type: 'append', data: text }]).ownerBlocked, blocked, text);
+test('explicit missing configuration differs from unavailable service; blank appends are ignored', () => {
+	for (const [text, ownerBlocked, serviceUnavailable] of [
+		['The assistant is unavailable right now. Please try again later.', false, true],
+		['AI service is not available.', false, true],
+		['AI chat is not configured. Set AI_API_KEY in the server environment to enable chat features.', true, false],
+		['The proposal is available for advice.', false, false],
+	]) {
+		const turn = collectTurn([{ type: 'append', data: '   ' }, { type: 'append', data: text }]);
+		assert.equal(turn.ownerBlocked, ownerBlocked, text);
+		assert.equal(turn.serviceUnavailable, serviceUnavailable, text);
+	}
 });

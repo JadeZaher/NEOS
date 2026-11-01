@@ -7,8 +7,15 @@ const ROW_KINDS = new Set(['advice', 'consent', 'proposal', 'emergency', 'exit']
 const FIXTURE_FIRST = new Set(['status', 'advice', 'consent', 'objections', 'participant']); // first argument is a fixture name
 const CATEGORIES = new Set(['read', 'act', 'must-refuse', 'clarify', 'plain-language']);
 export const MAX_TURNS = 4;
-// A tool whose name says it changes state; a prefix rule, so tools added later are covered without a list edit.
-export const WRITE_TOOL = /^(create|record|update|declare|triage|join|leave|submit|attest|delete|withdraw|set)_/;
+const READ_ONLY_TOOLS = new Set([
+	'search_agreements', 'get_agreement', 'check_authority', 'get_member_roles', 'check_quorum',
+	'search_precedents', 'get_domain', 'get_active_members', 'get_emergency_state', 'list_ecosystems',
+	'get_ecosystem', 'search_proposals', 'get_proposal', 'list_domains', 'what_needs_me', 'explain_status',
+	'get_conflict_case', 'get_exit_status', 'get_governance_health', 'find_shares_needs',
+]);
+
+/** Only reviewed read tools are safe; a future tool must not silently bypass no-write checks. */
+export const isReadOnlyTool = (name) => READ_ONLY_TOOLS.has(name);
 const CHECK = /^(?:@t(\d+)\s+)?([!+])?([a-z]+)(?:\((.*)\))?(?:\s*(<=|=)\s*(.+))?$/i;
 
 /** Parses one check string, e.g. "@t1 !consent(P1, except ana)", "fk<=8", "says(/1 of 2/)". */
@@ -35,6 +42,11 @@ export function validateTasks(tasks, personaHandles) {
 		for (const person of people) if (!known.has(`qa-agent-${person}`)) problems.push(`${where}: ${person} is not an agent-eval persona`);
 		if (!task.turns?.length || task.turns.length > MAX_TURNS) problems.push(`${where}: 1-${MAX_TURNS} turns`);
 		const fixtureNames = new Set(Object.keys(task.fixtures || {}));
+		if (task.requiresRetainedQueue !== undefined && (!Array.isArray(task.requiresRetainedQueue) || !task.requiresRetainedQueue.length)) {
+			problems.push(`${where}: requiresRetainedQueue must name at least one fixture`);
+		} else {
+			for (const name of task.requiresRetainedQueue || []) if (!fixtureNames.has(name)) problems.push(`${where}: requiresRetainedQueue names no fixture ${name}`);
+		}
 		for (const source of [...(task.state || []), ...(task.reply || [])]) {
 			try {
 				const check = parseCheck(source);
@@ -125,7 +137,7 @@ export function evaluateReply(check, turns, refs = {}) {
 			return result(succeeded.length > 0, hits.length ? `${tools.join('|')} called but failed: ${hits[0].error || 'no result'}` : `${tools.join('|')} never called`);
 		}
 		case 'nowrite': {
-			const writes = trace.filter((call) => call.success && WRITE_TOOL.test(call.name));
+			const writes = trace.filter((call) => call.success && !isReadOnlyTool(call.name));
 			return result(writes.length === 0, `wrote: ${writes.map((call) => call.name).join(', ')}`);
 		}
 		case 'says': {

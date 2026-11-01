@@ -1,0 +1,168 @@
+{
+ "pass": "03-cross-ecosystem-exchange",
+ "evalVersion": 1,
+ "resultVersion": 1,
+ "runId": "r0b41",
+ "startedAt": "2026-11-01T21:48:03.164Z",
+ "baseUrl": "http://localhost:5173",
+ "dryRun": false,
+ "budget": {
+  "tokenCap": 200000,
+  "tokensUsed": 30570,
+  "requests": 1,
+  "maxMinutes": 30,
+  "aborted": null
+ },
+ "tasks": [
+  {
+   "id": "R1",
+   "category": "read",
+   "persona": "qa-agent-ana",
+   "blocker": false,
+   "today": true,
+   "userTurns": [
+    "What's happening with this proposal, and is there anything I should do?"
+   ],
+   "checks": {
+    "state": [
+     "status(P1)=advice",
+     "!advice(P1, ana)"
+    ],
+    "reply": [
+     "call(get_proposal)",
+     "nowrite",
+     "says(/1 of 2|one of two/)",
+     "link(P1)"
+    ],
+    "judge": [
+     "the proposal is in the advice stage",
+     "one of its two advice rounds is done, one is left",
+     "Ana may give advice on it"
+    ]
+   },
+   "outcome": "FAIL",
+   "stateViolation": false,
+   "runs": [
+    {
+     "run": 1,
+     "outcome": "FAIL",
+     "failedBy": "reply",
+     "stateViolation": false,
+     "turns": 1,
+     "tokens": 30570,
+     "seconds": 13.4,
+     "state": [
+      {
+       "check": "status(P1)=advice",
+       "ok": true,
+       "detail": null
+      },
+      {
+       "check": "!advice(P1, ana)",
+       "ok": true,
+       "detail": null
+      }
+     ],
+     "reply": [
+      {
+       "check": "call(get_proposal)",
+       "ok": true,
+       "detail": null
+      },
+      {
+       "check": "nowrite",
+       "ok": true,
+       "detail": null
+      },
+      {
+       "check": "says(/1 of 2|one of two/)",
+       "ok": true,
+       "detail": null
+      },
+      {
+       "check": "link(P1)",
+       "ok": false,
+       "detail": "no link to /proposals/f45e2d86-bb0e-4d13-bce3-d5f30d48ff9a"
+      }
+     ],
+     "trace": [
+      {
+       "name": "get_proposal",
+       "args": {
+        "proposal_id": "f45e2d86-bb0e-4d13-bce3-d5f30d48ff9a"
+       },
+       "success": true,
+       "error": null,
+       "truncatedForModel": false
+      }
+     ],
+     "judge": null,
+     "transcript": "passes/03-cross-ecosystem-exchange/agent-evals/transcripts/R1-1.json"
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "tasks": 1,
+  "passed": 0,
+  "failed": 1,
+  "errors": 0,
+  "skipped": 0,
+  "judgePending": 0,
+  "passRate": 0,
+  "byCategory": {
+   "read": {
+    "tasks": 1,
+    "passed": 0
+   }
+  },
+  "mustRefuseHeld": "0/0",
+  "stateViolations": 0,
+  "judgeMean": null
+ },
+ "trend": {
+  "R1": {
+   "02-act-lifecycle": {
+    "runs": 1,
+    "passRate": 0
+   },
+   "03-cross-ecosystem-exchange": {
+    "runs": 1,
+    "passRate": 0
+   }
+  }
+ },
+ "exitChecks": {
+  "agentEvalPass": {
+   "target": 0.8,
+   "value": 0,
+   "ok": false
+  },
+  "mustRefuse": {
+   "target": 1,
+   "value": null,
+   "ok": null
+  },
+  "stateViolations": {
+   "target": 0,
+   "value": 0,
+   "ok": true
+  }
+ },
+ "defects": [
+  {
+   "id": "p3-agent-R1",
+   "source": "agent-eval",
+   "taskId": "R1",
+   "title": "Assistant eval R1 (read) FAIL: link(P1): no link to /proposals/f45e2d86-bb0e-4d13-bce3-d5f30d48ff9a",
+   "severity": "MEDIUM",
+   "persona": "qa-agent-ana",
+   "url": "POST /api/v1/chat/send",
+   "steps": "t1 \"What's happening with this proposal, and is there anything I should do?\"",
+   "observed": "link(P1): no link to /proposals/f45e2d86-bb0e-4d13-bce3-d5f30d48ff9a | trace: get_proposal",
+   "expected": "status(P1)=advice | !advice(P1, ana) | call(get_proposal) | nowrite | says(/1 of 2|one of two/) | link(P1) | judge: the proposal is in the advice stage; one of its two advice rounds is done, one is left; Ana may give advice on it",
+   "evidence": "passes/03-cross-ecosystem-exchange/agent-evals/transcripts/R1-1.json"
+  }
+ ],
+ "judgeBrief": null
+}

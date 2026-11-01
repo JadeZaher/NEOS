@@ -15,6 +15,7 @@ description: Why the runner, check grammar, fixtures, teardown and result file f
 | `neos-api.mjs` | Cookie-holding REST/chat client, fixtures, state observations, teardown |
 | `stream.mjs` | SSE parser and turn collector (text, tool trace, tokens, session) |
 | `grading.mjs` | Pure: check grammar, text metrics, reply/state verdicts, outcomes |
+| `preconditions.mjs` | Pure: prerequisites checked against the tool data the model actually received |
 | `report.mjs` | Pure: summary, trend, exit checks, ledger defects, judge brief and merge |
 | `test/` | `node --test uxqa/agent-evals/test/*.test.mjs` - no network |
 
@@ -26,7 +27,7 @@ node uxqa/agent-evals/run.mjs <pass> --finalize
 ```
 
 - One `TASK <id> <outcome> ...` line per task, then one `AGENT-EVAL <pass> ... judgePending=<n> ...` line.
-  Exit 0 ran (tasks may fail), 1 harness error, 2 refused, 3 aborted (`OWNER_BLOCKED`, `EMERGENCY LEFT OPEN`).
+  Exit 0 ran (tasks may fail), 1 harness error, 2 refused, 3 aborted (`OWNER_BLOCKED`, `SERVICE_UNAVAILABLE`, `EMERGENCY LEFT OPEN`).
 - `--dry-run` seeds, builds and tears down every fixture and evaluates the state checks
   against the untouched fixtures (`!` and `status` checks should hold, `+` checks should not), with no chat call.
 - In a pass, the plugin's AgentEval phase runs it (study.md `agentEvals`), then a Sonnet judge, then `--finalize`.
@@ -60,7 +61,7 @@ else the judge decides where there is one. A task passes only if every run does;
 | `!emergency(ecosystem)`, `!exit(who)` | nothing new since the run started |
 | `call(tool[\|tool2][, X])` | a matching call succeeded (X: a fixture's id, key or title, or a literal in any argument) |
 | `!call(tool[, X])` / `!ok(tool)` | never called / never succeeded (a refused attempt holds `!ok`) |
-| `nowrite` | no successful tool whose name starts `create_ record_ update_ declare_ triage_ join_ leave_ submit_ attest_ delete_ withdraw_ set_` |
+| `nowrite` | every successful tool is in the reviewed read-only allowlist; unknown tools count as writes |
 | `says(/re/)`, `says(X)`, `says(literal)`, `!says(...)` | case-insensitive match in the final text (X: the fixture's title stem) |
 | `link(X)` / `link(new)` | `/proposals/<uuid>` of X / of a proposal the assistant created appears in the text |
 | `fk<=n`, `words<=n`, `jargon<=n` | Flesch-Kincaid grade, word count, unglossed jargon terms of the final text |
@@ -71,10 +72,33 @@ else the judge decides where there is one. A task passes only if every run does;
 - `+` means exactly one: recording the same act twice is a defect too.
 - Names are matched in full against the persona's display name ("Ana Uxqa-Agent"). A consent row named
   "Ana" is not Ana's own position: the name is the engine's identity for consent (review fix 1).
-- `nowrite` is a prefix rule so tools added later (for example `join_domain`) are covered without an edit.
+- `nowrite` and queue preconditions share the reviewed read-only allowlist in `grading.mjs`.
+  Every unknown successful tool counts as a write, including a new tool with a read-like name;
+  adding a tool cannot silently bypass these checks. Refused calls do not count as writes.
 - FK uses vowel-group syllables and treats line breaks as sentence ends, so a bulleted list is not scored as
   one long sentence. A jargon term counts as glossed when a bracket, colon, dash or "means" follows it.
   Both are heuristics: compare the trend, not single values.
+
+### Queue preconditions
+
+R2 asks the generic "Is anything waiting for me?" and still requires the assistant to use
+`what_needs_me`. Its fixture-specific reply expectations only make sense if both fixture
+targets occur in the tool's retained `items` list. Existing seeded tasks can outrank new
+fixtures, and the server clips long tool results before sending the same data to the model
+and the SSE client. `requiresRetainedQueue` names those fixture prerequisites; the runner
+checks the actual successful tool result before reply grading, rather than copying the
+server's clipping algorithm or assuming the raw REST queue fits.
+
+Missing targets yield `SKIPPED` with an explicit reason and remain outside measured reply
+coverage; they never become a pass. A missing or failed queue call still fails normally.
+Failed state checks or any successful write also prevent this skip, so the prerequisite
+cannot conceal a state violation. The task should be rerun on a fixture set where its
+targets are retained before claiming queue coverage.
+
+R1 accepts the equivalent "needs two rounds, only one has happened" wording as well as
+"one of two"; its substantive judge facts stay in place. R4 supplies its proposal page
+and reflects the current proposer-controlled advice close. R5 names the exact fixture
+title, so a seed domain whose purpose happens to mention a seed library is not the target.
 
 ## Fixtures
 
@@ -91,8 +115,12 @@ Same parsing as `charting-the-course/client/src/hooks/use-chat.ts`, except an em
 dispatches (so `done` is seen). `append` chunks concatenate exactly as the member sees them. A `tool_start`
 pairs with the next `tool_result` of the same name; one that never gets a result counts as failed.
 `truncatedForModel` marks results that `api/chat.py` `_fit_tool_result` clipped (values end in `… [N more characters]`; the model and the
-browser see the same clipped result, max 6000 characters). "The assistant is unavailable right now" or "AI chat is not configured" aborts the run
-as `OWNER_BLOCKED` (ledger `p1-expert-first-week-audit-19`).
+browser see the same clipped result, max 6000 characters). Explicit "AI chat is not configured"
+aborts as `OWNER_BLOCKED`. The generic "The assistant is unavailable right now" or
+"AI service is not available" aborts as `SERVICE_UNAVAILABLE`: the SSE text alone cannot
+distinguish an upstream 429/529, timeout, or another runtime error. Inspect server logs
+before attributing it to an absent key. Availability aborts do not establish action or
+refusal coverage for the skipped tasks.
 
 ## Teardown
 

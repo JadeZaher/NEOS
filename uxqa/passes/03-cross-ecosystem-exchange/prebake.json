@@ -1,0 +1,767 @@
+{
+ "pass": "03-cross-ecosystem-exchange",
+ "marker": "uxqa-p3",
+ "createdAt": "2026-11-01T18:57:44.819Z",
+ "baseUrl": "http://localhost:5173",
+ "deployedCommit": "502300d",
+ "ecosystems": {
+  "Oasis": {
+   "id": "25af625f-8ee4-5285-ac74-24acaee7b705"
+  },
+  "Escherbridge": {
+   "id": "465567a5-e85b-5694-9f09-db5265ae8cb2"
+  },
+  "OmniOne": {
+   "id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e"
+  },
+  "Plan Systems": {
+   "id": "8d69ebef-8c6e-50a8-90ef-edf4037c3640"
+  }
+ },
+ "personas": {
+  "qa-probe-tess": {
+   "name": "Tess Marlow",
+   "isPlatformAdmin": false,
+   "ecosystems": [
+    {
+     "name": "Oasis",
+     "id": "25af625f-8ee4-5285-ac74-24acaee7b705",
+     "role": "user",
+     "status": "active"
+    },
+    {
+     "name": "Escherbridge",
+     "id": "465567a5-e85b-5694-9f09-db5265ae8cb2",
+     "role": "user",
+     "status": "active"
+    },
+    {
+     "name": "OmniOne",
+     "id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+     "role": "mod",
+     "status": "active"
+    }
+   ]
+  },
+  "qa-steward-lena": {
+   "name": "Lena Brightwater",
+   "isPlatformAdmin": false,
+   "ecosystems": [
+    {
+     "name": "Plan Systems",
+     "id": "8d69ebef-8c6e-50a8-90ef-edf4037c3640",
+     "role": "admin",
+     "status": "active"
+    }
+   ]
+  },
+  "qa-member-oren": {
+   "name": "Oren Feldmann",
+   "isPlatformAdmin": true,
+   "ecosystems": [
+    {
+     "name": "OmniOne",
+     "id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+     "role": "admin",
+     "status": "active"
+    }
+   ]
+  }
+ },
+ "domains": {
+  "OmniOne": {
+   "domainParticipationGates": [],
+   "items": [
+    {
+     "id": "1b8d2af9-fe1d-4786-9795-dac760f1a142",
+     "name": "Seed Library (uxqa-p0 agent-eval ra309)",
+     "code": "DOM-E04D2FB8",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "436aee65-25ad-42ec-9227-b3b0bc14d620",
+     "name": "Seed Library (uxqa-p0 agent-eval ra309)",
+     "code": "DOM-304B2AF8",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "9eb46ddb-1ab7-487b-b56c-86602a9a6ae2",
+     "name": "Seed Library (uxqa-p0 agent-eval r068f)",
+     "code": "DOM-336F6CF2",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "66c84bdc-0ac2-406b-ab7e-179498622544",
+     "name": "Seed Library (uxqa-p0 agent-eval r068f)",
+     "code": "DOM-3B32B0CE",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "ca4024a7-7ca0-4a14-bcdf-d5c16f741836",
+     "name": "Seed Library (uxqa-p0 agent-eval r5227)",
+     "code": "DOM-41A2CA71",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "3ff13ae3-b02c-4e6a-bffc-36ec8e78dead",
+     "name": "Seed Library (uxqa-p0 agent-eval r5227)",
+     "code": "DOM-EC33DD58",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "d5bc32fd-4c06-4017-a1c6-c69509acf984",
+     "name": "Seed Library (uxqa-p0 agent-eval r9fbb)",
+     "code": "DOM-A9F7E647",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "07fd2edb-9aa8-4618-9f18-7a29e854b5b1",
+     "name": "Seed Library (uxqa-p0 agent-eval r9fbb)",
+     "code": "DOM-8556FF6E",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "259d6f59-da0e-4427-b745-ada2e7d598bb",
+     "name": "Seed Library (uxqa-p2 agent-eval r950e)",
+     "code": "DOM-656CD90D",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "57740ede-a83e-4620-91c3-fa9d0a6dc487",
+     "name": "Seed Library (uxqa-p2 agent-eval r950e)",
+     "code": "DOM-439FDADE",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "85453592-209c-4456-a966-227fb8260f61",
+     "name": "Seed Library (uxqa-p2 agent-eval r3cfe)",
+     "code": "DOM-80E4033E",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "771f3c80-32e6-4b0f-be77-53ea4e4d621e",
+     "name": "Seed Library (uxqa-p2 agent-eval r3cfe)",
+     "code": "DOM-93E88736",
+     "status": "archived",
+     "gatedBy": []
+    },
+    {
+     "id": "72584c1e-c20d-40ff-a22b-8af0e2af5221",
+     "name": "Newcomer Garden (uxqa-p1)",
+     "code": "DOM-A4641B76",
+     "status": "active",
+     "gatedBy": []
+    },
+    {
+     "id": "ab52532b-52f1-5fca-adfe-5c2e515471cf",
+     "name": "Governance Circle",
+     "code": "dom-omni-gov-001",
+     "status": "active",
+     "gatedBy": []
+    },
+    {
+     "id": "8930348a-fc99-512a-8105-536d336af0e8",
+     "name": "Regenerative Agriculture Circle",
+     "code": "dom-omni-regen-001",
+     "status": "active",
+     "gatedBy": []
+    },
+    {
+     "id": "edf288e8-9bab-5aa6-867c-65e2c5bc0888",
+     "name": "Core Operations (SHUR)",
+     "code": "dom-omni-ops-001",
+     "status": "active",
+     "gatedBy": []
+    }
+   ],
+   "activeRosters": {
+    "Newcomer Garden (uxqa-p1)": {
+     "id": "72584c1e-c20d-40ff-a22b-8af0e2af5221",
+     "status": 200,
+     "steward": null,
+     "participants": 1,
+     "laneParticipants": []
+    },
+    "Governance Circle": {
+     "id": "ab52532b-52f1-5fca-adfe-5c2e515471cf",
+     "status": 200,
+     "steward": null,
+     "participants": 3,
+     "laneParticipants": []
+    },
+    "Regenerative Agriculture Circle": {
+     "id": "8930348a-fc99-512a-8105-536d336af0e8",
+     "status": 200,
+     "steward": null,
+     "participants": 3,
+     "laneParticipants": []
+    },
+    "Core Operations (SHUR)": {
+     "id": "edf288e8-9bab-5aa6-867c-65e2c5bc0888",
+     "status": 200,
+     "steward": null,
+     "participants": 3,
+     "laneParticipants": []
+    }
+   }
+  },
+  "Plan Systems": {
+   "domainParticipationGates": [],
+   "items": [
+    {
+     "id": "ffeffb91-a3ff-5c50-b87f-f23ab27ee22f",
+     "name": "Core Operations (HQ)",
+     "code": "dom-ps-ops-001",
+     "status": "active",
+     "gatedBy": []
+    },
+    {
+     "id": "82dfe92a-47f3-5561-afd3-c61995f87827",
+     "name": "Governance Circle",
+     "code": "dom-ps-gov-001",
+     "status": "active",
+     "gatedBy": []
+    },
+    {
+     "id": "9e5f22ee-9c0e-5603-b439-9f3ff5010eb0",
+     "name": "Systems Design Circle",
+     "code": "dom-ps-design-001",
+     "status": "active",
+     "gatedBy": []
+    }
+   ]
+  }
+ },
+ "fixtures": {
+  "planSystemsGate": {
+   "kind": "agreement",
+   "ecosystem": "Plan Systems",
+   "author": "qa-steward-lena",
+   "title": "Plan Systems membership agreement (uxqa-p3)",
+   "id": "93da1d11-08fd-41b4-82dc-652170509468",
+   "code": "AGR-B92E54F1",
+   "url": "http://localhost:5173/agreements/93da1d11-08fd-41b4-82dc-652170509468",
+   "finalState": "active",
+   "inForceAsMembershipRequirement": true,
+   "requires_explicit_consent": true,
+   "prerequisite_scopes": [
+    "ecosystem"
+   ],
+   "version": "1.0",
+   "review_date": "2027-11-01",
+   "act_policy": {
+    "min_advice_rounds": 1,
+    "consent_required": true,
+    "consent_quorum": 1,
+    "test_cases": []
+   },
+   "consentSummary": {
+    "required": 6,
+    "consented": 1,
+    "outstanding": 5,
+    "complete": false
+   },
+   "ceremonies": [
+    {
+     "stage": "advice",
+     "outcome": "opened"
+    },
+    {
+     "stage": "advice",
+     "outcome": "round"
+    },
+    {
+     "stage": "consent",
+     "outcome": "opened"
+    },
+    {
+     "stage": "test",
+     "outcome": "started"
+    },
+    {
+     "stage": "test",
+     "outcome": "evidence"
+    },
+    {
+     "stage": "active",
+     "outcome": "passed"
+    }
+   ],
+   "reservedFor": "plain-words-and-joining (Mateo meets it on sign-up); exchange-authority-probe reads it"
+  },
+  "moderationTarget": {
+   "kind": "share",
+   "ecosystem": "OmniOne",
+   "author": "qa-probe-tess",
+   "title": "Selling my old e-bike, cash only (uxqa-p3)",
+   "id": "eb9e95d3-8cb7-4103-9301-be671e324ba1",
+   "url": "http://localhost:5173/discover?tab=shares-needs&post=eb9e95d3-8cb7-4103-9301-be671e324ba1",
+   "domain": {
+    "id": "edf288e8-9bab-5aa6-867c-65e2c5bc0888",
+    "name": "Core Operations (SHUR)"
+   },
+   "visibility": "public",
+   "category": "resources",
+   "finalState": "active",
+   "hidden": false,
+   "steps": "Tess published it as a public offer (a marketplace ad that does not belong in the exchange). Nothing else.",
+   "reservedFor": "collaboration-and-moderation (Amara hides it with a reason, then restores it)"
+  },
+  "probeNeed": {
+   "kind": "need",
+   "ecosystem": "Plan Systems",
+   "author": "qa-steward-lena",
+   "title": "Probe: ladder for antenna work (uxqa-p3)",
+   "id": "5a093032-5e81-4ca7-a8c7-bb02bcc2afc9",
+   "url": "http://localhost:5173/discover?tab=shares-needs&post=5a093032-5e81-4ca7-a8c7-bb02bcc2afc9",
+   "domain": {
+    "id": "ffeffb91-a3ff-5c50-b87f-f23ab27ee22f",
+    "name": "Core Operations (HQ)"
+   },
+   "visibility": "public",
+   "category": "resources",
+   "finalState": "active",
+   "hidden": false,
+   "steps": "Lena published it as a public need. Nothing else.",
+   "reservedFor": "exchange-authority-probe only (Tess answers it, then tries to close and hide it); every UX lane leaves it alone"
+  },
+  "goldAdvicePool": {
+   "kind": "proposals",
+   "ecosystem": "OmniOne",
+   "author": "qa-probe-tess",
+   "items": [
+    {
+     "title": "Compost rota for the shared garden (uxqa-p3)",
+     "id": "d4045fe0-e392-4837-a147-f02354078165",
+     "code": "PROP-73B5BA1A",
+     "url": "http://localhost:5173/proposals/d4045fe0-e392-4837-a147-f02354078165",
+     "author": "qa-probe-tess",
+     "finalState": "advice",
+     "advice": [],
+     "advice_deadline": null,
+     "affected_domain": "Core Operations (SHUR)",
+     "authorAllowedNext": [
+      {
+       "to": "consent",
+       "ready": false
+      },
+      {
+       "to": "withdrawn",
+       "ready": true
+      }
+     ]
+    },
+    {
+     "title": "Tool library loan limits (uxqa-p3)",
+     "id": "4364d6f3-2ebe-40e7-8138-3303cac5a0e2",
+     "code": "PROP-3962106E",
+     "url": "http://localhost:5173/proposals/4364d6f3-2ebe-40e7-8138-3303cac5a0e2",
+     "author": "qa-probe-tess",
+     "finalState": "advice",
+     "advice": [],
+     "advice_deadline": null,
+     "affected_domain": "Core Operations (SHUR)",
+     "authorAllowedNext": [
+      {
+       "to": "consent",
+       "ready": false
+      },
+      {
+       "to": "withdrawn",
+       "ready": true
+      }
+     ]
+    },
+    {
+     "title": "Shared kitchen cleaning roster (uxqa-p3)",
+     "id": "339fdfdd-f873-458a-b020-5b8babe0d062",
+     "code": "PROP-4641D1D7",
+     "url": "http://localhost:5173/proposals/339fdfdd-f873-458a-b020-5b8babe0d062",
+     "author": "qa-probe-tess",
+     "finalState": "advice",
+     "advice": [],
+     "advice_deadline": null,
+     "affected_domain": "Core Operations (SHUR)",
+     "authorAllowedNext": [
+      {
+       "to": "consent",
+       "ready": false
+      },
+      {
+       "to": "withdrawn",
+       "ready": true
+      }
+     ]
+    }
+   ],
+   "steps": "Tess created each and opened it for advice (no advice deadline, so only she can close advice). No advice; nobody closes advice.",
+   "reservedFor": "unreserved gold-advise pool"
+  }
+ },
+ "readOnlyChecks": {
+  "agrPs006": {
+   "code": "AGR-PS-006",
+   "found": true,
+   "id": "532df397-f65e-5d60-8690-227977b436e5",
+   "title": "Remote Work and Async Collaboration Policy",
+   "url": "http://localhost:5173/agreements/532df397-f65e-5d60-8690-227977b436e5",
+   "status": "under_review",
+   "review_date": "2026-10-26",
+   "review_overdue": true,
+   "reviewDatePassed": true,
+   "default_next_review_date": "2027-11-01",
+   "sunset_ends_on": "2026-12-31"
+  },
+  "agrEb005": {
+   "code": "AGR-EB-005",
+   "found": true,
+   "id": "1c345be5-5bbc-587c-8d94-9439754daec2",
+   "title": "Web3 Platform Integration & Agentic Systems Charter",
+   "url": "http://localhost:5173/agreements/1c345be5-5bbc-587c-8d94-9439754daec2",
+   "status": "under_review",
+   "review_date": "2026-10-29",
+   "review_overdue": true,
+   "reviewDatePassed": true,
+   "default_next_review_date": "2027-11-01",
+   "sunset_ends_on": "2027-01-29"
+  },
+  "omniOneReviewDueWithin14Days": {
+   "asSeenBy": "qa-member-oren",
+   "window": "2026-11-01..2026-11-15",
+   "agreementsInForceDueOrOverdue": [],
+   "orenQueue": {
+    "status": 200,
+    "total": 25,
+    "reviewDueItems": [],
+    "otherAgreementItems": [
+     {
+      "kind": "proposal",
+      "action": "register_agreement",
+      "title": "Weekly Standup Tracker Agreement",
+      "link": "/proposals/86a2d11e-9ce0-5988-acfe-2eaa1b82a0ad"
+     },
+     {
+      "kind": "agreement",
+      "action": "attest_agreement",
+      "title": "OmniOne Facilitation Rota",
+      "link": "/agreements/68fb543c-0adc-5932-96ec-43f14f0bbcb1"
+     }
+    ]
+   },
+   "agreementsInForceTotal": 18,
+   "nearestReviewDates": [
+    {
+     "code": "AGR-OMNI-001",
+     "title": "OmniOne Universal Agreement Field",
+     "status": "active",
+     "review_date": "2027-05-14",
+     "review_overdue": false,
+     "url": "http://localhost:5173/agreements/18dcd4b8-492a-5783-999c-5b5d71761cd3"
+    },
+    {
+     "code": "AGR-OMNI-003",
+     "title": "OmniOne Membership Agreement",
+     "status": "active",
+     "review_date": "2027-05-19",
+     "review_overdue": false,
+     "url": "http://localhost:5173/agreements/fcdf54e7-cf81-5e9f-8502-4739f9265a88"
+    },
+    {
+     "code": "AGR-OMNI-002",
+     "title": "OmniOne Decision-Making Protocol",
+     "status": "active",
+     "review_date": "2027-05-19",
+     "review_overdue": false,
+     "url": "http://localhost:5173/agreements/59bcb90a-0adb-5ae0-ab38-1b6946143f3e"
+    },
+    {
+     "code": "AGR-60D61961",
+     "title": "Tool library lending rules (uxqa-p2)",
+     "status": "active",
+     "review_date": "2027-11-01",
+     "review_overdue": false,
+     "url": "http://localhost:5173/agreements/c26392c2-077e-44d3-bde2-faf7d8191273"
+    },
+    {
+     "code": "AGR-E2B3A5DA",
+     "title": "Tool shed key holders (uxqa-p2)",
+     "status": "active",
+     "review_date": "2027-11-01",
+     "review_overdue": false,
+     "url": "http://localhost:5173/agreements/1cb49ff9-0717-4d8a-a643-e8a0b4bc3a36"
+    }
+   ],
+   "underReviewNow": [],
+   "result": "NONE: no OmniOne agreement in force has a review date on or before 2026-11-15; the nearest is AGR-OMNI-001 on 2027-05-14. Oren's lane step (1) records that and creates nothing."
+  },
+  "goldNeed": {
+   "title": "Rainwater harvesting help (uxqa gold)",
+   "id": "1b1e6995-267d-48be-8547-a439797f75c5",
+   "url": "http://localhost:5173/discover?tab=shares-needs&post=1b1e6995-267d-48be-8547-a439797f75c5",
+   "status": "active",
+   "type": "need",
+   "visibility": "public",
+   "ecosystem": "Escherbridge",
+   "author": "Kenny",
+   "open": true
+  },
+  "omniOneAdvice": {
+   "asSeenBy": "qa-probe-tess",
+   "listStatus": 200,
+   "total": 14,
+   "p3Pool": [
+    {
+     "title": "Shared kitchen cleaning roster (uxqa-p3)",
+     "id": "339fdfdd-f873-458a-b020-5b8babe0d062",
+     "code": "PROP-4641D1D7"
+    },
+    {
+     "title": "Tool library loan limits (uxqa-p3)",
+     "id": "4364d6f3-2ebe-40e7-8138-3303cac5a0e2",
+     "code": "PROP-3962106E"
+    },
+    {
+     "title": "Compost rota for the shared garden (uxqa-p3)",
+     "id": "d4045fe0-e392-4837-a147-f02354078165",
+     "code": "PROP-73B5BA1A"
+    }
+   ],
+   "p2GoldPoolStillInAdvice": [
+    {
+     "title": "Workshop quiet hours (uxqa-p2)",
+     "id": "642022b0-4bf3-4b3c-9700-7fae5ab1c440",
+     "code": "PROP-9FAF483C"
+    },
+    {
+     "title": "Ladder safety checks (uxqa-p2)",
+     "id": "1e868513-30f1-475e-a580-1090063b680c",
+     "code": "PROP-C48E7070"
+    },
+    {
+     "title": "Bike trailer booking (uxqa-p2)",
+     "id": "43e60446-fac5-49b1-b35e-2a4babc5325d",
+     "code": "PROP-29B7A94D"
+    },
+    {
+     "title": "Seed library shelf (uxqa-p2)",
+     "id": "3979355f-29e5-41b5-84ff-ba76f0841abf",
+     "code": "PROP-AB1678C6"
+    }
+   ],
+   "otherAdviceStage": [
+    "Newcomer buddy rota (uxqa-p1)",
+    "Orchard pruning day (uxqa-p1)",
+    "Quiet hours at the commons (uxqa-p1)",
+    "Rainwater tank sharing (uxqa-p1)",
+    "Compost bay rebuild (uxqa-p1)",
+    "Water Management Cooperative Framework",
+    "Community Energy Sharing Protocol"
+   ],
+   "goldTitledInAdvice": 0
+  },
+  "domainsForLanes": {
+   "inesJoinsThisOmniOneDomain": {
+    "id": "8930348a-fc99-512a-8105-536d336af0e8",
+    "name": "Regenerative Agriculture Circle",
+    "url": "http://localhost:5173/domains/8930348a-fc99-512a-8105-536d336af0e8",
+    "gatedBy": [],
+    "steward": null,
+    "participantsBefore": 3,
+    "alternates": [
+     {
+      "name": "Governance Circle",
+      "id": "ab52532b-52f1-5fca-adfe-5c2e515471cf"
+     },
+     {
+      "name": "Newcomer Garden (uxqa-p1)",
+      "id": "72584c1e-c20d-40ff-a22b-8af0e2af5221"
+     }
+    ]
+   },
+   "collaborationTargetPlanSystemsDomain": {
+    "id": "9e5f22ee-9c0e-5603-b439-9f3ff5010eb0",
+    "name": "Systems Design Circle",
+    "url": "http://localhost:5173/domains/9e5f22ee-9c0e-5603-b439-9f3ff5010eb0"
+   },
+   "moderationTargetOmniOneDomain": {
+    "id": "edf288e8-9bab-5aa6-867c-65e2c5bc0888",
+    "name": "Core Operations (SHUR)"
+   },
+   "probeNeedPlanSystemsDomain": {
+    "id": "ffeffb91-a3ff-5c50-b87f-f23ab27ee22f",
+    "name": "Core Operations (HQ)"
+   }
+  }
+ },
+ "verification": {
+  "crossEcosystemVisibility": {
+   "ebikeReadByLena": {
+    "status": 200,
+    "visibility": "public"
+   },
+   "ladderReadByTess": {
+    "status": 200,
+    "visibility": "public"
+   },
+   "planSystemsPageForNonMember": {
+    "status": 200,
+    "visibility": "public",
+    "stewards": [
+     "Lena Brightwater"
+    ]
+   }
+  },
+  "ok": true
+ },
+ "nextSteps": {
+  "qa-steward-lena": {
+   "status": 200,
+   "total": 10,
+   "items": [
+    {
+     "kind": "proposal",
+     "action": "close_advice",
+     "title": "Client Data Sovereignty Protocol"
+    },
+    {
+     "kind": "agreement",
+     "action": "finish_review",
+     "title": "Remote Work and Async Collaboration Policy"
+    },
+    {
+     "kind": "proposal",
+     "action": "give_advice",
+     "title": "Client Data Sovereignty Protocol"
+    },
+    {
+     "kind": "proposal",
+     "action": "register_agreement",
+     "title": "Open-Source Contribution and Attribution Policy"
+    },
+    {
+     "kind": "proposal",
+     "action": "register_agreement",
+     "title": "Wardley Mapping Standard"
+    },
+    {
+     "kind": "proposal",
+     "action": "record_position",
+     "title": "Professional Training Program"
+    },
+    {
+     "kind": "proposal",
+     "action": "give_advice",
+     "title": "Open Source Contribution Policy"
+    },
+    {
+     "kind": "newcomer",
+     "action": "take_entry_quiz",
+     "title": "Take Plan Systems Onboarding Readiness"
+    },
+    {
+     "kind": "newcomer",
+     "action": "start_orientation",
+     "title": "Walk through Plan Systems's orientation"
+    },
+    {
+     "kind": "agreement",
+     "action": "attest_agreement",
+     "title": "Plan Systems Pairing Charter"
+    }
+   ]
+  }
+ },
+ "defects": [
+  {
+   "id": "PB3-AGREEMENT-FORM-CONSENT-COPY",
+   "severity": "LOW",
+   "verdict": "CONFIRMED in API and source; the form copy was not viewed in a browser in prebake",
+   "title": "The agreement form says consent cannot complete until every participating member attests, while its own quorum field lets it complete with fewer",
+   "url": "http://localhost:5173/agreements/new",
+   "persona": "qa-steward-lena",
+   "steps": [
+    "Open /agreements/new as a Plan Systems admin",
+    "Read the box 'Explicit individual consent is mandatory' and the 'Consent quorum (optional)' hint",
+    "Create the agreement with Consent quorum 1 (the form's own field), open advice, record an advice round, consent, record test evidence"
+   ],
+   "observed": "AgreementForm.tsx:285 says 'The agreement cannot complete its consent ceremony until every participating member has personally attested.' The quorum hint at :317 says 'A number: that many members.' With quorum 1, AGR-B92E54F1 completed consent at 1 of 6 participating members and is active; its detail page shows 'Consent progress 1 of 6' on an agreement in force.",
+   "expected": "One rule in one sentence: blank means every participating member, a number means that many. The mandatory-consent box should not contradict the field below it.",
+   "evidence": "POST /api/v1/agreements/93da1d11-08fd-41b4-82dc-652170509468/consent -> 201 auto ['consent->test']; GET /api/v1/agreements/93da1d11-08fd-41b4-82dc-652170509468 -> 200 status=active consent_summary {required:6, consented:1}"
+  }
+ ],
+ "observations": [
+  "Why the gate uses consent quorum 1: with the form's default (quorum blank) an agreement's consent stage waits on EVERY participating member. Plan Systems has six: Lena, qa-agent-gus and qa-agent-hal (agent-eval personas), and the seeded Rachel (MBR-PS-001), Brandon (MBR-PS-002) and Drew (MBR-PS-003), none of whom has a session in this pass. The seeded AGR-PS-ACT-001 'Plan Systems Pairing Charter' sits in consent at 2 of 6 for this reason. Lena used the form's own optional 'Consent quorum' field (1); every ceremony still ran (advice opened, advice round, consent, test started, test evidence, active). No refusal occurred, so nothing was filed for the default rule itself.",
+  "Two 'membership agreements' now exist in Plan Systems: the seeded AGR-PS-003 'Plan Systems Membership Agreement' (active, type policy, NO participation gate) and Lena's AGR-B92E54F1 'Plan Systems membership agreement (uxqa-p3)' (active, the ecosystem-membership gate). Mateo's consent gate should list only the second; /agreements shows both. Lanes judge whether that confuses anyone.",
+  "AGR-B92E54F1's detail shows 'Consent progress 1 of 6' and 'Participation gates: ecosystem' while it is in force. Mateo's and the probe's lanes read this page.",
+  "OmniOne has no agreement in force due for review within 14 days (window 2026-11-01..2026-11-15; nearest AGR-OMNI-001 on 2027-05-14). Oren's queue shows no review-due item, only register_agreement 'Weekly Standup Tracker Agreement' and attest_agreement 'OmniOne Facilitation Rota'. health-audit-and-review step (1) records 'none due' and creates nothing, as briefed. Review-due work this pass is Lena's AGR-PS-006.",
+  "Lena's queue before her lane (GET /me/next-steps as her, 10 items) already lists finish_review 'Remote Work and Async Collaboration Policy' (AGR-PS-006). It also lists close_advice and give_advice on the same seeded proposal 'Client Data Sovereignty Protocol', two register_agreement items, record_position, take_entry_quiz and start_orientation ('Walk through Plan Systems's orientation'). Her lane's 'without hunting' judgement starts from this list.",
+  "The OmniOne domain list (GET /api/v1/domains) returns 16 domains. 12 are archived 'Seed Library (uxqa-p0/p2 agent-eval ...)' leftovers from agent-eval teardown, and 4 are active. If /domains or the post form's domain picker shows archived ones, Ines and Joy will see that clutter. This is environment residue; nothing was filed.",
+  "No OmniOne or Plan Systems domain has a domain-participation agreement gate (no active agreement with scope 'domain'), so Ines's join step meets no gate."
+ ],
+ "notes": [
+  "All four fixtures reached their target state; no lane step is affected by a refusal.",
+  "planSystemsGate persists after the pass: anyone who joins Plan Systems later meets the consent gate too. Ending it needs the agreement review ceremony (under_review -> sunset), so prebake left it in force.",
+  "goldAdvicePool has no advice deadline, so only Tess can close advice (policy.can_close_advice: another steward only after a deadline; with none set, never). Once a gold-advise run gives advice, Tess's bell gets a close_advice item, so the noise lands on her and not on a gold persona.",
+  "Collaboration lane target: Plan Systems 'Systems Design Circle' (9e5f22ee-9c0e-5603-b439-9f3ff5010eb0). The probe's throwaway 'Probe link (uxqa-p3)' should use a different Plan Systems domain ('Governance Circle' 82dfe92a-47f3-5561-afd3-c61995f87827 or 'Core Operations (HQ)' ffeffb91-a3ff-5c50-b87f-f23ab27ee22f) so the two collaborations never share a target in Lena's queue.",
+  "Ines's domain: 'Regenerative Agriculture Circle' (8930348a-fc99-512a-8105-536d336af0e8): active, ungated, 3 participants, no lane persona among them, no steward named. Alternates: 'Governance Circle' and 'Newcomer Garden (uxqa-p1)'. 'Core Operations (SHUR)' holds Tess's e-bike ad, so Ines's domain page stays free of it.",
+  "Cross-ecosystem visibility check: Lena (not in OmniOne) reads the e-bike ad by id (200, public). Tess (not in Plan Systems) reads the ladder need by id (200, public). Plan Systems' ecosystem page opens for a signed-in non-member (200, visibility public, steward Lena Brightwater). The signed-out view was not checked in prebake.",
+  "Sessions used: qa-steward-lena and qa-probe-tess (authors), qa-member-oren (read only: queue and agreements). No assistant message was sent. No UX lane persona's state was changed.",
+  "gold-respond hazard (pre-existing, not created here): OmniOne proposal 'Rainwater tank sharing (uxqa-p1)' is still in Advice, so a global search for 'rainwater' also returns it; Discover shares/needs search returns only Escherbridge's gold need."
+ ],
+ "log": [
+  "ecosystems {\"Oasis\":\"25af625f-8ee4-5285-ac74-24acaee7b705\",\"Escherbridge\":\"465567a5-e85b-5694-9f09-db5265ae8cb2\",\"OmniOne\":\"8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e\",\"Plan Systems\":\"8d69ebef-8c6e-50a8-90ef-edf4037c3640\"}",
+  "OmniOne domains=16 gates=[]; Plan Systems domains=3 gates=0",
+  "create gate agreement as qa-steward-lena -> 201 AGR-B92E54F1",
+  "open advice -> 200 status=advice auto=[]",
+  "record advice round -> 201 status=consent auto=[\"advice->consent\"]",
+  "consent -> 201 status=test auto=[\"consent->test\"]",
+  "record test evidence -> 201 status=active auto=[\"test->active\"]",
+  "fixture planSystemsGate AGR-B92E54F1 93da1d11-08fd-41b4-82dc-652170509468 status=active scopes=[\"ecosystem\"] inForce=true consent={\"required\":6,\"consented\":1,\"outstanding\":5,\"complete\":false}",
+  "publish moderationTarget as qa-probe-tess -> 201 eb9e95d3-8cb7-4103-9301-be671e324ba1",
+  "fixture moderationTarget eb9e95d3-8cb7-4103-9301-be671e324ba1 type=share status=active visibility=public domain=Core Operations (SHUR)",
+  "publish probeNeed as qa-steward-lena -> 201 5a093032-5e81-4ca7-a8c7-bb02bcc2afc9",
+  "fixture probeNeed 5a093032-5e81-4ca7-a8c7-bb02bcc2afc9 type=need status=active visibility=public domain=Core Operations (HQ)",
+  "create pool 'Compost rota for the shared garden (uxqa-p3)' as qa-probe-tess -> 201 PROP-73B5BA1A",
+  "open advice 'Compost rota for the shared garden (uxqa-p3)' as qa-probe-tess -> 200 status=advice auto=[]",
+  "fixture pool PROP-73B5BA1A d4045fe0-e392-4837-a147-f02354078165 stage=advice",
+  "create pool 'Tool library loan limits (uxqa-p3)' as qa-probe-tess -> 201 PROP-3962106E",
+  "open advice 'Tool library loan limits (uxqa-p3)' as qa-probe-tess -> 200 status=advice auto=[]",
+  "fixture pool PROP-3962106E 4364d6f3-2ebe-40e7-8138-3303cac5a0e2 stage=advice",
+  "create pool 'Shared kitchen cleaning roster (uxqa-p3)' as qa-probe-tess -> 201 PROP-4641D1D7",
+  "open advice 'Shared kitchen cleaning roster (uxqa-p3)' as qa-probe-tess -> 200 status=advice auto=[]",
+  "fixture pool PROP-4641D1D7 339fdfdd-f873-458a-b020-5b8babe0d062 stage=advice",
+  "verify visibility {\"ebikeReadByLena\":{\"status\":200,\"visibility\":\"public\"},\"ladderReadByTess\":{\"status\":200,\"visibility\":\"public\"},\"planSystemsPageForNonMember\":{\"status\":200,\"visibility\":\"public\",\"stewards\":[\"Lena Brightwater\"]}}",
+  "AGR-PS-006 {\"code\":\"AGR-PS-006\",\"found\":true,\"id\":\"532df397-f65e-5d60-8690-227977b436e5\",\"title\":\"Remote Work and Async Collaboration Policy\",\"url\":\"http://localhost:5173/agreements/532df397-f65e-5d60-8690-227977b436e5\",\"status\":\"under_review\",\"review_date\":\"2026-10-26\",\"review_overdue\":true,\"reviewDatePassed\":true,\"default_next_review_date\":\"2027-11-01\",\"sunset_ends_on\":\"2026-12-31\"}",
+  "AGR-EB-005 {\"code\":\"AGR-EB-005\",\"found\":true,\"id\":\"1c345be5-5bbc-587c-8d94-9439754daec2\",\"title\":\"Web3 Platform Integration & Agentic Systems Charter\",\"url\":\"http://localhost:5173/agreements/1c345be5-5bbc-587c-8d94-9439754daec2\",\"status\":\"under_review\",\"review_date\":\"2026-10-29\",\"review_overdue\":true,\"reviewDatePassed\":true,\"default_next_review_date\":\"2027-11-01\",\"sunset_ends_on\":\"2027-01-29\"}",
+  "OmniOne review-due (<= 2026-11-15) []; Oren queue 200 total=25 review items=[\"attest_agreement:OmniOne Facilitation Rota\"]",
+  "gold need {\"title\":\"Rainwater harvesting help (uxqa gold)\",\"id\":\"1b1e6995-267d-48be-8547-a439797f75c5\",\"url\":\"http://localhost:5173/discover?tab=shares-needs&post=1b1e6995-267d-48be-8547-a439797f75c5\",\"status\":\"active\",\"type\":\"need\",\"visibility\":\"public\",\"ecosystem\":\"Escherbridge\",\"author\":\"Kenny\",\"open\":true}",
+  "OmniOne advice total=14 p3Pool=3 p2Pool=4 other=7 goldTitled=0",
+  "next-steps qa-steward-lena -> 200 [\"close_advice:Client Data Sovereignty Protocol\",\"finish_review:Remote Work and Async Collaboration Policy\",\"give_advice:Client Data Sovereignty Protocol\",\"register_agreement:Open-Source Contribution and Attribution Policy\",\"register_agreement:Wardley Mapping Standard\",\"record_position:Professional Training Program\",\"give_advice:Open Source Contribution Policy\",\"take_entry_quiz:Take Plan Systems Onboarding Readiness\",\"start_orientation:Walk through Plan Systems's orientation\",\"attest_agreement:Plan Systems Pairing Charter\"]",
+  "verification ok=true"
+ ],
+ "finishedAt": "2026-11-01T18:57:59.013Z",
+ "script": "uxqa/passes/03-cross-ecosystem-exchange/flows/prebake/prebake.mjs",
+ "readbackAt": "2026-11-01T18:59:23.115Z",
+ "summary": {
+  "planSystemsGate": "AGR-B92E54F1 93da1d11-08fd-41b4-82dc-652170509468 active, prerequisite_scopes ['ecosystem'], consent quorum 1 (Lena consented), review 2027-11-01",
+  "moderationTarget": "eb9e95d3-8cb7-4103-9301-be671e324ba1 OmniOne public share in Core Operations (SHUR), active",
+  "probeNeed": "5a093032-5e81-4ca7-a8c7-bb02bcc2afc9 Plan Systems public need in Core Operations (HQ), active",
+  "goldAdvicePool": [
+   "PROP-73B5BA1A d4045fe0-e392-4837-a147-f02354078165 advice",
+   "PROP-3962106E 4364d6f3-2ebe-40e7-8138-3303cac5a0e2 advice",
+   "PROP-4641D1D7 339fdfdd-f873-458a-b020-5b8babe0d062 advice"
+  ],
+  "omniOneAdviceStage": "14 in Advice: 3 (uxqa-p3) pool + 4 (uxqa-p2) pool + 7 older; 0 '(uxqa gold)'"
+ }
+}
