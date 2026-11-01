@@ -102,6 +102,8 @@ async function buildProposal(client, spec, person, title) {
 	for (const advisor of spec.advisedBy || []) {
 		await client.must(person(advisor).handle, 'POST', `${path}/advice`, { content: `Sounds workable; please keep it simple. (${title.slice(title.lastIndexOf('(') + 1, -1)})` });
 	}
+	// Owner decision 2026-10-31: advice never advances by itself; the proposer closes it.
+	if (spec.stage === 'consent') await client.must(author.handle, 'POST', `${path}/status`, { status: 'consent' });
 	const now = await client.must(author.handle, 'GET', path);
 	if (now.status !== spec.stage) throw new Error(`fixture "${spec.proposal}" is ${now.status}, expected ${spec.stage}`);
 	return { kind: 'proposal', id: created.id, key: created.proposal_id, stem: spec.proposal, title, path: `/proposals/${created.id}`, owner: author.handle };
