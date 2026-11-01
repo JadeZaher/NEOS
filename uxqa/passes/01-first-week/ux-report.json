@@ -1,7 +1,7 @@
 {
  "pass": "01-first-week",
  "frictionVersion": 1,
- "generatedAt": "2026-11-01T06:02:32.896Z",
+ "generatedAt": "2026-11-01T06:02:48.834Z",
  "runs": 85,
  "uxRuns": 76,
  "probeRuns": 9,
@@ -2855,8 +2855,8 @@
   },
   "newHigh": {
    "target": 0,
-   "count": 2,
-   "ok": false
+   "count": 0,
+   "ok": true
   },
   "routeCoverage": {
    "target": null,

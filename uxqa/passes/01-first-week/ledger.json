@@ -136,7 +136,12 @@
    "rootCause": "charting-the-course/client/src/components/NotificationCenter.tsx:22-27 PLACEHOLDER_NOTIFICATIONS=[] and no request; no feed exists server-side (neos_agent/api/notifications.py only handles push subscribe and preferences).",
    "rationale": "Still broken (Oren and Ines bell evidence). Needs an event model: emitters in proposals, domains and messaging, a feed endpoint and the bell wiring. That is a feature, not a fix-lane change. DEFER to a new conductor track 'in-app notification feed' spun from multi_ecosystem_collaboration_20260425 (PWA notifications phase); the new proposer_member_id (lane 1) is its prerequisite for routing advice to authors.",
    "introducedIn": "01-first-week",
-   "status": "DEFERRED"
+   "status": "FIXED",
+   "fixCommits": [
+    "neos-operating-system@aa84a2b",
+    "charting-the-course@183ec5a"
+   ],
+   "verifiedBy": "governance wave B: live bell from /me/next-steps"
   },
   {
    "id": "p1-arrival-and-welcome-8",
@@ -543,7 +548,12 @@
    "rootCause": "By design: DEFAULT_ACT_POLICY min_advice_rounds=1 (neos_agent/services/act_gates.py:59-64); one AdviceLog with an entry counts as a round (:115-133); auto-advance at :216-218; advice_deadline is not part of the gate. Shipped on purpose (conductor/tracks.md:11).",
    "rationale": "Governance-policy question for the product owner (synthesis P5): should the default gate wait for the deadline or the proposer? Triage does not change the engine. The explanation gap is fixed under arrival-and-welcome-8, self-advice under audit-12, notification under PB-BELL-STUB.",
    "introducedIn": "01-first-week",
-   "status": "OPEN"
+   "status": "FIXED",
+   "ownerDecision": "2026-10-31: the proposer closes the advice phase; the deadline only prompts",
+   "fixCommits": [
+    "neos-operating-system@be45a44",
+    "charting-the-course@45c0b25"
+   ]
   },
   {
    "id": "p1-expert-first-week-audit-19",
