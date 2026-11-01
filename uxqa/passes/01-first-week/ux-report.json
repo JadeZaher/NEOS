@@ -1,13 +1,13 @@
 {
  "pass": "01-first-week",
  "frictionVersion": 1,
- "generatedAt": "2026-10-31T21:58:56.188Z",
+ "generatedAt": "2026-11-01T06:02:32.896Z",
  "runs": 85,
  "uxRuns": 76,
  "probeRuns": 9,
  "coverage": {
   "framework": "next-pages",
-  "pageRoutes": 76,
+  "pageRoutes": 77,
   "visited": 23,
   "unvisited": [
    "/discover/collaborations/new",
@@ -17,6 +17,7 @@
    "/settings/notifications",
    "/admin/journey-maps",
    "/safeguards/audits",
+   "/welcome/consent",
    "/agreements/new",
    "/ecosystems/new",
    "/conflicts/new",
@@ -68,7 +69,7 @@
    "blank"
   ],
   "api": {
-   "declared": 134,
+   "declared": 144,
    "hit": 47,
    "unhit": [
     "/api/v1/auth/did/reset",
@@ -80,6 +81,7 @@
     "/api/v1/domains/[domain_id_u]/quizzes/unassign",
     "/api/v1/discover/shares-needs/[sn_id]/status",
     "/api/v1/domains/[domain_id_a]/quizzes/assign",
+    "/api/v1/safeguards/audits/[audit_id]/publish",
     "/api/v1/chat/sessions/[session_id]/privacy",
     "/api/v1/auth/oauth/[provider]/callback",
     "/api/v1/quizzes/[quiz_id]/results/all",
@@ -94,24 +96,32 @@
     "/api/v1/compliance/latest",
     "/api/v1/emergency/declare",
     "/api/v1/safeguards/audits",
+    "/api/v1/emergency/active",
     "/api/v1/messaging/search",
     "/api/v1/chat/sessions",
+    "/api/v1/me/next-steps",
     "/api/v1/ai/assist",
     "/api/v1/discover/collaborations/[collaboration_id]",
     "/api/v1/emergency/[emergency_id]/complete-recovery",
+    "/api/v1/proposals/[proposal_id]/register-agreement",
     "/api/v1/orientation/journey-maps/[journey_map_id]",
     "/api/v1/ecosystems/[ecosystem_id]/quiz-results",
     "/api/v1/agreements/[agreement_id]/ceremonies",
     "/api/v1/domains/[domain_id_r]/quiz-results",
     "/api/v1/agreements/[agreement_id]/consent",
     "/api/v1/agreements/[agreement_id]/history",
+    "/api/v1/emergency/[emergency_id]/withdraw",
+    "/api/v1/members/[member_id]/profile-grant",
     "/api/v1/members/[member_id]/resend-invite",
     "/api/v1/agreements/[agreement_id]/status",
     "/api/v1/emergency/[emergency_id]/resolve",
     "/api/v1/orientation/ethos/[ecosystem_id]",
+    "/api/v1/emergency/[emergency_id]/cosign",
+    "/api/v1/emergency/[emergency_id]/review",
     "/api/v1/onboarding/[member_id]/ceremony",
     "/api/v1/proposals/[proposal_id]/consent",
     "/api/v1/conflicts/[conflict_id]/repair",
+    "/api/v1/exit/[exit_id]/portable-record",
     "/api/v1/members/[member_id]/onboarding",
     "/api/v1/admin/ctc-handoff/[member_id]",
     "/api/v1/proposals/[proposal_id]/test",
@@ -157,7 +167,8 @@
     "/api/v1/badges/[badge_id]",
     "/api/v1/quizzes/[quiz_id]",
     "/api/v1/teams/[team_id]",
-    "/api/v1/exit/[exit_id]"
+    "/api/v1/exit/[exit_id]",
+    "/api/v1/explain/[kind]/[record_id]"
    ],
    "observedOps": {
     "GET /api/v1/proposals": 189,
@@ -2827,6 +2838,7 @@
   "00-setup": 6,
   "01-first-week": 13.986842105263158
  },
+ "agentEvalTrend": {},
  "exitChecks": {
   "goldSuccess": {
    "target": 0.8,
@@ -2843,12 +2855,17 @@
   },
   "newHigh": {
    "target": 0,
-   "count": 3,
+   "count": 2,
    "ok": false
   },
   "routeCoverage": {
    "target": null,
-   "ratio": 0.3026315789473684,
+   "ratio": 0.2987012987012987,
+   "ok": null
+  },
+  "agentEval": {
+   "target": 0.8,
+   "passRate": null,
    "ok": null
   }
  }

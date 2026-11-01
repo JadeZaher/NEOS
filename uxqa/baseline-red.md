@@ -1,19 +1,21 @@
 ---
 type: Reference
 title: Known-red baseline
-description: Test, typecheck and build results before any UX study fix landed; reds here are pre-existing, not regressions.
-timestamp: "2026-10-31"
+description: Test, typecheck and build results to compare a pass against; reds here are pre-existing, not regressions.
+timestamp: "2026-11-01"
 ---
 
-# Known-red baseline (2026-10-31, before pass 01; user WIP present in 5 files)
+# Known-red baseline (2026-11-01, after governance wave B, `aa84a2b` / `183ec5a`)
 
 | Command | Result |
 |---|---|
-| backend pytest (in-memory sqlite) | `2 failed, 373 passed, 23 warnings in 139.40s` |
+| backend pytest (in-memory sqlite; PostgreSQL tests with `NEOS_TEST_POSTGRES_URL`) | `793 passed`, 0 failed |
 | `npm run check` (tsc) | exit 0, 0 `error TS` |
-| `npm run build` | exit 0, `built in 14.93s` (chunk-size warning only) |
+| `npm test` | 60 pass, 0 fail |
+| `npm run build` | exit 0 (chunk-size warning only) |
 
-Pre-existing reds:
+Pre-existing reds: **none**. Any failure in a pass is a regression to triage.
 
-- `tests/test_shared_ecosystem_serialization.py::test_member_detail_exposes_shared_ecosystem_ids`
-- `tests/test_shared_ecosystem_serialization.py::test_proposal_detail_exposes_shared_ecosystem_ids`
+History: before pass 01 the backend had 2 known reds
+(`tests/test_shared_ecosystem_serialization.py`, member and proposal detail);
+they were fixed in `c0fdcec` (fixtures built from transient ORM rows).

@@ -1339,25 +1339,34 @@
   },
   {
    "introducedIn": "01-first-week",
-   "status": "OPEN",
+   "status": "FIXED",
    "decision": "FIX",
    "id": "p1-coord-chat-tool-authz",
    "title": "Five in-app assistant tools change governance state with no caller check (create_decision_record, update_agreement_status, record_consent_position, create_ecosystem, declare_emergency)",
    "source": "coordinator verification of review findings",
    "severity": "HIGH",
    "rootCause": "neos-operating-system/agent/src/neos_agent/agent/governance_tools.py:2779 CALLER_SCOPED_TOOLS lists only the four tools the pass touched; the others never receive caller_user_id or a policy check",
-   "rationale": "Pre-existing authorization hole reachable by any signed-in member through chat; fix with the craft plan BE1 policy module so REST, MCP and chat share one rule per action (uxqa/craft/plan.md, lane BE-ACT)."
+   "rationale": "Pre-existing authorization hole reachable by any signed-in member through chat; fix with the craft plan BE1 policy module so REST, MCP and chat share one rule per action (uxqa/craft/plan.md, lane BE-ACT).",
+   "fixCommits": [
+    "neos-operating-system@5c8ef41",
+    "neos-operating-system@be45a44"
+   ],
+   "verifiedBy": "coordinator sweeps 2026-10-31/11-01 + adversarial reviews"
   },
   {
    "introducedIn": "01-first-week",
-   "status": "OPEN",
+   "status": "FIXED",
    "decision": "FIX",
    "id": "p1-coord-consent-gate-guard",
    "title": "Consent gate is a soft redirect at sign-in only; pending_consent members can reach pages that then fail without explanation",
    "source": "coordinator verification of review findings",
    "severity": "MEDIUM",
    "rootCause": "charting-the-course/client/src/App.tsx:432 AppLayout redirects only at sign-in; ~12 server checks treat pending_consent as non-active",
-   "rationale": "Add a route guard (pure decision function + node:test) that keeps pending members on /welcome/consent while allowing /agreements/* and /ethos/* reading; craft wave 0 FE."
+   "rationale": "Add a route guard (pure decision function + node:test) that keeps pending members on /welcome/consent while allowing /agreements/* and /ethos/* reading; craft wave 0 FE.",
+   "fixCommits": [
+    "charting-the-course@6f59976"
+   ],
+   "verifiedBy": "coordinator sweeps 2026-10-31/11-01 + adversarial reviews"
   }
  ],
  "fixLanes": [
