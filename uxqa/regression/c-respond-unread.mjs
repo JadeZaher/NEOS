@@ -2,7 +2,7 @@
 // 1. A member of another ecosystem (OmniOne) answers Escherbridge's gold need "Rainwater harvesting help (uxqa gold)"
 //    from its detail; "Open the conversation" lands IN that conversation (Messaging reads ?conversation=).
 // 2. The poster's side: MBR-EB-002 (Kenny), the gold need's author, is a seeded DID member with no session, so a
-//    regression persona stands in. qa-new-priya (Oasis; OmniOne selected by the harness) posts a need in Oasis, Sol
+//    regression persona stands in. qa-new-priya (Oasis; OmniOne selected by the harness) posts a need in Oasis, Kofi
 //    answers it, and Priya sees one unread conversation in Messages whatever her selection, opens it from the bell's
 //    link, and the badge and the bell item clear. Fixtures carry the uxqa marker; Priya's need is withdrawn at the end.
 import { BASE, MARKER, ecosystemCookie, eventually, regression } from "./support/fixtures.mjs";
@@ -11,7 +11,7 @@ const GOLD_NEED = "Rainwater harvesting help (uxqa gold)";
 const BADGE = /^1( unread)?$/i;  // "1 unread" (the badge may render it upper-case)
 
 await regression("c-respond-unread", { pass: "03-cross-ecosystem-exchange" }, async (flow) => {
-  const responder = await flow.as("qa-new-sol");
+  const responder = await flow.as("qa-new-kofi");  // OmniOne only; pass 03 retired qa-new-sol
 
   // --- 1. The gold need, answered through the page -----------------------------------------------------------------
   const search = await responder.request("GET", `/api/v1/discover/shares-needs?q=${encodeURIComponent("Rainwater harvesting help")}&per_page=50`);

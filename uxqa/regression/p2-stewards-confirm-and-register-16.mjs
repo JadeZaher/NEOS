@@ -3,7 +3,7 @@
 import { BASE, MARKER, eventually, openProposal, proposal, regression, withdrawProposal } from "./support/fixtures.mjs";
 
 await regression("p2-stewards-confirm-and-register-16", { pass: "02-act-lifecycle" }, async (flow) => {
-  const author = await flow.as("qa-new-sol");
+  const author = await flow.as("qa-new-kofi");  // pass 03 retired qa-new-sol
   const advisor = await flow.as("qa-new-rafi");
   let proposalId = null;
   try {

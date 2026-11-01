@@ -24,8 +24,10 @@ export async function regression(defectId, { pass }, run) {
   let omniId = null;
   const flow = {
     defectId,
-    /** A probe session for `handle` with OmniOne selected, landed on /dashboard so page fetches are same-origin. */
-    async as(handle, options = {}) {
+    /** A probe session for `handle` with OmniOne selected, landed on /dashboard so page fetches are same-origin.
+     * `requires: [what, (me, omniRow) => boolean]` checks the persona's /auth/me first: a pass that re-seeded it otherwise
+     * is a fixture-drift flow error, never a product RED (see uxqa/regression/AGENTS.md "Personas"). */
+    async as(handle, { requires, ...options } = {}) {
       const s = await uxSession({ handle, task: `regression-${defectId}${sessions.length ? `-${sessions.length + 1}` : ""}`, pass: passId, mode: "probe", ...options });
       sessions.push(s);
       await s.page.goto(BASE + "/dashboard", { waitUntil: "networkidle" });
@@ -38,6 +40,11 @@ export async function regression(defectId, { pass }, run) {
       const me = await s.request("GET", "/api/v1/auth/me");
       s.memberId = me.body?.member?.id;  // regression personas belong to OmniOne only
       s.displayName = me.body?.member?.display_name || me.body?.user?.display_name;
+      const omniRow = (me.body?.ecosystems || []).find((e) => e.id === omniId);
+      if (requires && !requires[1](me.body || {}, omniRow)) {
+        throw new Error(`fixture drift: ${handle} is not ${requires[0]} on this seed (is_platform_admin=${me.body?.is_platform_admin}, `
+          + `OmniOne steward=${omniRow?.is_steward}); seed a persona that is, or pick one (uxqa/regression/AGENTS.md "Personas")`);
+      }
       return s;
     },
     get omniId() { return omniId; },

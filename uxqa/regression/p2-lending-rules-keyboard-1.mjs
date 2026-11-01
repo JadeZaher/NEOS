@@ -13,7 +13,7 @@ async function submitAndExpectFocus(flow, page, button, heading, act) {
 }
 
 await regression("p2-lending-rules-keyboard-1", { pass: "02-act-lifecycle" }, async (flow) => {
-  const author = await flow.as("qa-new-sol");
+  const author = await flow.as("qa-new-kofi");  // pass 03 retired qa-new-sol
   const member = await flow.as("qa-member-ines");
   const { page } = member;
   let proposalId = null;

@@ -40,6 +40,16 @@ stale API with its client half fixed; its message says which half failed.
   after the read) rather than waiting longer.
 - Personas: non-gold `qa-new-*` / `qa-member-*` where a write is involved, so a
   flow never satisfies a gold task's predicate. `qa-gold-member` only reads.
+- Each pass re-seeds its personas from its own `personas.json`, and may re-power
+  one (pass 03 made Ines a collaborator, so she stopped being a platform admin)
+  or retire one (pass 03 retired `qa-new-sol`: "no session for qa-new-sol";
+  `qa-new-kofi`, OmniOne townhall in every pass, took over its three flows).
+  A flow that needs a standing says so: `flow.as(handle, { requires: [what,
+  (me, omniRow) => boolean] })` checks `/auth/me` (`is_platform_admin`, the
+  OmniOne row's `is_steward`) before any step, and a mismatch is a
+  `flow error: fixture drift: ...`, not a product RED. Prefer the persona that
+  has held the standing in every pass: platform admin `qa-member-oren`
+  (co_creator on OmniOne), OmniOne steward `qa-steward-amara` (mod).
 
 ## Flows
 
@@ -49,7 +59,8 @@ stale API with its client half fixed; its message says which half failed.
 | `p2-stewards-confirm-and-register-13` | Opening a conversation refreshes the list after the read and its unread badge clears inside the 30 s poll. |
 | `p2-gold-propose-share-signup-1` | A member edits a share's title and withdraws it (after a confirmation) on Me; it stays there marked Withdrawn, with Reopen (wave C). The fixture is deleted afterwards. |
 | `c-respond-unread` | A member of another ecosystem answers the gold need from its detail and "Open the conversation" lands in the thread; a poster whose selection is another ecosystem sees the answer as 1 unread, and the bell's link opens it and clears. The gold need's author (MBR-EB-002) has no session, so `qa-new-priya` is the poster. |
-| `p2-gold-propose-share-signup-2` | A townhall member sees "Manage Quizzes" but not "Manage Shares & Needs"; a builder sees it and the admin panel opens. |
+| `p2-gold-propose-share-signup-2` | An ordinary member sees neither "Manage Quizzes" nor "Manage Shares & Needs"; a platform admin (`qa-member-oren`) sees it and the admin panel opens. |
+| `p3-collaboration-and-moderation-10` | The sidebar's "Manage Quizzes", the Dashboard's "Manage learning" and the `/quiz/manage` route agree: an ordinary member gets none and an Access Denied that names the rule; an OmniOne steward gets all three and the page. |
 | `p2-lending-rules-keyboard-1` | Enter on Submit Advice / Record my position / Submit report leaves focus on "You advised in this round" / "Your position" / "You filed a test report". |
 | `p2-stewards-confirm-and-register-16` | Every "Close advice and move to consent" control opens a confirmation that names who acts and what was received; "Keep advice open" changes nothing. |
 | `p2-stewards-confirm-and-register-15` | Navigating while the communications drawer is open closes it. |
