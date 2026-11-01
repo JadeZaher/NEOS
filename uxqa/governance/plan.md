@@ -26,6 +26,10 @@ or cron framework. Builds on the craft contracts (`policy`, `caller_in`,
 | Author's own consent (2026-11-01) | Counts toward the quorum (unchanged) | consent gate, `services/AGENTS.md` |
 | Agreement ceremonies (2026-11-01) | No separate "record a ceremony" action: ceremonies are the recorded stage moves with evidence; copy fixed | role card / agreement page copy |
 | Display name (2026-11-01) | Saving the profile name renames the member in every ecosystem | profile save endpoint |
+| Platform admin (2026-11-01) | co_creator/builder counts platform-wide only on the home-ecosystem row (OmniOne); founding grants admin of that ecosystem only | `wave-c.md`, `request.ctx.platform_admin` |
+| Newcomers (2026-11-01) | No steward approval: consent to the membership agreement activates; stewards see who is waiting | `wave-c.md` G-Onboard |
+| Exchange (2026-11-01) | A steward per side approves collaborations; moderators hide with a reason (restorable); authors hard-delete only unanswered posts | `wave-c.md` G-Exchange |
+| Health audit (2026-11-01) | The auditor is not a steward of the audited ecosystem; "self-assessment" when nobody else is active | `wave-c.md` G-Maint |
 
 Defaults chosen without asking (one-line changes, listed for the owner): quorum
 comes from the governing agreement, else the engine default, and the assistant

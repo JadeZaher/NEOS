@@ -52,6 +52,7 @@ UX contracts are `GOVERNANCE-ECOSYSTEM-MATCHING-UX-GUIDE.md` and
 | gold-orient | qa-gold-newcomer | Start the orientation journey for an ecosystem you are curious about | URL `/orientation/<slug>/journey` |
 | gold-share | qa-gold-member | Publish a public offer "Seed saving workshops (uxqa gold)" and check it is listed | title visible |
 | gold-profile | qa-gold-advisor | Change the name other members see to "Rowan Uxqa-Gold" | new name visible |
+| gold-respond | qa-gold-advisor | Find Escherbridge's public need "Rainwater harvesting help (uxqa gold)" and message its author (added 2026-11-01, wave C; the seed's `ensure_gold_need` keeps it open and `forget_post_responses` makes every run a new conversation) | "Message sent to" visible |
 
 Known limit: `gold-advise` can be satisfied by opening an older proposal that
 already carries "uxqa gold advice" in its log (the first advice auto-advances a
@@ -113,7 +114,8 @@ it wins when they disagree.
   { "id": "gold-advise", "persona": "qa-gold-advisor", "start": "/", "goal": "A proposal in your community is waiting for members' advice. Find one and give your advice; include the words 'uxqa gold advice' in what you write.", "success": { "textVisible": "uxqa gold advice" }, "maxSeconds": 300 },
   { "id": "gold-orient", "persona": "qa-gold-newcomer", "start": "/", "goal": "You are new and curious about one of the ecosystems on NEOS. Find out how to get oriented and start its orientation journey.", "success": { "urlMatches": "^/orientation/[^/]+/journey$" }, "maxSeconds": 300 },
   { "id": "gold-share", "persona": "qa-gold-member", "start": "/", "goal": "Let other ecosystems know you can offer seed-saving workshops: publish it publicly as an offer titled 'Seed saving workshops (uxqa gold)', then check that it is listed where others can find it.", "success": { "textVisible": "Seed saving workshops (uxqa gold)" }, "maxSeconds": 360 },
-  { "id": "gold-profile", "persona": "qa-gold-advisor", "start": "/", "goal": "Change the name other members see for you to 'Rowan Uxqa-Gold'.", "success": { "textVisible": "Rowan Uxqa-Gold" }, "maxSeconds": 240 }
+  { "id": "gold-profile", "persona": "qa-gold-advisor", "start": "/", "goal": "Change the name other members see for you to 'Rowan Uxqa-Gold'.", "success": { "textVisible": "Rowan Uxqa-Gold" }, "maxSeconds": 240 },
+  { "id": "gold-respond", "persona": "qa-gold-advisor", "start": "/", "goal": "Someone in another ecosystem has asked for help with rainwater harvesting. Find their request and send them a message offering to help.", "success": { "textVisible": "Message sent to" }, "maxSeconds": 300 }
  ],
  "agentEvals": { "command": "node uxqa/agent-evals/run.mjs {pass}", "finalize": "node uxqa/agent-evals/run.mjs {pass} --finalize", "resultFile": "agent-eval.json", "judgeModel": "sonnet", "tokenCap": 1500000 },
  "targets": { "goldSuccess": 0.8, "newHigh": 0, "frictionTolerance": 0.1, "routeCoverage": null, "agentEvalPass": 0.8 },

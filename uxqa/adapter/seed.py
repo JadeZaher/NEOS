@@ -18,7 +18,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from neos_agent.auth.middleware import make_session_cookie
 from neos_agent.config import get_settings
 from neos_agent.db.models import (
-    Agreement, AppSetting, AuthSession, CircleMembership, Domain, Ecosystem, EmergencyState, Member, Proposal, SharesNeeds, User,
+    Agreement, AppSetting, AuthSession, CircleMembership, ConversationLink, Domain, Ecosystem, EmergencyState, Member, Proposal,
+    SharesNeeds, User,
 )
 from neos_agent.db.models.userjourneyprogress import UserJourneyProgress
 from neos_agent.db.session import create_db_engine
@@ -79,6 +80,12 @@ async def withdraw_shares(db: AsyncSession, member_ids: list[uuid.UUID]) -> None
 
 
 @member_reset
+async def forget_post_responses(db: AsyncSession, member_ids: list[uuid.UUID]) -> None:  # gold-respond: next answer opens a new conversation
+    await db.execute(delete(ConversationLink).where(
+        ConversationLink.entity_type == "share_need", ConversationLink.created_by.in_(member_ids)))
+
+
+@member_reset
 async def close_resolved_emergencies(db: AsyncSession, member_ids: list[uuid.UUID]) -> None:  # agent-eval M3 teardown
     """Close emergencies these personas moved into recovery (REST cannot close one). See uxqa/agent-evals/AGENTS.md sec. Teardown."""
     handles = set((await db.execute(select(Member.member_id).where(Member.id.in_(member_ids)))).scalars())
@@ -94,6 +101,27 @@ async def close_resolved_emergencies(db: AsyncSession, member_ids: list[uuid.UUI
 async def withdraw_gold_proposals(db: AsyncSession) -> None:  # gold-propose, gold-advise
     await db.execute(update(Proposal).where(
         Proposal.title.like(f"%{GOLD_MARKER}"), Proposal.status != "withdrawn").values(status="withdrawn"))
+
+
+GOLD_NEED_TITLE = f"Rainwater harvesting help {GOLD_MARKER}"
+GOLD_NEED_AUTHOR = "MBR-EB-002"  # a seeded Escherbridge member, so the gold responder answers across ecosystems
+
+
+@study_reset
+async def ensure_gold_need(db: AsyncSession) -> None:  # gold-respond: one open public need in another ecosystem
+    """Reopen the gold need (unhidden, active), or create it under its seeded Escherbridge author."""
+    post = await db.scalar(select(SharesNeeds).where(SharesNeeds.title == GOLD_NEED_TITLE))
+    if post is not None:
+        post.status, post.hidden_at, post.hidden_by_member_id, post.hidden_reason = "active", None, None, None
+        return
+    author = await db.scalar(select(Member).where(Member.member_id == GOLD_NEED_AUTHOR, Member.current_status == "active"))
+    domain = author and await db.scalar(select(Domain).where(Domain.ecosystem_id == author.ecosystem_id).order_by(Domain.created_at))
+    if author is None or domain is None:
+        refuse(f"gold-respond fixture: no active {GOLD_NEED_AUTHOR} with a domain")
+    db.add(SharesNeeds(
+        id=uuid.uuid4(), ecosystem_id=author.ecosystem_id, domain_id=domain.id, author_member_id=author.id, type="need",
+        title=GOLD_NEED_TITLE, description="We are building rain barrels and need someone who has done it before.",
+        category="knowledge", visibility="public", status="active"))
 
 
 @study_reset

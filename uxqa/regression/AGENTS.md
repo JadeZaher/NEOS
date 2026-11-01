@@ -47,7 +47,8 @@ stale API with its client half fixed; its message says which half failed.
 |---|---|
 | `p2-gold-advise-profile-orient-4` | An unplayable required video (its request answered 404) offers "I'll continue without the video" and Continue unlocks after it; nothing is saved. |
 | `p2-stewards-confirm-and-register-13` | Opening a conversation refreshes the list after the read and its unread badge clears inside the 30 s poll. |
-| `p2-gold-propose-share-signup-1` | A member edits a share's title and withdraws it (after a confirmation) from `/profile`. |
+| `p2-gold-propose-share-signup-1` | A member edits a share's title and withdraws it (after a confirmation) on Me; it stays there marked Withdrawn, with Reopen (wave C). The fixture is deleted afterwards. |
+| `c-respond-unread` | A member of another ecosystem answers the gold need from its detail and "Open the conversation" lands in the thread; a poster whose selection is another ecosystem sees the answer as 1 unread, and the bell's link opens it and clears. The gold need's author (MBR-EB-002) has no session, so `qa-new-priya` is the poster. |
 | `p2-gold-propose-share-signup-2` | A townhall member sees "Manage Quizzes" but not "Manage Shares & Needs"; a builder sees it and the admin panel opens. |
 | `p2-lending-rules-keyboard-1` | Enter on Submit Advice / Record my position / Submit report leaves focus on "You advised in this round" / "Your position" / "You filed a test report". |
 | `p2-stewards-confirm-and-register-16` | Every "Close advice and move to consent" control opens a confirmation that names who acts and what was received; "Keep advice open" changes nothing. |
@@ -56,3 +57,5 @@ stale API with its client half fixed; its message says which half failed.
 
 Each was checked red by reverting its fix in the working tree (Vite serves the
 change) and green again once restored.
+`c-respond-unread` and the wave-C rewrite of `p2-gold-propose-share-signup-1` were written in the
+wave-C fix wave and not run yet: the study API serves the old code until the coordinator restarts it.

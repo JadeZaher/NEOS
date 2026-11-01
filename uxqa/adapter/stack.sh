@@ -9,6 +9,8 @@ if [ -f "$HERE/../.secrets/stack.env" ]; then set -a; . "$HERE/../.secrets/stack
 export DATABASE_URL="postgresql+asyncpg://postgres:526152@127.0.0.1:5433/neos_uxqa"
 # Self sign-up lands newcomers in OmniOne (the seed gives every ecosystem one created_at).
 export SIGNUP_DEFAULT_ECOSYSTEM_SLUG=omnione
+# Platform home pinned by id (wave C): survives a create_all+stamp rebuild, which skips the pin revision; id is deterministic from seed_omnione.
+export PLATFORM_HOME_ECOSYSTEM_ID=8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e
 export PYTHONIOENCODING=utf-8
 
 case "${1:-}" in

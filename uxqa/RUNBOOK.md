@@ -8,6 +8,17 @@ description: Rolling state of the study - newest block first; one block per pass
 
 Newest block first. Each pass appends one block; nothing here is deleted.
 
+## Wave C - onboarding, exchange, maintenance, health - 2026-11-01 (in progress)
+
+- Owner: "the maintenance and governance health work needs to be in place; the onboarding and shares and needs management needs to be ironclad". Reviews: [governance/review-onboarding.md](governance/review-onboarding.md), [review-exchange.md](governance/review-exchange.md), [review-maintenance.md](governance/review-maintenance.md) (5 BLOCKERs: founding an ecosystem grants platform admin; anyone rewrites/deletes any ecosystem's orientation journeys; cross-ecosystem quiz pull; nobody can respond to a post; an agreement review can only end in sunset).
+- Owner decisions 2026-11-01 (all recommended defaults): platform admin = co_creator/builder on the home (OmniOne) row only; no steward approval of newcomers; steward-accountable exchange (per-side collaboration approval, hide-with-reason moderation); independent health auditor. Plan + defaults + lanes: [governance/wave-c.md](governance/wave-c.md).
+- Coordinator prep: reserved revisions `s3e8b1d7c4a2` -> `t5a9c2e6f1d8` -> `u7d2f4b8a3c6` (single head); `services/next_steps.py` gained the `@item_source` registry (`QueueScope`) so lanes add queue items without editing `waiting_for` (`tests/test_g_next.py` 10 passed).
+- Lanes running (opus): G-Authority, G-Onboard, G-Exchange, G-Maint. Then: adversarial review, fixes, one sweep (pytest incl. PostgreSQL, tsc, npm test, build), commit per repo, push (production runs the three revisions), monitor Railway + GH Actions, migrate `neos_uxqa`, restart the study API, regression flows, then pass 03.
+- Build lanes done (G-Authority incl. the home pinned by id, revision `v1b4e7c9d2f5`, after a security finding that the name-based home could be squatted; G-Onboard; G-Exchange; G-Maint). Adversarial reviews REQUEST_CHANGES, no BLOCKER: [wave-c-review-authority.md](governance/wave-c-review-authority.md) (HIGH A1 re-entry keeps old authority, A2 quiz routes open, A3 DID login skips placement), [wave-c-review-flows.md](governance/wave-c-review-flows.md) (HIGH F1 answers invisible outside the selection, F2 consent button opens the review dialog, F3 collaboration review cannot be recorded). Coordinator unified "steward of this ecosystem" on `policy.can_administer_ecosystem` (A5/F8). Fix lanes FX-Onboard, FX-Maint, FX-Exchange running (`wave-c.md` "Fix wave").
+- Study prep for pass 03: `scenario.md` written; gold task `gold-respond` (seed `ensure_gold_need` + `forget_post_responses`); `stack.sh` exports `PLATFORM_HOME_ECOSYSTEM_ID`; plugin `ux-lib` gives repeat runs their own directory (`--run2`...), both trees.
+- OWNER A7: run [governance/a7-platform-admins.sql](governance/a7-platform-admins.sql) on production (read-only) to see who is a platform admin after the deploy; rows with `granted_by_record = false` chose the profile themselves before 2026-10-31.
+- Production cron fix confirmed 2026-11-01 14:49 UTC: `Cleaned up 1 expired sessions` on `44408cc` (the old deploy logged `Session cleanup failed` hourly).
+
 ## Pass 02-act-lifecycle - 2026-11-01 - APPROVED
 
 - `pass 02: gold 6/6 at 1.0 (multi-run), friction/journey 13.99 -> 3.01, new HIGH 1 (owner: model key), coverage 23/77`

@@ -1,5 +1,6 @@
-// p2-gold-propose-share-signup-1: a member edits and withdraws their own published share from their profile.
-// The edited title shows in the list; after confirming the withdrawal the share leaves it. The flow cleans up after itself.
+// p2-gold-propose-share-signup-1: a member edits and withdraws their own published share from Me (/profile redirects there).
+// The edited title shows in the list; after confirming the withdrawal the share stays on Me, marked Withdrawn, with Reopen
+// (wave C: a closed post stays on its author's list; it only leaves Discover). The flow deletes its fixture afterwards.
 import { BASE, MARKER, eventually, regression } from "./support/fixtures.mjs";
 
 await regression("p2-gold-propose-share-signup-1", { pass: "02-act-lifecycle" }, async (flow) => {
@@ -13,7 +14,7 @@ await regression("p2-gold-propose-share-signup-1", { pass: "02-act-lifecycle" },
   for (const domain of domains) {
     const created = await s.request("POST", "/api/v1/discover/shares-needs", {
       ecosystem_id: flow.omniId, domain_id: domain.id, type: "share", title, visibility: "public",
-      description: `Regression fixture; withdrawn by the flow. ${MARKER}`, category: "skills", capacity: "One evening a week",
+      description: `Regression fixture; deleted by the flow. ${MARKER}`, category: "skills", capacity: "One evening a week",
     });
     if (created.status === 201) { share = created.body; break; }
   }
@@ -22,27 +23,37 @@ await regression("p2-gold-propose-share-signup-1", { pass: "02-act-lifecycle" },
   try {
     const { page } = s;
     const listed = (text) => page.getByRole("heading", { name: text, exact: true });
-    s.step("Open my profile and edit the share");
-    await page.goto(`${BASE}/profile`, { waitUntil: "networkidle" });
+    const card = (text) => page.getByRole("article", { name: text, exact: true });
+    s.step("Open Me and edit the share");
+    await page.goto(`${BASE}/me`, { waitUntil: "networkidle" });
     await listed(title).waitFor({ timeout: 10000 });
-    const editButton = page.getByRole("button", { name: `Edit ${title}` });
-    if (!(await editButton.count())) throw flow.red("the member's own share has no Edit control on their profile");
+    const editButton = page.getByRole("button", { name: `Edit: ${title}`, exact: true });
+    if (!(await editButton.count())) throw flow.red("the member's own share has no Edit control on Me");
     await editButton.click();
     const editor = page.getByRole("dialog", { name: "Edit share" });
-    await editor.getByLabel("Title *").fill(edited);
+    await editor.getByLabel("Title", { exact: true }).fill(edited);
     await editor.getByRole("button", { name: "Save changes" }).click();
-    await eventually(flow, "the edited title does not show on the profile after saving", async () => (await listed(edited).count()) > 0, 8000);
+    await eventually(flow, "the edited title does not show on Me after saving", async () => (await listed(edited).count()) > 0, 8000);
 
     s.step("Withdraw the share");
-    const withdrawButton = page.getByRole("button", { name: `Withdraw ${edited}` });
-    if (!(await withdrawButton.count())) throw flow.red("the member's own share has no Withdraw control on their profile");
+    const withdrawButton = page.getByRole("button", { name: `Withdraw: ${edited}`, exact: true });
+    if (!(await withdrawButton.count())) throw flow.red("the member's own share has no Withdraw control on Me");
     await withdrawButton.click();
     const confirm = page.getByRole("alertdialog", { name: `Withdraw “${edited}”?` });
     await confirm.waitFor({ timeout: 5000 }).catch(() => { throw flow.red("Withdraw acted without a confirmation"); });
-    await confirm.getByRole("button", { name: "Withdraw share" }).click();
-    await eventually(flow, "the withdrawn share is still listed on the profile", async () => (await listed(edited).count()) === 0, 8000);
-    share = null;
+    await confirm.getByRole("button", { name: "Withdraw", exact: true }).click();
+    // It stays on Me as a record the author can reopen; the Reopen control is what proves the move landed.
+    await eventually(flow, "after withdrawing, the share has no Reopen control on Me", async () =>
+      (await page.getByRole("button", { name: `Reopen: ${edited}`, exact: true }).count()) > 0, 8000);
+    if (!(await listed(edited).count())) throw flow.red("the withdrawn share left Me (it should stay there, marked Withdrawn)");
+    if (!(await card(edited).getByText("Withdrawn", { exact: true }).count())) {
+      throw flow.red("the withdrawn share on Me is not marked Withdrawn");
+    }
   } finally {
-    if (share) await s.request("POST", `/api/v1/discover/shares-needs/${share.id}/status`, { status: "withdrawn" }).catch(() => {});
+    // Nobody answered the fixture, so its author may delete it; a failed delete falls back to withdrawing it.
+    const removed = await s.request("DELETE", `/api/v1/discover/shares-needs/${share.id}`).catch(() => null);
+    if (!removed || removed.status !== 200) {
+      await s.request("POST", `/api/v1/discover/shares-needs/${share.id}/status`, { status: "withdrawn" }).catch(() => {});
+    }
   }
 });
