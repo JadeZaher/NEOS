@@ -54,9 +54,10 @@ const args = {
     goldTasks, marker: config.marker, lenses, extraRules: config.extraRules,
     fixRepo: null, testCommand: config.testCommand, typecheckCommand: config.typecheckCommand, buildCommand: config.buildCommand,
     baseRedFile: `${REPO_ROOT}/${config.baseRedFile}`,
+    agentEvals: config.agentEvals || null, // turns on the plugin's AgentEval phase (see uxqa/agent-evals/AGENTS.md)
   },
 };
 
 const out = `${passDir(pass)}/args.json`;
 fs.writeFileSync(out, JSON.stringify(args, null, 1));
-console.log(`ARGS ${out} gold=${goldTasks.length} prior=${ledger.length} rules=${config.extraRules.length} lenses=${lenses.join(',')}`);
+console.log(`ARGS ${out} gold=${goldTasks.length} prior=${ledger.length} rules=${config.extraRules.length} lenses=${lenses.join(',')} agentEvals=${config.agentEvals ? 'on' : 'off'}`);

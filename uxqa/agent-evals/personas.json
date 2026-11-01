@@ -1,0 +1,12 @@
+{
+ "personas": [
+  { "handle": "qa-agent-ana", "name": "Ana Uxqa-Agent", "usedFor": "ordinary member: advises, records positions, asks", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-agent-ben", "name": "Ben Uxqa-Agent", "usedFor": "author of the fixture proposals", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "collaborator", "status": "active" }] } },
+  { "handle": "qa-agent-cleo", "name": "Cleo Uxqa-Agent", "usedFor": "steward: gives fixture advice, owns domains and agreements", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "mod", "profile": "co_creator", "status": "active" }] } },
+  { "handle": "qa-agent-dev", "name": "Dev Uxqa-Agent", "usedFor": "low-literacy voice", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-agent-eli", "name": "Eli Uxqa-Agent", "usedFor": "cross-ecosystem fixture author", "seed": { "memberships": [{ "ecosystem": "Escherbridge", "role": "user", "profile": "builder", "status": "active" }] } },
+  { "handle": "qa-agent-fay", "name": "Fay Uxqa-Agent", "usedFor": "member of two ecosystems, both selected", "seed": { "memberships": [{ "ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active" }, { "ecosystem": "Oasis", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-agent-gus", "name": "Gus Uxqa-Agent", "usedFor": "emergency refusal, away from the OmniOne lanes", "seed": { "memberships": [{ "ecosystem": "Plan Systems", "role": "user", "profile": "townhall", "status": "active" }] } },
+  { "handle": "qa-agent-hal", "name": "Hal Uxqa-Agent", "usedFor": "emergency teardown (steward of Plan Systems)", "seed": { "memberships": [{ "ecosystem": "Plan Systems", "role": "mod", "profile": "co_creator", "status": "active" }] } }
+ ]
+}

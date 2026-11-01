@@ -8,6 +8,14 @@ description: Rolling state of the study - newest block first; one block per pass
 
 Newest block first. Each pass appends one block; nothing here is deleted.
 
+## Between passes 01 and 02 - craft + governance - 2026-10-31 (in progress)
+
+- Craft wave 0 (contracts) LANDED and PUSHED: backend `af47a92`, frontend `6f59976`, superproject `157cb97`. Sweep: tsc 0, npm test 33/33, build ok, pytest 481 passed.
+- Craft wave 1 (7 lanes: FE-A/B/C, BE-ACT/Groups/Journey, cleanup) complete and swept green (tsc 0, npm test 38/38, pytest 559 passed, agent-eval unit 14/14); adversarial review REQUEST_CHANGES: H1 cross-ecosystem orientation start, M2 progress rows keyed on default member (production data migration), M1 legacy 'objection' rows, M3 chat agreement status gates, L2-L6. A fix lane is applying them; then sweep, commit per repo, push (deploys + runs the data migration on production), migrate neos_uxqa, restart the study API.
+- Governance reviews written: [governance/review-core.md](governance/review-core.md), [governance/review-extended.md](governance/review-extended.md), [agent-evals/review.md](agent-evals/review.md). Extension plan with owner decisions and lanes: [governance/plan.md](governance/plan.md) (G-ACT, G-Safety, G-Care, G-Agent; then G-Next).
+- OWNER decisions (2026-10-31): proposer closes advice (deadline backstop); a steward confirms Test->Ratified; emergencies: any active member with a co-signer, bounded timer; role grants only below your own rank, owner grants owner, recorded.
+- Agent-eval wave built ([agent-evals/AGENTS.md](agent-evals/AGENTS.md), plugin AgentEval phase). BLOCKED on the assistant's model key: the owner puts `AI_API_KEY=...` (optionally `AI_PROVIDER=`) in `uxqa/.secrets/stack.env`; then restart the API and run the baseline `node uxqa/agent-evals/run.mjs 01-first-week` before G-wave changes land if possible.
+
 ## Pass 01-first-week - 2026-10-31 - CHANGES_REQUESTED
 
 - `pass 01: gold 6/6, friction/journey 6 -> 13.99 (setup smoke -> first real baseline), new HIGH 3, coverage 23/76`

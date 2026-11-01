@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# NEOS session adapter: guard | seed <personas.json> <out.json> | link <handle>. See uxqa/adapter/AGENTS.md.
+# NEOS session adapter: guard | seed <personas.json> <out.json> [--member-resets-only] | link <handle>. See uxqa/adapter/AGENTS.md.
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(cd "$HERE/../.." && pwd)"
@@ -29,14 +29,17 @@ case "${1:-}" in
     node "$HERE/verify-target.mjs" "$BASE" "$REPO/uxqa/.secrets/sessions.json"
     ;;
   seed)
-    [ $# -eq 3 ] || { echo "ERROR usage: adapter.sh seed <personas.json> <out.json>"; exit 1; }
+    # --member-resets-only (agent evals): skip study-wide resets such as withdrawing the gold proposals.
+    { [ $# -eq 3 ] || { [ $# -eq 4 ] && [ "$4" = "--member-resets-only" ]; }; } \
+      || { echo "ERROR usage: adapter.sh seed <personas.json> <out.json> [--member-resets-only]"; exit 1; }
+    reset_mode="${4:-}"
     local_guard
     # seed.py runs from the backend dir, so both paths must be absolute before the cd.
     mkdir -p "$(dirname "$3")"
     personas_abs="$(cd "$(dirname "$2")" && pwd)/$(basename "$2")"
     sessions_abs="$(cd "$(dirname "$3")" && pwd)/$(basename "$3")"
     set -- "$1" "$personas_abs" "$sessions_abs"
-    out="$(cd "$AGENT_DIR" && py "$HERE/seed.py" "$2" "$3" 2>/dev/null | grep -E '^(SEEDED|REFUSED|ERROR)' | tail -1)"
+    out="$(cd "$AGENT_DIR" && py "$HERE/seed.py" "$2" "$3" ${reset_mode:+"$reset_mode"} 2>/dev/null | grep -E '^(SEEDED|REFUSED|ERROR)' | tail -1)"
     case "$out" in
       SEEDED*) ;;
       REFUSED*) echo "$out"; exit 2 ;;
@@ -53,7 +56,7 @@ case "${1:-}" in
     exit 2
     ;;
   *)
-    echo "ERROR usage: adapter.sh guard | seed <personas.json> <out.json> | link <handle>"
+    echo "ERROR usage: adapter.sh guard | seed <personas.json> <out.json> [--member-resets-only] | link <handle>"
     exit 1
     ;;
 esac

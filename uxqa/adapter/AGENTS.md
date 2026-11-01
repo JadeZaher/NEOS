@@ -48,6 +48,10 @@ Every seed resets what gold tasks create: display name/bio/headline,
 intact) and proposals titled `... (uxqa gold)`. Without the reset, pass N's
 success predicate would already be true from pass N-1's run.
 
+`seed.py --member-resets-only` (passed through by `adapter.sh seed <personas> <out> --member-resets-only`) skips the study-wide resets: the agent-eval runner seeds mid-pass and must not withdraw gold proposals. Its own fixtures are retired by the `retire_agent_eval_fixtures` study reset at the next normal seed (see `uxqa/agent-evals/AGENTS.md` §Seeding and Teardown).
+
+`stack.sh` loads optional local-only overrides from `uxqa/.secrets/stack.env` (e.g. `AI_API_KEY`, `AI_PROVIDER` for the assistant) and then re-exports the study `DATABASE_URL`, so the overrides can never repoint the database.
+
 The resets are a registry: `@member_reset` steps run per seeded persona with
 its member ids, `@study_reset` steps run once per seed. **Adding a gold task
 means adding one decorated step** that removes whatever its success predicate

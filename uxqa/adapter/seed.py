@@ -17,7 +17,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from neos_agent.auth.middleware import make_session_cookie
 from neos_agent.config import get_settings
-from neos_agent.db.models import AppSetting, AuthSession, CircleMembership, Ecosystem, Member, Proposal, SharesNeeds, User
+from neos_agent.db.models import (
+    Agreement, AppSetting, AuthSession, CircleMembership, Domain, Ecosystem, EmergencyState, Member, Proposal, SharesNeeds, User,
+)
 from neos_agent.db.models.userjourneyprogress import UserJourneyProgress
 from neos_agent.db.session import create_db_engine
 
@@ -26,6 +28,8 @@ EXPECTED_DB = ("127.0.0.1", 5433, "neos_uxqa")
 DEFAULT_MEMBERSHIP = {"ecosystem": "OmniOne", "role": "user", "profile": "townhall", "status": "active"}
 SENTINEL_KEY = "uxqa_environment"
 GOLD_MARKER = "(uxqa gold)"
+AGENT_EVAL_TITLES = "% agent-eval r%)"  # fixture titles end "(uxqa-p<N> agent-eval r<runId>)"
+MEMBER_RESETS_ONLY = "--member-resets-only"
 
 Persona = dict[str, Any]
 MemberReset = Callable[[AsyncSession, list[uuid.UUID]], Awaitable[None]]
@@ -74,10 +78,32 @@ async def withdraw_shares(db: AsyncSession, member_ids: list[uuid.UUID]) -> None
         SharesNeeds.author_member_id.in_(member_ids), SharesNeeds.status == "active").values(status="withdrawn"))
 
 
+@member_reset
+async def close_resolved_emergencies(db: AsyncSession, member_ids: list[uuid.UUID]) -> None:  # agent-eval M3 teardown
+    """Close emergencies these personas moved into recovery (REST cannot close one). See uxqa/agent-evals/AGENTS.md sec. Teardown."""
+    handles = set((await db.execute(select(Member.member_id).where(Member.id.in_(member_ids)))).scalars())
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    for state in (await db.execute(select(EmergencyState).where(EmergencyState.state == "half_open"))).scalars():
+        log = state.actions_log if isinstance(state.actions_log, list) else []
+        if any(isinstance(a, dict) and a.get("action") == "half_open_transition" and a.get("actor") in handles for a in log):
+            state.state, state.closed_at = "closed", now
+            state.actions_log = [*log, {"action": "closed", "actor": "uxqa-adapter", "timestamp": now.isoformat(), "note": "uxqa seed reset"}]
+
+
 @study_reset
 async def withdraw_gold_proposals(db: AsyncSession) -> None:  # gold-propose, gold-advise
     await db.execute(update(Proposal).where(
         Proposal.title.like(f"%{GOLD_MARKER}"), Proposal.status != "withdrawn").values(status="withdrawn"))
+
+
+@study_reset
+async def retire_agent_eval_fixtures(db: AsyncSession) -> None:  # agent evals: rows REST cannot retire (agent-evals/AGENTS.md)
+    await db.execute(update(Proposal).where(
+        Proposal.title.like(AGENT_EVAL_TITLES), Proposal.status != "withdrawn").values(status="withdrawn"))
+    await db.execute(update(Agreement).where(
+        Agreement.title.like(AGENT_EVAL_TITLES), Agreement.status != "archived").values(status="archived"))
+    await db.execute(update(Domain).where(
+        Domain.name.like(AGENT_EVAL_TITLES), Domain.status != "archived").values(status="archived"))
 
 
 def load_personas(path: str) -> list[Persona]:
@@ -139,7 +165,8 @@ async def ensure_sentinel(db: AsyncSession) -> None:
         db.add(AppSetting(key=SENTINEL_KEY, value={"db": EXPECTED_DB[2]}))
 
 
-async def seed(personas_path: str, out_path: str) -> int:
+async def seed(personas_path: str, out_path: str, study_resets: bool = True) -> int:
+    """study_resets=False (agent evals) keeps study-wide state such as the gold proposals lanes may still be using."""
     personas = load_personas(personas_path)
     sessions: list[dict[str, str]] = []
     engine = await create_db_engine(os.environ["DATABASE_URL"])
@@ -155,8 +182,9 @@ async def seed(personas_path: str, out_path: str) -> int:
                 for reset in MEMBER_RESETS:
                     await reset(db, member_ids)
                 sessions.append({"handle": persona["handle"], "cookie": await mint_session(db, user)})
-            for reset in STUDY_RESETS:
-                await reset(db)
+            if study_resets:
+                for reset in STUDY_RESETS:
+                    await reset(db)
             await ensure_sentinel(db)
             await db.commit()
     finally:
@@ -169,12 +197,12 @@ async def seed(personas_path: str, out_path: str) -> int:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("usage: seed.py <personas.json> <out.json>")
+    if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and sys.argv[3] != MEMBER_RESETS_ONLY):
+        print(f"usage: seed.py <personas.json> <out.json> [{MEMBER_RESETS_ONLY}]")
         sys.exit(1)
     in_target_guard()  # before the engine exists; imports above never open a connection
     try:
-        count = asyncio.run(seed(sys.argv[1], sys.argv[2]))
+        count = asyncio.run(seed(sys.argv[1], sys.argv[2], study_resets=len(sys.argv) == 3))
     except SystemExit:
         raise
     except Exception as error:  # status line only; never echo environment or tracebacks

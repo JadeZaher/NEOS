@@ -58,6 +58,20 @@ already carries "uxqa gold advice" in its log (the first advice auto-advances a
 proposal to consent, so old ones leave the advice list). Triage checks the
 `ux.json` steps of any gold-advise success that made no POST to `/advice`.
 
+## Agent evals
+
+Each pass also runs the in-app assistant through 25 fixed tasks (read, act,
+must-refuse, clarify, plain language) in the plugin's optional AgentEval phase,
+after Metrics and before the Panel: `node uxqa/agent-evals/run.mjs <pass>` seeds
+its own `qa-agent-*` personas with member resets only (gold proposals stay),
+builds `uxqa-p<N> agent-eval` fixtures through REST, drives the real
+`POST /api/v1/chat/send`, grades API state first, then the tool trace and text,
+and a Sonnet judge only where those cannot decide, and writes
+`passes/<pass>/agent-eval.json`; failed tasks reach triage as `agent-eval`
+defects. It is the one exception to the two-assistant-messages-per-lane rule,
+bounded by `agentEvals.tokenCap` (1.5M tokens, about cents on the default model)
+and 30 minutes. Tasks, check grammar and teardown: `uxqa/agent-evals/AGENTS.md`.
+
 ## Safety rules (in addition to the plugin's reference/safety.md)
 
 - Never send chat messages to the AI assistant more than twice per lane (real OpenRouter cost); never paste persona data into it.
@@ -101,7 +115,8 @@ it wins when they disagree.
   { "id": "gold-share", "persona": "qa-gold-member", "start": "/", "goal": "Let other ecosystems know you can offer seed-saving workshops: publish it publicly as an offer titled 'Seed saving workshops (uxqa gold)', then check that it is listed where others can find it.", "success": { "textVisible": "Seed saving workshops (uxqa gold)" }, "maxSeconds": 360 },
   { "id": "gold-profile", "persona": "qa-gold-advisor", "start": "/", "goal": "Change the name other members see for you to 'Rowan Uxqa-Gold'.", "success": { "textVisible": "Rowan Uxqa-Gold" }, "maxSeconds": 240 }
  ],
- "targets": { "goldSuccess": 0.8, "newHigh": 0, "frictionTolerance": 0.1, "routeCoverage": null },
+ "agentEvals": { "command": "node uxqa/agent-evals/run.mjs {pass}", "finalize": "node uxqa/agent-evals/run.mjs {pass} --finalize", "resultFile": "agent-eval.json", "judgeModel": "sonnet", "tokenCap": 1500000 },
+ "targets": { "goldSuccess": 0.8, "newHigh": 0, "frictionTolerance": 0.1, "routeCoverage": null, "agentEvalPass": 0.8 },
  "fixRepo": null,
  "testCommand": "cd neos-operating-system/agent && DATABASE_URL=sqlite+aiosqlite:// PYTHONIOENCODING=utf-8 py -m pytest -q -p no:cacheprovider tests; cd ../../charting-the-course && npm test; cd .. && for f in uxqa/regression/*.mjs; do [ -e \"$f\" ] && (node \"$f\" || echo \"RED $f\"); done",
  "typecheckCommand": "cd charting-the-course && npm run check",

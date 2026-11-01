@@ -3,6 +3,9 @@
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(cd "$HERE/../.." && pwd)"
+# Local-only overrides such as AI_API_KEY / AI_PROVIDER for the assistant (uxqa/.secrets/ is gitignored, never printed).
+if [ -f "$HERE/../.secrets/stack.env" ]; then set -a; . "$HERE/../.secrets/stack.env"; set +a; fi
+# Exported after the overrides, so nothing can point the study stack at another database.
 export DATABASE_URL="postgresql+asyncpg://postgres:526152@127.0.0.1:5433/neos_uxqa"
 # Self sign-up lands newcomers in OmniOne (the seed gives every ecosystem one created_at).
 export SIGNUP_DEFAULT_ECOSYSTEM_SLUG=omnione
