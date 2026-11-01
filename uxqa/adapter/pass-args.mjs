@@ -24,9 +24,12 @@ const passId = (number) => `${String(number).padStart(2, '0')}-${ROTATION[number
 const passDir = (id) => `${STUDY_DIR}/passes/${id}`;
 const fail = (reason) => { console.log(`REFUSED ${reason}`); process.exit(2); };
 
+// The pass workflow re-checks only the prior FIX items, so only those travel (compact); the full ledger stays on disk.
 function priorLedger(priorPass) {
   const file = priorPass && `${passDir(priorPass)}/ledger.json`;
-  return file && fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')).entries || [] : [];
+  if (!file || !fs.existsSync(file)) return [];
+  const entries = JSON.parse(fs.readFileSync(file, 'utf8')).entries || [];
+  return entries.filter((entry) => entry.decision === 'FIX').map(({ id, title, severity, decision, status }) => ({ id, title, severity, decision, status }));
 }
 
 const passNumber = Number(process.argv[2]);
