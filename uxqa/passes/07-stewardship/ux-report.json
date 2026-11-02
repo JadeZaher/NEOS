@@ -1,7 +1,7 @@
 {
  "pass": "07-stewardship",
  "frictionVersion": 1,
- "generatedAt": "2026-11-02T17:16:28.575Z",
+ "generatedAt": "2026-11-02T18:42:31.177Z",
  "runs": 45,
  "uxRuns": 17,
  "probeRuns": 28,
@@ -2165,8 +2165,8 @@
   },
   "newHigh": {
    "target": 0,
-   "count": 2,
-   "ok": false
+   "count": 0,
+   "ok": true
   },
   "routeCoverage": {
    "target": null,

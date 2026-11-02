@@ -1,7 +1,7 @@
 {
  "pass": "06-safety-integrity",
  "frictionVersion": 1,
- "generatedAt": "2026-11-02T16:43:41.994Z",
+ "generatedAt": "2026-11-02T18:42:26.623Z",
  "runs": 46,
  "uxRuns": 18,
  "probeRuns": 28,
@@ -2212,8 +2212,8 @@
   },
   "newHigh": {
    "target": 0,
-   "count": null,
-   "ok": null
+   "count": 0,
+   "ok": true
   },
   "routeCoverage": {
    "target": null,
