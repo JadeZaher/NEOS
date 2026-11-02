@@ -1,0 +1,61 @@
+{
+ "health": {
+  "status": "healthy",
+  "skills_loaded": 54,
+  "skills_available": true,
+  "database": "connected",
+  "version": "0.1.0"
+ },
+ "active_node_admins": [
+  {
+   "user_id": "594bedc7-c56c-4365-aece-f5af6aa17d2f",
+   "display_name": "Ahmed Zaher",
+   "node_admin_badge": {
+    "key": "node_admin",
+    "label": "Node admin"
+   }
+  },
+  {
+   "user_id": "6a1ae969-0a87-4bb8-a0dd-390d19e66ba5",
+   "display_name": "Ahmed Zaher",
+   "node_admin_badge": {
+    "key": "node_admin",
+    "label": "Node admin"
+   }
+  }
+ ],
+ "only_authorized_assignments": true,
+ "bootstrap_audit_count": 2,
+ "public_audit_metadata_only": true,
+ "public_profiles": {
+  "594bedc7-c56c-4365-aece-f5af6aa17d2f": {
+   "display_name": "Ahmed Zaher",
+   "node_admin_badge": {
+    "key": "node_admin",
+    "label": "Node admin"
+   }
+  },
+  "6a1ae969-0a87-4bb8-a0dd-390d19e66ba5": {
+   "display_name": "Ahmed Zaher",
+   "node_admin_badge": {
+    "key": "node_admin",
+    "label": "Node admin"
+   }
+  }
+ },
+ "frontend_asset": "/assets/index-DUG7D7x_.js",
+ "frontend_asset_matches_local_build": false,
+ "frontend_asset_sha256": "e066d77408098dd067c0012213f547601734efabfe4bfd6c1afa05a23c32fb47",
+ "feature_markers": {
+  "Node Administration": true,
+  "Public node support history": true,
+  "Record inspection and open details": true,
+  "node_support_prepare_proposal": true
+ },
+ "asset_http": 200,
+ "pages": {
+  "/admin": 200,
+  "/node/audit": 200,
+  "/node/audit/5bc4f683-4c6d-4fd7-93fb-587ee74eb81d": 200
+ }
+}

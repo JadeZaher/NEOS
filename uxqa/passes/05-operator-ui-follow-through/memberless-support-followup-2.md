@@ -1,0 +1,15 @@
+---
+type: UX Lane Report
+title: Final natural memberless support followup 2
+status: BLOCKED_AT_PREPARATION
+---
+
+Explicitly new final followup after coordinator API READY; original baseline and followup 1 remain unchanged. Fresh Sana Support Uxqa browser context at 390×844, existing QA session, actual sidebar Node Administration, Plan Systems support organization, Agent testing public category. One natural assistant request was sent. It requested operational proposal Support handoff final (uxqa-p5-ui), proposed change Add a weekly checklist for handing off community broadband equipment, rationale This synthetic uxqa-p5-ui fixture verifies memberless operator support and clearer equipment handoffs, draft status, actual Sana attribution, and exact action/target/field review with confirmation before creation. The prompt named no implementation tools.
+
+The first response was blocked. Visible statuses: Reading the support catalog done; Node support list done twice; Preparing a support change didn't go through; This correction contains fields outside the support allowlist; more catalog/list completions; then I wasn't able to generate a response for that. Please try rephrasing your question or try again in a moment. No server structured review or actionable confirmation appeared. Per the finite followup instructions, no Yes, second message or rephrase was sent. No creation receipt or record link was produced; no creation or draft readback is verified. The task FAILED and uxSession outcome is BLOCKED. Exact malformed fields or backend cause cannot be inferred from this UI-only evidence.
+
+After closing the drawer, the visible Public support history link and public actor filter exposed Sana's newest failed agent_support_request receipt. Both its list card and single-receipt page showed Node admin badge, actual actor Sana Support Uxqa, selected Plan Systems identifier 8d69ebef-8c6e-50a8-90ef-edf4037c3640, and Agent testing public category. They showed No record created / No field values changed and excluded title, proposed change, full prompt and narrative rationale. The earlier failed-call context-loss symptom was therefore not reproduced in this followup: failed receipt context was correct. Anonymous access was established in the baseline lane; this final followup followed the public page while signed in.
+
+Evidence: runs/qa-node-support--memberless-support-followup-2/trace.zip and ux.json; screenshots final-structured-review-390.png (filename denotes the intended checkpoint; it actually captures preparation failure), final-public-audit-filtered.png and final-failed-receipt-correct-context.png. Full visible response/list/receipt: runs/memberless-support-followup-2-visible.json. Saved flow flows/support-followup-2/observed-flow.mjs passes node --check and was not replayed.
+
+Metrics: BLOCKED, 39 seconds, 8 clicks, 0 dead/rage clicks, 0 failed attempts, 0 workarounds, no abandonment, 12 HTTP errors, 13 console errors, friction 50. Error counts alone do not establish the preparation root cause. No direct API/DB action, source inspection, test suite, environment/reseed change, commit or deployment occurred.

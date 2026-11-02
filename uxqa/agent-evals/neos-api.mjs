@@ -73,16 +73,25 @@ export async function loadPeople(client, personas) {
 	return people;
 }
 
-/** Fixture title: "<stem> (uxqa-p<N> agent-eval r<runId>)", the marker the seed's retire step matches. */
+/** Task/repeat namespace retained inside the seed-compatible agent-eval marker. */
+export function fixtureNamespace(runId, taskId, runIndex) {
+	if (!/^r[0-9a-f]+$/i.test(runId) || !/^[A-Z]\d+$/.test(taskId) || !Number.isSafeInteger(runIndex) || runIndex < 1) {
+		throw new Error('Invalid agent-eval fixture namespace');
+	}
+	return `${runId}-${taskId}-${runIndex}`;
+}
+
+/** Fixture title with the marker the seed's retire step matches. */
 export const fixtureTitle = (stem, marker, runId) => `${stem} (${marker} agent-eval ${runId})`;
 
 /** Builds a task's fixtures through REST as their owners into refs { P1: { kind, id, key, stem, title, path, owner } }, one by one so a failure still tears down the earlier ones. */
-export async function buildFixtures(client, task, people, marker, runId, refs = {}) {
+export async function buildFixtures(client, task, people, marker, runId, refs = {}, runIndex = 1) {
 	const person = (short) => people.get(`qa-agent-${short}`);
+	const namespace = fixtureNamespace(runId, task.id, runIndex);
 	for (const [name, spec] of Object.entries(task.fixtures || {})) {
-		if (spec.proposal) refs[name] = await buildProposal(client, spec, person, fixtureTitle(spec.proposal, marker, runId));
-		else if (spec.domain) refs[name] = await buildDomain(client, spec, person, fixtureTitle(spec.domain, marker, runId));
-		else if (spec.agreement) refs[name] = await buildAgreement(client, spec, person, fixtureTitle(spec.agreement, marker, runId));
+		if (spec.proposal) refs[name] = await buildProposal(client, spec, person, fixtureTitle(spec.proposal, marker, namespace));
+		else if (spec.domain) refs[name] = await buildDomain(client, spec, person, fixtureTitle(spec.domain, marker, namespace));
+		else if (spec.agreement) refs[name] = await buildAgreement(client, spec, person, fixtureTitle(spec.agreement, marker, namespace));
 		else throw new Error(`fixture ${name}: unknown kind`);
 	}
 	return refs;
@@ -174,6 +183,26 @@ export async function observe(client, check, { refs, task, people, ecosystemName
 		default:
 			throw new Error(`not a state check: ${check.source}`);
 	}
+}
+
+/** Read back assistant-created proposals before teardown so judges can inspect persisted commitments. */
+export async function captureCreatedProposals(client, handle, ids) {
+	const evidence = [];
+	for (const id of new Set(ids)) {
+		if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(id))) {
+			evidence.push({ id, error: 'invalid created proposal id' });
+			continue;
+		}
+		try {
+			const { status, data } = await client.call(handle, 'GET', `/api/v1/proposals/${id}`);
+			evidence.push(status >= 200 && status < 300 && data && typeof data === 'object' && data.id === id
+				? { id, httpStatus: status, data }
+				: { id, httpStatus: status, error: 'created proposal could not be read back' });
+		} catch (error) {
+			evidence.push({ id, error: String(error.message || error).slice(0, 200) });
+		}
+	}
+	return evidence;
 }
 
 /** Puts back what a run created: fixture proposals withdrawn, fixture domains archived, assistant-made proposals and exits retired. */

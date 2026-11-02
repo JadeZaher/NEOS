@@ -1,0 +1,21 @@
+{
+ "status": "PASS",
+ "commit": "c4ea26c4022bdef2e0d81494639bfa0235a10d66",
+ "revision": "w3c7f1a9d5e2",
+ "only_authorized_roles": true,
+ "bootstrap_events": 2,
+ "bootstrap_complete": true,
+ "immutable_triggers": [
+  "node_admin_actions_immutable",
+  "node_admin_snapshots_immutable"
+ ],
+ "skills": 54,
+ "generation_provider": "openrouter",
+ "generation_model": "openrouter/google/gemini-3.1-flash-lite",
+ "generation_smoke": "OK.",
+ "decision_model": "typesafe/jev-1.14-20261014",
+ "decision_mode": "framework",
+ "decision_source": "decision",
+ "decision_cost": 0.000234696,
+ "governance_mutations": 0
+}

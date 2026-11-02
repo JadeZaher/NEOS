@@ -141,6 +141,16 @@ def load_personas(path: str) -> list[Persona]:
     invalid = [p.get("handle") for p in personas if not HANDLE_RULE.match(p.get("handle") or "")]
     if invalid:
         refuse(f"non-persona handles {invalid}")
+    for persona in personas:
+        spec = persona.get("seed") or {}
+        if "node_admin" in spec and type(spec["node_admin"]) is not bool:
+            refuse(f"node_admin must be an explicit boolean for {persona['handle']}")
+        if "memberless" in spec and type(spec["memberless"]) is not bool:
+            refuse(f"memberless must be an explicit boolean for {persona['handle']}")
+        if spec.get("anonymous") and (spec.get("node_admin") or spec.get("memberless")):
+            refuse(f"anonymous persona {persona['handle']} cannot hold a support identity")
+        if spec.get("memberless") and spec.get("memberships"):
+            refuse(f"memberless persona {persona['handle']} cannot list memberships")
     return personas
 
 
@@ -160,7 +170,14 @@ async def upsert_user(db: AsyncSession, persona: Persona) -> User:
 async def upsert_members(db: AsyncSession, user: User, persona: Persona, ecosystems: dict[str, Ecosystem]) -> list[uuid.UUID]:
     """One Member per requested ecosystem, with role/profile/status forced to the persona's spec."""
     member_ids = []
-    for requested in (persona.get("seed") or {}).get("memberships") or [DEFAULT_MEMBERSHIP]:
+    seed_spec = persona.get("seed") or {}
+    if seed_spec.get("memberless"):
+        if await db.scalar(select(Member.id).where(Member.user_id == user.id).limit(1)):
+            refuse(f"memberless fixture {persona['handle']} has a Member row; choose a fresh handle rather than deleting membership evidence")
+        return member_ids
+    if seed_spec.get("memberships") == []:
+        refuse(f"empty memberships for {persona['handle']} require explicit memberless: true")
+    for requested in seed_spec.get("memberships") or [DEFAULT_MEMBERSHIP]:
         spec = {**DEFAULT_MEMBERSHIP, **requested}
         ecosystem = ecosystems.get(spec["ecosystem"]) or refuse(f"unknown ecosystem {spec['ecosystem']!r} for {persona['handle']}")
         member = (await db.execute(select(Member).where(
@@ -193,13 +210,34 @@ async def ensure_sentinel(db: AsyncSession) -> None:
         db.add(AppSetting(key=SENTINEL_KEY, value={"db": EXPECTED_DB[2]}))
 
 
+async def sync_node_admin_fixtures(factory, assignments: list[tuple[uuid.UUID, bool]]) -> None:
+    """Apply explicit local QA grants and revocations through the audited support service."""
+    in_target_guard()
+    from neos_agent.db.models import NodeAdmin
+    from neos_agent.services.node_admin import change_admin, is_node_admin
+
+    for target_id, wanted in sorted(assignments, key=lambda assignment: not assignment[1]):
+        async with factory() as db:
+            assignment = await db.get(NodeAdmin, target_id)
+            if (wanted and await is_node_admin(db, target_id)) or (not wanted and not (assignment and assignment.active)):
+                continue
+            actor = await db.scalar(select(User).where(User.username == "qa_member_oren"))
+            if actor is None or not await is_node_admin(db, actor.id):
+                refuse("Node admin fixtures need the coordinator's explicit local Oren bootstrap; profiles never grant node authority")
+            actor_id = actor.id
+        await change_admin(factory, actor_id, target_id, "Agent testing", revoke=not wanted)
+
+
 async def seed(personas_path: str, out_path: str, study_resets: bool = True) -> int:
     """study_resets=False (agent evals) keeps study-wide state such as the gold proposals lanes may still be using."""
+    in_target_guard()
     personas = load_personas(personas_path)
     sessions: list[dict[str, str]] = []
+    node_assignments: list[tuple[uuid.UUID, bool]] = []
     engine = await create_db_engine(os.environ["DATABASE_URL"])
     try:
-        async with async_sessionmaker(engine, expire_on_commit=False)() as db:
+        factory = async_sessionmaker(engine, expire_on_commit=False)
+        async with factory() as db:
             ecosystems = {e.name: e for e in (await db.execute(select(Ecosystem))).scalars()}
             for persona in personas:
                 if (persona.get("seed") or {}).get("anonymous"):
@@ -210,11 +248,14 @@ async def seed(personas_path: str, out_path: str, study_resets: bool = True) -> 
                 for reset in MEMBER_RESETS:
                     await reset(db, member_ids)
                 sessions.append({"handle": persona["handle"], "cookie": await mint_session(db, user)})
+                if "node_admin" in (persona.get("seed") or {}):
+                    node_assignments.append((user.id, persona["seed"]["node_admin"]))
             if study_resets:
                 for reset in STUDY_RESETS:
                     await reset(db)
             await ensure_sentinel(db)
             await db.commit()
+        await sync_node_admin_fixtures(factory, node_assignments)
     finally:
         await engine.dispose()
 

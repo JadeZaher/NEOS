@@ -1,0 +1,7 @@
+{
+ "commit_verified_by_railway_cli": "bde2ce5359a62d58f23c419c1923740fae148607",
+ "deployment_id": "638abaf7-e458-4d15-97e4-e5be695fb29e",
+ "asset": "/assets/index-DUG7D7x_.js",
+ "asset_matches_served": true,
+ "method": "SHA256 of public asset in active nginx container compared with public HTTP response"
+}

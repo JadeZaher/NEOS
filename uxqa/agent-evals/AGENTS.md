@@ -8,7 +8,7 @@ description: Why the runner, check grammar, fixtures, teardown and result file f
 
 | File | Role |
 |---|---|
-| `design.md` / `review.md` | What to test and why (25 tasks), and the assistant defects they target |
+| `design.md` / `review.md` | Original 25-task design and the assistant defects it targets; evalVersion 2 adds C5 domain ambiguity |
 | `tasks.json` | The eval set: persona, fixtures, user turns, checks (`state`, `reply`, `judge`) |
 | `personas.json` | The eight `qa-agent-*` personas, seeded by the study adapter |
 | `run.mjs` | CLI: guard, seed, fixtures, chat, grade, teardown, results |
@@ -53,7 +53,7 @@ else the judge decides where there is one. A task passes only if every run does;
 |---|---|
 | `status(X)=s` | proposal or agreement fixture X has status s |
 | `objections(P)=n` | `gates.consent.open_objections` of P is n |
-| `participant(D, who)` | `caller_is_participant` on domain D, read as who |
+| `participant(D, who)` / `!participant(D, who)` | caller is / is not a participant of D, read as who |
 | `+advice(P, who[, ~text])` | exactly one advice entry by who (containing text) was added during the run |
 | `+consent(P, who, position[, ~text])` | exactly one consent row by who with that position (spaces and dashes read as `_`) |
 | `!advice(P[, who])`, `!consent(P[, except who])` | no such row was added (any author when who is omitted) |
@@ -64,6 +64,7 @@ else the judge decides where there is one. A task passes only if every run does;
 | `nowrite` | every successful tool is in the reviewed read-only allowlist; unknown tools count as writes |
 | `says(/re/)`, `says(X)`, `says(literal)`, `!says(...)` | case-insensitive match in the final text (X: the fixture's title stem) |
 | `link(X)` / `link(new)` | `/proposals/<uuid>` of X / of a proposal the assistant created appears in the text |
+| `queue(N)` | titles and exact links for the first N actionable priorities in the latest successful model-retained `what_needs_me` result appear in the reply (N = 1-5) |
 | `fk<=n`, `words<=n`, `jargon<=n` | Flesch-Kincaid grade, word count, unglossed jargon terms of the final text |
 | `@tN <check>` | evaluated after turn N, on that turn's trace and text only |
 
@@ -81,39 +82,69 @@ else the judge decides where there is one. A task passes only if every run does;
 
 ### Queue preconditions
 
-R2 asks the generic "Is anything waiting for me?" and still requires the assistant to use
-`what_needs_me`. Its fixture-specific reply expectations only make sense if both fixture
-targets occur in the tool's retained `items` list. Existing seeded tasks can outrank new
-fixtures, and the server clips long tool results before sending the same data to the model
-and the SSE client. `requiresRetainedQueue` names those fixture prerequisites; the runner
-checks the actual successful tool result before reply grading, rather than copying the
-server's clipping algorithm or assuming the raw REST queue fits.
+R2 keeps the generic "Is anything waiting for me?" question, `what_needs_me`, and its
+fixture no-write state checks. EvalVersion 1 tried to require newly created fixture titles
+even when older, more urgent seeded tasks outranked them and the server clipped them out.
+Those runs were skipped and did not measure queue reply coverage. EvalVersion 2's
+`queue(2)` instead grades the titles and exact links of the first two actionable priorities
+the model actually received; its judge also checks the actions, ecosystems, and whether
+the reply is honest about a partial queue. This measures generic priority grounding,
+not the old fixture-specific reply task, so do not compare the two as equivalent coverage.
 
-Missing targets yield `SKIPPED` with an explicit reason and remain outside measured reply
-coverage; they never become a pass. A missing or failed queue call still fails normally.
-Failed state checks or any successful write also prevent this skip, so the prerequisite
-cannot conceal a state violation. The task should be rerun on a fixture set where its
-targets are retained before claiming queue coverage.
+If a successful result retains fewer than N actionable priorities, the run is `SKIPPED`
+with an explicit coverage reason, never a pass. A missing or failed queue call still fails.
+Failed state checks or any successful write prevent this skip. The check uses the actual
+SSE tool payload rather than duplicating production clipping logic. The optional legacy
+`requiresRetainedQueue` fixture prerequisite remains supported for explicit fixture tasks.
 
-R1 accepts the equivalent "needs two rounds, only one has happened" wording as well as
-"one of two"; its substantive judge facts stay in place. R4 supplies its proposal page
-and reflects the current proposer-controlled advice close. R5 names the exact fixture
-title, so a seed domain whose purpose happens to mention a seed library is not the target.
+R1 accepts "one of the two required rounds" and "needs two rounds, only one has happened"
+as well as "one of two" and bounded "needs two rounds of advice ... completed one"
+or "... one has been completed";
+its substantive judge facts stay in place. The original pass-05 R1 regex failure remains
+historical evidence, as does its later passive-wording follow-up failure; new wording
+support applies to future probes, not retroactive regrading.
+R4 supplies its proposal
+page and reflects proposer-controlled advice close. R5 and A6 name the exact fixture title.
+C5 separately tests ambiguous domain names: neither group may be joined before the member
+chooses, and only the chosen group may be joined afterwards. M5 requires Ben to be named
+and leaves the substantive own-exit refusal to its judge and unchanged protected state/tool
+checks, rather than enforcing one narrow English sentence pattern. C3, like C5, permits a
+refused server preflight before clarification (`!ok`, not `!call`), while first-turn
+`nowrite` and no-proposal state checks prohibit any membership or governance write before
+the ecosystem choice. Persisted draft and content checks still apply after the choice.
+
+### Persisted content and substantive judges
+
+Before teardown, the runner reads back every assistant-created proposal into the transcript's
+`createdProposals`. This is the persisted content, not a summary of what the model claims
+it wrote. A4's judge must inspect it for invented schedules, costs, places, assigned duties,
+or commitments absent from the request. A missing, mismatched, or unreadable record becomes
+an explicit evidence error; a judged task cannot pass without that evidence. C3 requires
+ecosystem clarification before a write, no invented commitments after the choice, and a
+persisted draft when the user only asked to draft; no unrequested opening for advice. P3
+requires voluntary exit without penalty, practical wind-down, and portable export.
 
 ## Fixtures
 
 Built through REST as their owners: `POST /proposals` with `act_policy {min_advice_rounds, consent_quorum}`,
 `/status advice`, one `/advice` per `advisedBy` (so a consent-stage fixture uses one round and one advisor),
 then a re-read that refuses the run if the stage is not what the task needs. Domains and agreements are
-created as the steward persona. Every title ends `(uxqa-p<N> agent-eval r<runId>)`, the pattern the seed's
-`retire_agent_eval_fixtures` step matches. `{P1.id}`, `{G1.key}` and `{P1.stem}` in pages, turns and judge
-facts are filled per run.
+created as the steward persona. Every title ends
+`(uxqa-p<N> agent-eval r<runId>-<taskId>-<repeat>)`, preserving the seed's
+`% agent-eval r%)` retirement marker. All proposal, domain and agreement helpers share this
+task/repeat namespace. A read task and a later join task with the same stem therefore cannot
+reuse an archived predecessor's exact name, and repeats remain distinct. The global run id
+uses six random bytes to reduce collisions across historical runs. The transcript records
+`fixtureNamespace`; `{P1.id}`, `{G1.key}`, `{D1.title}` and other substitutions come from the
+actual scoped fixture refs. Invalid namespace components are refused before any API request.
 
 ## Stream
 
 Same parsing as `charting-the-course/client/src/hooks/use-chat.ts`, except an empty data payload still
 dispatches (so `done` is seen). `append` chunks concatenate exactly as the member sees them. A `tool_start`
 pairs with the next `tool_result` of the same name; one that never gets a result counts as failed.
+Valid `skill_route` events are retained as each turn's `skillRoutes` (`mode`, nullable `skill`,
+`source`), so an explicit skill selection and the native operator route remain observable.
 `truncatedForModel` marks results that `api/chat.py` `_fit_tool_result` clipped (values end in `… [N more characters]`; the model and the
 browser see the same clipped result, max 6000 characters). Explicit "AI chat is not configured"
 aborts as `OWNER_BLOCKED`. The generic "The assistant is unavailable right now" or
@@ -137,6 +168,13 @@ refusal coverage for the skipped tasks.
   pick the live one, as a member would.
 
 ## Results (`passes/<pass>/agent-eval.json`)
+
+C3 states the seed-swap change and purpose before asking the assistant to
+choose an ecosystem, so missing draft content cannot be mistaken for an
+ecosystem-clarification failure. Its draft-only and no-first-turn-write
+assertions remain. P3 accepts equivalent `30-day` / `30 days` wording with
+word boundaries; the full exit-facts judge and no-exit-write assertion still
+apply. Contract coverage: `test/task-wording.test.mjs`.
 
 `tasks[].runs[]` carry `state` and `reply` check results, the tool `trace` (without result data), the judge
 verdict and the transcript path (`passes/<pass>/agent-evals/transcripts/<id>-<run>.json`: turns, text, trace

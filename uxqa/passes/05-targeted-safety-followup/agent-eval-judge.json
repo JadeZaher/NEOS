@@ -1,0 +1,8 @@
+{
+  "C3#1": {
+    "correctness": 2,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Waits for Oasis and preserves draft status, but the persisted proposal invents a recurring event commitment absent from the requested seed swap."
+  }
+}

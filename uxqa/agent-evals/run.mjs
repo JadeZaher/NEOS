@@ -9,7 +9,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createdIds, evaluateReply, evaluateState, isRowCheck, parseCheck, runOutcome, taskOutcome, validateTasks } from './grading.mjs';
 import { applyJudgeScores, buildTrend, defectsFor, exitChecks, judgeBrief, RESULT_VERSION, summarize, summaryLine } from './report.mjs';
-import { ACTIVE_EMERGENCY, assertLocal, buildFixtures, createClient, loadPeople, observe, stewardIn, teardown } from './neos-api.mjs';
+import { ACTIVE_EMERGENCY, assertLocal, buildFixtures, captureCreatedProposals, createClient, fixtureNamespace, loadPeople, observe, stewardIn, teardown } from './neos-api.mjs';
 import { retainedQueueSkipReason } from './preconditions.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -117,7 +117,7 @@ const ecosystemNames = new Map([...people.values()].flatMap((p) => Object.entrie
 const displayNameOf = (short) => people.get(`qa-agent-${short}`)?.name ?? short;
 
 const marker = `${study.config.marker}-p${passNumber}`;
-const runId = `r${crypto.randomBytes(2).toString('hex')}`;
+const runId = `r${crypto.randomBytes(6).toString('hex')}`;
 const budget = { tokenCap: options.tokenCap || settings.tokenCap || DEFAULT_TOKEN_CAP, tokensUsed: 0, requests: 0, maxMinutes: MAX_MINUTES, aborted: null };
 const startedAt = Date.now();
 const transcriptDir = path.join(passDir, 'agent-evals', 'transcripts');
@@ -181,7 +181,7 @@ async function settleEmergencies(task, refs, baseline) {
 	}
 }
 
-function writeTranscript(task, runIndex, refs, pageContext, turns) {
+function writeTranscript(task, runIndex, refs, pageContext, turns, createdProposals = []) {
 	fs.mkdirSync(transcriptDir, { recursive: true });
 	const file = path.join(transcriptDir, `${task.id}-${runIndex}.json`);
 	const capped = (data) => {
@@ -189,9 +189,10 @@ function writeTranscript(task, runIndex, refs, pageContext, turns) {
 		return text.length > TRANSCRIPT_DATA_CHARS ? { truncated: text.length, preview: text.slice(0, TRANSCRIPT_DATA_CHARS) } : data;
 	};
 	fs.writeFileSync(file, JSON.stringify({
-		task: task.id, run: runIndex, runId, persona: `qa-agent-${task.persona}`, page: pageContext.path,
+		task: task.id, run: runIndex, runId, fixtureNamespace: fixtureNamespace(runId, task.id, runIndex), persona: `qa-agent-${task.persona}`, page: pageContext.path,
 		fixtures: Object.fromEntries(Object.entries(refs).map(([name, ref]) => [name, { kind: ref.kind, key: ref.key, title: ref.title, path: ref.path }])),
-		turns: turns.map((turn) => ({ user: turn.user, text: turn.text, tokens: turn.tokens, seconds: turn.seconds, trace: turn.trace.map((call) => ({ ...call, data: capped(call.data) })) })),
+		createdProposals,
+		turns: turns.map((turn) => ({ user: turn.user, text: turn.text, tokens: turn.tokens, seconds: turn.seconds, skillRoutes: turn.skillRoutes || [], trace: turn.trace.map((call) => ({ ...call, data: capped(call.data) })) })),
 	}, null, 1));
 	return studyPath(file);
 }
@@ -207,7 +208,7 @@ async function runOnce(task, runIndex) {
 	let baseline = new Map();
 	let pageContext = { path: DEFAULT_PAGE };
 	try {
-		await buildFixtures(client, task, people, marker, runId, refs);
+		await buildFixtures(client, task, people, marker, runId, refs, runIndex);
 		const checks = { state: (task.state || []).map(parseCheck), reply: (task.reply || []).map(parseCheck) };
 		baseline = await snapshot(checks.state, refs, task);
 		if (options.dryRun) {
@@ -249,8 +250,13 @@ async function runOnce(task, runIndex) {
 	} finally {
 		const trace = turns.flatMap((turn) => turn.trace);
 		run.trace = trace.map(({ data, ...call }) => call);
-		if (turns.length) run.transcript = writeTranscript(task, runIndex, refs, pageContext, turns);
 		const created = { proposals: createdIds(trace, 'create_proposal'), exits: createdIds(trace, 'create_exit_record') };
+		const createdProposals = await captureCreatedProposals(client, handle, created.proposals);
+		if (createdProposals.some((record) => record.error)) {
+			run.evidenceError = 'Assistant-created proposal content could not be verified before teardown';
+			if (task.judge?.length && run.outcome !== 'FAIL') Object.assign(run, { outcome: 'ERROR', error: run.evidenceError, judge: null });
+		}
+		if (turns.length) run.transcript = writeTranscript(task, runIndex, refs, pageContext, turns, createdProposals);
 		const leftovers = await teardown(client, refs, created, handle);
 		if (leftovers.length) run.teardown = leftovers;
 		if (turns.length) {

@@ -1,11 +1,11 @@
 // p3-collaboration-and-moderation-10: every way into quiz management follows the server's quiz rule (a steward of the
-// selected ecosystem, or a platform admin), so the sidebar link, the Dashboard's "Manage learning" and the /quiz/manage
+// selected ecosystem, or explicit node support authority), so the sidebar link, the Dashboard's "Manage learning" and the /quiz/manage
 // route never disagree. Before the review fix the route and the Dashboard read the member's profile: a townhall member was
 // offered "Manage learning" and admitted to a page whose writes the server refuses. Reads only.
 import { BASE, regression } from "./support/fixtures.mjs";
 
-const ORDINARY = ["an ordinary OmniOne member (not a steward, not a platform admin)", (me, omni) => !me.is_platform_admin && omni?.is_steward === false];
-const STEWARD = ["an OmniOne steward who is not a platform admin", (me, omni) => !me.is_platform_admin && omni?.is_steward === true];
+const ORDINARY = ["an ordinary OmniOne member (not a steward or node admin)", (me, omni) => me.is_node_admin === false && omni?.is_steward === false];
+const STEWARD = ["an OmniOne steward without node support authority", (me, omni) => me.is_node_admin === false && omni?.is_steward === true];
 
 /** What one member is offered and where the route lets them in, with OmniOne selected. */
 async function quizEntryPoints(session) {

@@ -1,0 +1,126 @@
+{
+ "scope": "Sanitized local REST capability evidence; raw captures remain ignored",
+ "production_actions": false,
+ "baseline": {
+  "completed": false,
+  "raw_assertions_passed": false,
+  "checks": [
+   {
+    "name": "isolated_local_database",
+    "passed": true
+   },
+   {
+    "name": "explicit_roles_and_memberless_identity",
+    "passed": true
+   },
+   {
+    "name": "anonymous_multiple_badged_admins_without_contact_fields",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "ordinary_user_denied_and_client_authority_flags_rejected",
+    "passed": true
+   },
+   {
+    "name": "cross_org_create_actual_actor_without_fabricated_member",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "anonymous_public_audit_redacts_private_content_and_org_name",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "versioned_correction_returns_500",
+    "passed": false,
+    "http_status": 500
+   }
+  ]
+ },
+ "followup": {
+  "completed": true,
+  "raw_assertions_passed": false,
+  "checks": [
+   {
+    "name": "isolated_local_database",
+    "passed": true
+   },
+   {
+    "name": "explicit_roles_and_memberless_identity",
+    "passed": true
+   },
+   {
+    "name": "anonymous_multiple_badged_admins_without_contact_fields",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "ordinary_user_denied_and_client_authority_flags_rejected",
+    "passed": true
+   },
+   {
+    "name": "cross_org_create_actual_actor_without_fabricated_member",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "anonymous_public_audit_redacts_private_content_and_org_name",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "stale_version_denied_preserves_state_and_records_failure",
+    "passed": true
+   },
+   {
+    "name": "native_guid_reference_search_finds_parent_record",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "evidence_archive_preserves_private_snapshot_and_public_redaction",
+    "passed": true
+   },
+   {
+    "name": "evidence_restores_original_ids_and_content",
+    "passed": true,
+    "status": 200
+   },
+   {
+    "name": "public_audit_exposes_no_mutation_route",
+    "passed": false
+   },
+   {
+    "name": "own_proposal_withdrawn_evidence_retained",
+    "passed": true,
+    "status": 200
+   }
+  ]
+ },
+ "followup_interpretation": {
+  "public_audit_followup_get_status": 200,
+  "original_public_reason_unchanged": true,
+  "attempted_reason_not_saved": true,
+  "remaining_functional_checks_passed": true,
+  "administrator_assignments_changed": false,
+  "baseline_500_result_preserved": true,
+  "note": "Anonymous PATCH was denied with401 rather than the probe expected404/405. Readback confirmed no public audit reason mutation. The original raw failure is preserved."
+ },
+ "direct_refresh_evidence": {
+  "fixture_id": "96498336-63de-44da-8047-5247727cc22a",
+  "update_readback_passed": true,
+  "updated_at_serialized": true,
+  "private_snapshot_preserved": true,
+  "public_audit_redacted": true,
+  "correction_audit_id": "80fe4ed8-6122-49b8-a47b-4bcc75540695",
+  "fixture_restored": true,
+  "restoration_audit_id": "59eab3a0-3404-454a-9d01-0282d158a58c",
+  "catalog_resource_count": 67,
+  "compact_index_chars": 4469,
+  "targeted_proposal_schema_chars": 2870,
+  "required_draft_fields_retained": true,
+  "success": true
+ }
+}

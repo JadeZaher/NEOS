@@ -1,0 +1,8 @@
+{
+  "track_id": "decision_routing_operator_qa_20261101",
+  "type": "feature",
+  "status": "completed",
+  "created_at": "2026-11-01",
+  "updated_at": "2026-11-01",
+  "description": "Deployed typed decision routing, personal operator and explicit audited NodeAdmin support; bounded QA drive completed with historical study limits retained"
+}

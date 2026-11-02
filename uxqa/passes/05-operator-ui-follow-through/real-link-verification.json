@@ -1,0 +1,16 @@
+{
+ "mode": "capability-probe",
+ "realBackend": true,
+ "modelCalls": 0,
+ "preselection": "PASS",
+ "automaticInspections": 0,
+ "explicitInspections": 1,
+ "memberOnlyRequests": [],
+ "record": {
+  "id": "1fc92454-552b-4fbf-acbb-ba1a79623c6c",
+  "organization_id": "8d69ebef-8c6e-50a8-90ef-edf4037c3640",
+  "status": "draft",
+  "title": "Support handoff typed (uxqa-p5-ui)"
+ },
+ "privateBodyPublished": false
+}

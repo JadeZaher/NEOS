@@ -1,3 +1,6 @@
+---
+type: Track Index
+---
 # NEOS Tracks
 
 ## Active
@@ -174,6 +177,11 @@
   - Status: Not started
   - Depends on: ai_self_audit_20260610 (for audit-log integration in Phase 2)
   - Wave-3 retro: `conductor/retros/wave-3-2026-06-10.md`
+
+- [~] **decision_routing_operator_qa_20261101** ? Typed decision routing and personal-operator QA/UI closure
+  - Spec: `conductor/tracks/decision_routing_operator_qa_20261101/spec.md`
+  - Plan: `conductor/tracks/decision_routing_operator_qa_20261101/plan.md`
+  - Status: In progress; bounded passes 04 and 05; carries prior operator and gold-task gaps.
 
 ## Retros
 

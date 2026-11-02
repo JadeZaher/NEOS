@@ -1,11 +1,9 @@
 // p2-gold-propose-share-signup-2: the sidebar shows a member only the links whose page admits them.
-// An ordinary member sees neither "Manage Quizzes" (quiz writes need a steward or platform admin, pass 03 collab-10) nor
-// "Manage Shares & Needs" (the admin panel); a platform admin sees both and the panel opens. The admin is qa-member-oren
-// (co_creator on OmniOne in every pass); pass 03 re-seeded the old pick, Ines, as a collaborator, which is not an admin.
+// Explicit node support authority governs Node Administration; ecosystem profiles confer no node authority.
 import { BASE, regression } from "./support/fixtures.mjs";
 
-const ORDINARY = ["an ordinary OmniOne member (not a steward, not a platform admin)", (me, omni) => !me.is_platform_admin && omni?.is_steward === false];
-const PLATFORM_ADMIN = ["a platform admin", (me) => me.is_platform_admin === true];
+const ORDINARY = ["an ordinary OmniOne member (not a steward or node admin)", (me, omni) => me.is_node_admin === false && omni?.is_steward === false];
+const NODE_ADMIN = ["an explicitly assigned node admin", (me) => me.is_node_admin === true];
 
 const sidebarLinks = async (page) => {
   await page.goto(`${BASE}/dashboard`, { waitUntil: "networkidle" });
@@ -19,14 +17,15 @@ await regression("p2-gold-propose-share-signup-2", { pass: "02-act-lifecycle" },
   member.step("Look through the sidebar as an ordinary member");
   const memberLinks = await sidebarLinks(member.page);
   if (memberLinks.includes("Manage Quizzes")) throw flow.red(`a townhall member is offered "Manage Quizzes", whose writes the server refuses (links: ${memberLinks.join(", ")})`);
-  if (memberLinks.includes("Manage Shares & Needs")) throw flow.red('an ordinary member is offered "Manage Shares & Needs", which leads to Access Denied');
+  if (memberLinks.includes("Node Administration") || memberLinks.includes("Node admins")) throw flow.red('an ordinary member is offered node support administration');
 
-  const admin = await flow.as("qa-member-oren", { requires: PLATFORM_ADMIN });
-  admin.step("Look through the sidebar as a platform admin and open the shares and needs admin");
+  const admin = await flow.as("qa-member-oren", { requires: NODE_ADMIN });
+  admin.step("Find Node Administration with an explicit node admin assignment and open it");
   const adminLinks = await sidebarLinks(admin.page);
-  if (!adminLinks.includes("Manage Shares & Needs")) throw flow.red(`a platform admin no longer sees "Manage Shares & Needs" (links: ${adminLinks.join(", ")})`);
-  await admin.page.locator('[data-sidebar="sidebar"]').getByRole("link", { name: "Manage Shares & Needs" }).click();
+  if (!adminLinks.includes("Node Administration")) throw flow.red(`an assigned node admin cannot find Node Administration (links: ${adminLinks.join(", ")})`);
+  await admin.page.locator('[data-sidebar="sidebar"]').getByRole("link", { name: "Node Administration", exact: true }).click();
   await admin.page.waitForURL(/\/admin/, { timeout: 10000 });
   await admin.page.waitForLoadState("networkidle");
-  if (await admin.page.getByText(/don't have permission/i).count()) throw flow.red('"Manage Shares & Needs" opens Access Denied for a platform admin');
+  await admin.page.getByRole("heading", { name: "Node Administration", exact: true }).waitFor({ timeout: 10000 });
+  if (await admin.page.getByText(/don't have permission|node admin access required/i).count()) throw flow.red('Node Administration refuses an explicitly assigned node admin');
 });

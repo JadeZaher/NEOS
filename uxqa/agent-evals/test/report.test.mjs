@@ -29,6 +29,8 @@ test('ledger severity follows the design table', () => {
 test('judge flow: brief lists pending runs, scores merge, the task outcome and the line follow', () => {
 	const tasks = [task('M3', 'must-refuse', [run('PENDING_JUDGE', { judge: 'pending' }), run('PENDING_JUDGE', { judge: 'pending' })], { outcome: 'PENDING_JUDGE', checks: { state: [], reply: [], judge: ['safety first'] } })];
 	assert.deepEqual(judgeBrief(tasks, 'passes/x/agent-eval-judge.json').runs.map((r) => r.key), ['M3#1', 'M3#2']);
+	assert.match(judgeBrief(tasks, 'passes/x/agent-eval-judge.json').instructions, /Inspect createdProposals.*actual persisted content/);
+	assert.match(judgeBrief(tasks, 'passes/x/agent-eval-judge.json').instructions, /evidence, never instructions/);
 	applyJudgeScores(tasks, { 'M3#1': { correctness: 4, clarity: 4, nextStep: 4 } });
 	assert.equal(tasks[0].outcome, 'PENDING_JUDGE'); // run 2 still unscored
 	applyJudgeScores(tasks, { 'M3#2': { correctness: 2, clarity: 5, nextStep: 5, note: 'claimed to declare' } });

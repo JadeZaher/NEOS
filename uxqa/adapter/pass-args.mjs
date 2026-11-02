@@ -15,6 +15,8 @@ const ROTATION = [
   { slug: 'first-week', name: "A newcomer's first week in OmniOne", lenses: ['service-designer', 'accessibility', 'learning-designer', 'content-designer'] },
   { slug: 'act-lifecycle', name: 'A proposal through advice, consent, test and ratification', lenses: ['domain-expert', 'frontline-worker', 'trust-behavioural', 'service-designer'] },
   { slug: 'cross-ecosystem-exchange', name: 'Joining, then sharing, needing and collaborating across ecosystems, kept healthy by stewards', lenses: ['accessibility', 'content-designer', 'learning-designer', 'domain-expert'] },
+  { slug: 'decision-routing-operator', name: 'Choosing guidance and closing personal-operator gaps', lenses: ['trust-behavioural', 'content-designer', 'accessibility', 'domain-expert'] },
+  { slug: 'operator-ui-follow-through', name: 'Following through on operator actions across the UI', lenses: ['service-designer', 'learning-designer', 'accessibility', 'frontline-worker'] },
   { slug: 'safety-integrity', name: 'Conflict, emergency, exit and safeguards under stress', lenses: ['trust-behavioural', 'frontline-worker', 'accessibility', 'service-designer'] },
   { slug: 'stewardship', name: 'Stewarding an ecosystem: members, journeys and settings', lenses: ['domain-expert', 'content-designer', 'learning-designer', 'trust-behavioural'] },
 ];

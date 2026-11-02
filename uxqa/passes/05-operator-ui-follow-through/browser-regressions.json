@@ -1,0 +1,82 @@
+{
+ "scope": "deterministic local browser probes; no live models",
+ "passed": 15,
+ "total": 15,
+ "results": [
+  {
+   "name": "c-respond-unread.mjs",
+   "exit": 0,
+   "result": "GREEN c-respond-unread"
+  },
+  {
+   "name": "p2-gold-advise-profile-orient-4.mjs",
+   "exit": 0,
+   "result": "GREEN p2-gold-advise-profile-orient-4"
+  },
+  {
+   "name": "p2-gold-propose-share-signup-1.mjs",
+   "exit": 0,
+   "result": "GREEN p2-gold-propose-share-signup-1"
+  },
+  {
+   "name": "p2-gold-propose-share-signup-2.mjs",
+   "exit": 0,
+   "result": "GREEN p2-gold-propose-share-signup-2"
+  },
+  {
+   "name": "p2-lending-rules-keyboard-1.mjs",
+   "exit": 0,
+   "result": "GREEN p2-lending-rules-keyboard-1"
+  },
+  {
+   "name": "p2-stewards-confirm-and-register-11.mjs",
+   "exit": 0,
+   "result": "GREEN p2-stewards-confirm-and-register-11"
+  },
+  {
+   "name": "p2-stewards-confirm-and-register-13.mjs",
+   "exit": 0,
+   "result": "GREEN p2-stewards-confirm-and-register-13"
+  },
+  {
+   "name": "p2-stewards-confirm-and-register-15.mjs",
+   "exit": 0,
+   "result": "GREEN p2-stewards-confirm-and-register-15"
+  },
+  {
+   "name": "p2-stewards-confirm-and-register-16.mjs",
+   "exit": 0,
+   "result": "GREEN p2-stewards-confirm-and-register-16"
+  },
+  {
+   "name": "p3-collaboration-and-moderation-10.mjs",
+   "exit": 0,
+   "result": "GREEN p3-collaboration-and-moderation-10"
+  },
+  {
+   "name": "p3-gold-signup-orient-3.mjs",
+   "exit": 0,
+   "result": "GREEN p3-gold-signup-orient-3"
+  },
+  {
+   "name": "p3-needs-across-ecosystems-4.mjs",
+   "exit": 0,
+   "result": "GREEN p3-needs-across-ecosystems-4"
+  },
+  {
+   "name": "p3-plain-words-and-joining-1.mjs",
+   "exit": 0,
+   "result": "GREEN p3-plain-words-and-joining-1"
+  },
+  {
+   "name": "p4-agent-routing-continuity.mjs",
+   "exit": 0,
+   "result": "GREEN p4-agent-routing-continuity"
+  },
+  {
+   "name": "p5-node-admin-public-support.mjs",
+   "exit": 0,
+   "result": "GREEN p5-node-admin-public-support"
+  }
+ ]
+}

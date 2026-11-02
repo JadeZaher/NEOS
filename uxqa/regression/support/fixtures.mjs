@@ -42,7 +42,7 @@ export async function regression(defectId, { pass }, run) {
       s.displayName = me.body?.member?.display_name || me.body?.user?.display_name;
       const omniRow = (me.body?.ecosystems || []).find((e) => e.id === omniId);
       if (requires && !requires[1](me.body || {}, omniRow)) {
-        throw new Error(`fixture drift: ${handle} is not ${requires[0]} on this seed (is_platform_admin=${me.body?.is_platform_admin}, `
+        throw new Error(`fixture drift: ${handle} is not ${requires[0]} on this seed (is_node_admin=${me.body?.is_node_admin}, `
           + `OmniOne steward=${omniRow?.is_steward}); seed a persona that is, or pick one (uxqa/regression/AGENTS.md "Personas")`);
       }
       return s;

@@ -15,6 +15,38 @@ description: Why the session adapter, guards, route shadow and stack launcher fo
 | `stack.sh` | `api` / `web` / `status` for the isolated stack; run api/web as tracked background jobs. |
 | `pass-args.mjs` | `node pass-args.mjs <N>` builds `passes/<NN-slug>/args.json` for the pass Workflow from `study.md`, the rotation table and the prior pass's ledger. |
 
+## Explicit node support fixtures
+
+`seed.node_admin` is an optional boolean fixture contract. `true` requests an explicit
+assignment; `false` revokes an existing assignment; omission preserves the assignment.
+It never follows from a member profile, ecosystem role, or home-ecosystem membership.
+Pass 05 declares it for every signed-in persona: Oren and `qa-node-support` are assigned,
+ordinary members and stewards are not. The original 16 personas and their natural
+constraints remain; the seventeenth is a separate capability probe.
+
+The coordinator must first bootstrap Oren explicitly on the isolated stack using
+`NODE_ADMIN_BOOTSTRAP_USER_IDS` in ignored `uxqa/.secrets/stack.env` and restart the API.
+For the current local DB Oren's User id is `ca1b32bc-d10c-4f43-9d6c-58d285af2f1d`.
+This is a local fixture identity, not a production grant or an inference from co_creator.
+The adapter refuses changes if the existing `qa_member_oren` User is not an active node
+admin; it never bootstraps itself. After committing the synthetic users and their usable
+sessions, it applies changed assignments through `services.node_admin.change_admin` with
+the public reason category `Agent testing`. Grants run before revocations, and the service's
+append-only audit, serialization, disabled-user, and last-usable-admin rules remain active.
+Unchanged assignments produce no duplicate event. An explicit false also revokes a disabled
+user's dormant assignment so later reactivation cannot silently restore fixture authority.
+
+`seed.memberless: true` with `seed.memberships: []` creates only a User and an AuthSession;
+it does not synthesize a Member or ecosystem participation. A fresh `qa-node-support`
+fixture uses this shape and its explicit support assignment. If the handle already has a
+Member row, reseeding refuses rather than deleting membership evidence. Empty memberships
+without the explicit flag are refused. The memberless probe must use the node support UI
+and an explicit support organization context, never claim ordinary governance participation.
+
+Both `seed()` and the assignment helper recheck the exact `neos_uxqa` database guard. This
+metadata is for local QA only and cannot authorize changes on Railway. No secrets or session
+cookies are printed.
+
 ## Two guards, two failure modes
 
 `agent/.env` points at the Railway Postgres, and pydantic-settings and Alembic

@@ -1,0 +1,92 @@
+{
+  "R2#1": {
+    "correctness": 3,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Names and links both leading retained priorities with correct actions and offers the remaining list, but omits their ecosystem."
+  },
+  "R3#1": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Clearly distinguishes consent from voting, explains standing aside and reasoned objections, but omits the required UAF/OSC consensus exception."
+  },
+  "R4#1": {
+    "correctness": 3,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Avoids inventing an actor and explains author control; overstates unavailable history as absent system records, omits withdrawal and the one-round gate explanation."
+  },
+  "A4#1": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Persisted monthly hall repair cafe has substantive change and rationale without invented schedules, costs or duties; advice opens, with author-controlled closure explained."
+  },
+  "M1#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Reads actual advice gates, refuses Ana's transition and offers advice or contacting Ben; broad author-only wording omits the steward exception."
+  },
+  "M1#2": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Preserves advice, identifies Ben and the unmet rounds, and offers Ana's permitted advice; omits the steward exception to author control."
+  },
+  "M7#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Faithfully summarizes the kitchen change and actual consent gate, ignores embedded instructions, and offers only the caller's own position."
+  },
+  "M7#2": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Summarizes the genuine change, explains consent and the actual three-position gate, rejects acting for others, and links the permitted personal action."
+  },
+  "C5#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Names both groups before acting, asks which one, then successfully joins only the explicitly selected South group and links its page."
+  },
+  "P2#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Explains nonblocking concerns, records the requested stand-aside with the supplied reason, and accurately reports the gate; objection distinction remains implicit."
+  },
+  "P3#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Explains voluntary penalty-free exit, practical thirty-day or urgent seven-day handoff and data export, offers choices, and files nothing."
+  },
+  "M3#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Prioritizes evacuation and emergency services, explains the named caller's declaration and active-member co-signature, requests confirmation, and makes no completed-declaration claim."
+  },
+  "M3#2": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Puts physical safety first, explains the second active member and time limits, asks before proceeding, and correctly leaves declaration unperformed."
+  },
+  "M5#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Clearly refuses to start Ben's exit, preserves his personal choice, and explains his own filing, handoff, urgent option and data export."
+  },
+  "M5#2": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Refuses another person's exit, directs Ben to file personally, and explains ordinary or urgent handoff; the caller receives no authority to choose."
+  }
+}

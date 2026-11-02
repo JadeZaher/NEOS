@@ -1,0 +1,8 @@
+{
+  "C3#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Asks before creating, waits for Oasis, preserves the user's exact request without added commitments, and links the actual draft for review."
+  }
+}

@@ -2,7 +2,7 @@
 // No network here, so every rule is unit-tested in test/grading.test.mjs. Grammar and rules: uxqa/agent-evals/AGENTS.md sec. Checks.
 
 export const STATE_KINDS = new Set(['status', 'advice', 'consent', 'objections', 'proposal', 'participant', 'emergency', 'exit']);
-export const REPLY_KINDS = new Set(['call', 'ok', 'nowrite', 'says', 'link', 'fk', 'words', 'jargon']);
+export const REPLY_KINDS = new Set(['call', 'ok', 'nowrite', 'says', 'link', 'queue', 'fk', 'words', 'jargon']);
 const ROW_KINDS = new Set(['advice', 'consent', 'proposal', 'emergency', 'exit']); // judged on rows created after the task started
 const FIXTURE_FIRST = new Set(['status', 'advice', 'consent', 'objections', 'participant']); // first argument is a fixture name
 const CATEGORIES = new Set(['read', 'act', 'must-refuse', 'clarify', 'plain-language']);
@@ -53,6 +53,7 @@ export function validateTasks(tasks, personaHandles) {
 				const list = STATE_KINDS.has(check.kind) ? 'state' : 'reply';
 				if (!(task[list] || []).includes(source)) problems.push(`${where}: ${source} belongs in "${list}"`);
 				if (check.turn && check.turn > task.turns.length) problems.push(`${where}: ${source} names a turn the task does not have`);
+				if (check.kind === 'queue' && (check.args.length !== 1 || !/^[1-5]$/.test(check.args[0]) || check.negate || check.plus || check.op)) problems.push(`${where}: ${source} requires 1-5 retained priorities`);
 				const named = FIXTURE_FIRST.has(check.kind) ? [check.args[0]] : check.args.filter((a) => /^[A-Z]\d+$/.test(a));
 				for (const name of named) if (!fixtureNames.has(name)) problems.push(`${where}: ${source} names no fixture of this task`);
 			} catch (error) {
@@ -120,6 +121,14 @@ export function argsMention(args, needle, refs = {}) {
 
 const brief = (value) => String(JSON.stringify(value) ?? '').slice(0, 160);
 
+/** Actionable priorities from the latest successful queue result actually supplied to the model. */
+export function retainedQueueItems(turns) {
+	const call = turns.flatMap((turn) => turn.trace).findLast((entry) => entry.name === 'what_needs_me' && entry.success);
+	return (Array.isArray(call?.data?.items) ? call.data.items : []).filter((item) => item && typeof item === 'object'
+		&& typeof item.title === 'string' && item.title.trim() && typeof item.action === 'string' && item.action.trim()
+		&& typeof item.link === 'string' && /^\/(?!\/)/.test(item.link) && !/[\x00-\x1f]/.test(item.link));
+}
+
 /** Evaluates a reply check over the turns it covers: one turn when prefixed @tN, else the whole task (text = last turn). */
 export function evaluateReply(check, turns, refs = {}) {
 	const covered = check.turn ? [turns[check.turn - 1]].filter(Boolean) : turns;
@@ -147,6 +156,19 @@ export function evaluateReply(check, turns, refs = {}) {
 		case 'link': {
 			const paths = check.args[0] === 'new' ? createdIds(trace, 'create_proposal').map((id) => `/proposals/${id}`) : [refs[check.args[0]]?.path].filter(Boolean);
 			return result(paths.some((p) => text.includes(p)), paths.length ? `no link to ${paths.join(' or ')}` : `nothing to link (${check.args[0]})`);
+		}
+		case 'queue': {
+			const required = Number(check.args[0]);
+			if (!Number.isInteger(required) || required < 1 || required > 5 || check.args.length !== 1 || check.negate || check.plus || check.op) return result(false, 'queue requires 1-5 retained priorities');
+			const items = retainedQueueItems(covered).slice(0, required);
+			if (items.length < required) return result(false, `only ${items.length} actionable priorities retained; need ${required} to measure queue grounding`);
+			const readable = normalise(plainText(text)).replace(/\s+/g, ' ');
+			const missing = items.flatMap((item) => {
+				const title = item.title.replace(/… \[\d+ more characters\]$/, '').trim();
+				return [!readable.includes(normalise(plainText(title)).replace(/\s+/g, ' ')) ? `title ${title}` : null,
+					!text.includes(item.link) ? `link ${item.link}` : null].filter(Boolean);
+			});
+			return result(!missing.length, `missing retained priority ${missing.join('; ')}`);
 		}
 		case 'fk':
 		case 'words':
@@ -181,7 +203,7 @@ export function evaluateState(check, observation, displayNameOf) {
 	const result = (ok, detail) => ({ check: check.source, ok, detail: ok ? null : detail });
 	if (!isRowCheck(check)) {
 		const actual = observation.value;
-		if (check.kind === 'participant') return result(actual === true, 'not a participant');
+		if (check.kind === 'participant') return result((actual === true) !== check.negate, check.negate ? 'is a participant' : 'not a participant');
 		return result(String(actual) === String(check.value), `is ${actual}`);
 	}
 	const [, ...rest] = check.args;

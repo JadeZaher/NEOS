@@ -1,0 +1,368 @@
+{
+  "lane": "gold-ui",
+  "mode": "ui-only",
+  "sourceRead": false,
+  "directApiCalls": false,
+  "databaseAccess": false,
+  "attemptPolicy": "One attempt per step, at most three steps per goal, no reruns",
+  "initialDriverFailures": [],
+  "keyboardCaveat": "Keyboard activation/typing with locator-assisted focus; does not establish natural Tab-order usability.",
+  "runs": [
+    {
+      "run": "qa-gold-advisor--gold-advise",
+      "task": "gold-advise",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 12,
+        "clicks": 4,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 1,
+        "validationErrors": 0,
+        "pageViews": 3,
+        "distinctPages": 3,
+        "revisits": 0,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 18,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-advisor--gold-advise",
+      "attempts": {
+        "find proposal": {
+          "tries": 1,
+          "ok": true
+        },
+        "write and submit advice": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": true,
+      "pointerClicks": 0,
+      "observedWrites": [
+        "POST /api/v1/proposals/:id/advice"
+      ]
+    },
+    {
+      "run": "qa-gold-advisor--gold-profile",
+      "task": "gold-profile",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 11,
+        "clicks": 2,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 1,
+        "validationErrors": 0,
+        "pageViews": 2,
+        "distinctPages": 2,
+        "revisits": 0,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 22,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-advisor--gold-profile",
+      "attempts": {
+        "open my profile": {
+          "tries": 1,
+          "ok": true
+        },
+        "save display name": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": true,
+      "pointerClicks": 0,
+      "observedWrites": [
+        "PUT /api/v1/profiles/me"
+      ]
+    },
+    {
+      "run": "qa-gold-advisor--gold-respond",
+      "task": "gold-respond",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 20,
+        "clicks": 4,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 1,
+        "validationErrors": 0,
+        "pageViews": 3,
+        "distinctPages": 2,
+        "revisits": 1,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 21,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-advisor--gold-respond",
+      "attempts": {
+        "find rainwater need": {
+          "tries": 1,
+          "ok": true
+        },
+        "send offer of help": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": true,
+      "pointerClicks": 0,
+      "observedWrites": [
+        "POST /api/v1/discover/shares-needs/:id/respond"
+      ]
+    },
+    {
+      "run": "qa-gold-member--gold-propose",
+      "task": "gold-propose",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 13,
+        "clicks": 5,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 4,
+        "validationErrors": 0,
+        "pageViews": 4,
+        "distinctPages": 4,
+        "revisits": 0,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 21,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-member--gold-propose",
+      "attempts": {
+        "open new proposal": {
+          "tries": 1,
+          "ok": true
+        },
+        "create proposal": {
+          "tries": 1,
+          "ok": true
+        },
+        "open proposal for advice": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": false,
+      "pointerClicks": 5,
+      "observedWrites": [
+        "POST /api/v1/proposals",
+        "POST /api/v1/proposals/:id/status"
+      ]
+    },
+    {
+      "run": "qa-gold-member--gold-share",
+      "task": "gold-share",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 17,
+        "clicks": 6,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 3,
+        "validationErrors": 0,
+        "pageViews": 6,
+        "distinctPages": 3,
+        "revisits": 3,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 23,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-member--gold-share",
+      "attempts": {
+        "find public shares": {
+          "tries": 1,
+          "ok": true
+        },
+        "publish offer": {
+          "tries": 1,
+          "ok": true
+        },
+        "confirm public listing": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": false,
+      "pointerClicks": 6,
+      "observedWrites": [
+        "POST /api/v1/discover/shares-needs"
+      ]
+    },
+    {
+      "run": "qa-gold-newcomer--gold-orient",
+      "task": "gold-orient",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 9,
+        "clicks": 2,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 0,
+        "validationErrors": 0,
+        "pageViews": 3,
+        "distinctPages": 3,
+        "revisits": 0,
+        "httpErrors": 0,
+        "consoleErrors": 1,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 17,
+        "friction": 2
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-gold-newcomer--gold-orient",
+      "attempts": {
+        "find orientation": {
+          "tries": 1,
+          "ok": true
+        },
+        "start actual journey": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/"
+        }
+      ],
+      "keyboardOnly": false,
+      "pointerClicks": 2,
+      "observedWrites": [
+        "POST /api/v1/orientation/ethos/:id/progress"
+      ]
+    },
+    {
+      "run": "qa-visitor--gold-signup",
+      "task": "gold-signup",
+      "outcome": "COMPLETED",
+      "metrics": {
+        "outcome": "COMPLETED",
+        "seconds": 15,
+        "clicks": 2,
+        "deadClicks": 0,
+        "rageClicks": 0,
+        "inputs": 4,
+        "validationErrors": 0,
+        "pageViews": 4,
+        "distinctPages": 2,
+        "revisits": 2,
+        "httpErrors": 1,
+        "consoleErrors": 2,
+        "failedAttempts": 0,
+        "workarounds": 0,
+        "abandoned": null,
+        "axeViolations": 0,
+        "apiCalls": 13,
+        "friction": 6
+      },
+      "evidence": "uxqa/passes/05-operator-ui-follow-through/runs/qa-visitor--gold-signup",
+      "attempts": {
+        "open signup": {
+          "tries": 1,
+          "ok": true
+        },
+        "create account": {
+          "tries": 1,
+          "ok": true
+        }
+      },
+      "errors": [
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+          "path": "/login"
+        },
+        {
+          "kind": "http",
+          "status": 401,
+          "url": "/api/v1/auth/me",
+          "path": "/login"
+        },
+        {
+          "kind": "console",
+          "msg": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "path": "/login"
+        }
+      ],
+      "keyboardOnly": false,
+      "pointerClicks": 2,
+      "observedWrites": [
+        "POST /api/v1/auth/register"
+      ]
+    }
+  ]
+}

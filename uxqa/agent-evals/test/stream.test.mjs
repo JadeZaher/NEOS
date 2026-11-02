@@ -60,3 +60,17 @@ test('explicit missing configuration differs from unavailable service; blank app
 		assert.equal(turn.serviceUnavailable, serviceUnavailable, text);
 	}
 });
+
+test('skill routing evidence keeps native mode and explicit skill selection distinct', () => {
+	const turn = collectTurn([
+		{ type: 'skill_route', data: JSON.stringify({ mode: 'native', skill: null, source: 'automatic' }) },
+		{ type: 'skill_route', data: JSON.stringify({ mode: 'skill', skill: 'proposal-creation', source: 'member' }) },
+		{ type: 'skill_route', data: '{invalid' },
+		{ type: 'skill_route', data: JSON.stringify({ mode: 'skill', source: 'missing-skill' }) },
+		{ type: 'skill_route', data: JSON.stringify({ mode: null, skill: null, source: 'invalid' }) },
+	]);
+	assert.deepEqual(turn.skillRoutes, [
+		{ mode: 'native', skill: null, source: 'automatic' },
+		{ mode: 'skill', skill: 'proposal-creation', source: 'member' },
+	]);
+});

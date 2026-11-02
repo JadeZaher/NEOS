@@ -1,0 +1,23 @@
+---
+type: UX Lane Report
+title: Pass 04 operator desktop UI journey
+---
+
+Actor: `qa-member-oren`, platform administrator. Mode: UI-only. Outcome: journey COMPLETED with two answer-quality defects. Exactly two live assistant messages were submitted; no replay, direct API/DB call, application-source inspection, product edit, governance write, commit, deploy, or full test run occurred.
+
+Evidence root: `runs/qa-member-oren--p4-operator-desktop/`. `finish()` wrote `ux.json` and `trace.zip`. The replayable observed journey is `flows/p4-operator-desktop.mjs`; its original observed action list is `flows/p4-operator-desktop-steps.json`. Do not replay without accounting for its two live assistant submissions.
+
+## Observations
+
+- The launcher opened Communications on human Messaging. AI Chat was a visible tab. Message 1, “Walk me through facilitating the ACT advice phase. I only want instructions today; do not write any records.”, visibly routed to **Guided process: Act advice phase**. Message 2, “Where in the app can I change the name other members see?”, visibly routed to **Platform help**. The first route label remained attached to its historical message; the second message did not carry the old guided-process label. Screenshots: `02-first-message-progress.png`, `03-guided-advice-answer.png`, `04-second-message-progress.png`, `05-platform-help-answer.png`.
+- The ACT answer gave six steps and no write confirmation/action card. It incorrectly said, “Once the deadline passes, no further advice is accepted for this round.” It did not explain that the proposer closes advice, or that deadlines do not auto-advance it. The visible dashboard record link opened Community Energy Sharing Protocol, still in Advice after its October 23 deadline, offering Share Advice and explicitly stating the proposer closes it (a steward can close after deadline). This UI directly contradicts the answer. Screenshots: `03-guided-advice-answer.png`, `09-past-deadline-record-still-advice.png`. Full visible transcript: `flows/p4-operator-answer1.txt`.
+- Profile help was brief but generic: select an avatar/name in top navigation or sidebar, then find Edit/pencil. It supplied no actual link and offered another question to find one. Actual visible path was the sidebar **Me** link (`/me`) → selected **Profile** tab → **Display name** textbox → **Save profile** button, with the field immediately editable and no Edit button. The sidebar avatar/name appeared as text rather than a link in the observed accessibility tree. Screenshots: `05-platform-help-answer.png`, `12-me-profile-display-name.png`. Full transcript: `flows/p4-operator-answer2.txt`.
+- Finished transcript persisted after drawer close/reopen, human Messaging tab round-trip, a visible dashboard proposal record link, and sidebar navigation to `/messaging`. On `/messaging`, AI remained available through Communications; the redundant human Messaging drawer tab was omitted. Screenshots: `06-finished-reopened.png`, `08-record-nav-persisted.png`, `10-messaging-route.png`, `11-messaging-agent-persisted.png`.
+- An unsent draft, “Unsent operator draft (uxqa-p4): keep for later.”, survived close/reopen, human Messaging tab round-trip, proposal record navigation, `/messaging` navigation, and subsequent Me navigation. It was never sent. Screenshots: `07-unsent-draft.png`, `08-record-nav-persisted.png`, `11-messaging-agent-persisted.png`, `13-final-profile-agent-available.png`.
+- Keyboard Tab from the composer reached Send message. Closing the drawer returned focus to Open communications. Loading announced the route through a status region, disabled the composer/history/clear controls, and exposed Stop response. No visible error or write-confirmation flow appeared. Historical “Analyzing your request…” text exists in DOM text but was not visible in the inspected finished screenshot, so it is not asserted as a visual defect.
+
+## Friction and limits
+
+Harness metrics: 214 seconds, 21 clicks, 0 dead/rage clicks, 0 failed attempts, 0 validation errors, 0 HTTP errors, 0 workarounds, no abandonment; friction 2. One console resource error, `net::ERR_NETWORK_ACCESS_DENIED`, occurred on `/` with no visible error UI. All three budgeted subgoals succeeded on their first attempt. Axe was not run; the metrics' zero axe violations is not an accessibility audit result.
+
+This live lane validates completed-conversation/draft persistence and visible routing. It does not establish stream-race behavior, backend record counts, correctness across every ACT branch, or complete keyboard focus trapping. Those require the separate mocked/probe coverage. No assistant record links were produced, so record navigation used an already visible dashboard link.

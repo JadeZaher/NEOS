@@ -8,6 +8,26 @@ description: Rolling state of the study - newest block first; one block per pass
 
 Newest block first. Each pass appends one block; nothing here is deleted.
 
+## Pass 05-operator-ui-follow-through - 2026-11-01 - CHANGES_REQUESTED (SOURCE VERIFIED)
+
+- All seven gold tasks completed on their first instrumented runs, with no failed attempts or workarounds. Normal operator guidance now gives the actual profile route and correct advice closure authority. Natural keyboard and 390px read continuity were observed with stated limits.
+- Independent full capability baseline: 23/26 PASS (88%), 3 FAIL, no ERROR/SKIP, 7/7 refusal categories and all 14 protected repetitions held. Its one actual wrong-organization write remains in the historical result. R1's correct wording failure and P1 reading grade10.4 are retained.
+- Final C3-only follow-up: 1/1 PASS, 0 state violations, independent actual-content judge 5/4/5, zero generation tokens. Earlier targeted and full failures were not replaced.
+- Original memberless support and follow-ups 1/2 failed and remain preserved. Follow-up3 completed typed preparation → exact server card → Yes → one draft → public actual-actor/org/category receipt → Node Administration readback. Final receipt-link/query fixes passed mocked and real-backend browser checks with zero automatic private inspection and zero identified Member-only requests.
+- Coordinator completed frontend136 PASS, final tsc/build exit0, affected helper10 PASS, harness35 PASS and browser15/15 GREEN plus the final ordinary-denial badge regression. Full backend run:1,505 PASS /9 FAIL; the reconciled eight-module repair batch passed233/233. Existing proposal-management policy is unchanged. Independent final source/evidence review APPROVE; see [verification](passes/05-operator-ui-follow-through/verification.md).
+- Backend `c4ea26c` and frontend `bde2ce5` are deployed. Exact Railway deployments `0c9b9e8d-2290-4cef-ae1b-7f9135f278ce` and `638abaf7-e458-4d15-97e4-e5be695fb29e` both SUCCESS; health54skills/DBconnected, migrationw3, immutable triggers and both model paths verified. Only the two approved Ahmed Zaher accounts are assigned, with two public bootstrap receipts. [Deployment evidence](passes/05-operator-ui-follow-through/deployment.md).
+- Aggregate retained UX friction16.375 exceeds pass04's6. This is the second full iteration of the bounded drive and does not establish convergence. See [verdict](passes/05-operator-ui-follow-through/verdict.md) and [synthesis](passes/05-operator-ui-follow-through/synthesis.md).
+
+## Pass 04-decision-routing-operator - 2026-11-01 - CHANGES_REQUESTED
+
+- Bounded drive iteration 1 used native UI/probe/review lanes because Workflow was unavailable. Guard and isolated-DB sentinel passed before writes; 16 persona sessions seeded. No new production deployment or NodeAdmin grants have been made.
+- Typed Decisions routing calibrated on public skill metadata and synthetic prompts. Selected pinned `typesafe/jev-1.14-20261014`, 22/22 probes, median 0.5425s, selected-probe cost $0.005167344. Generation remains `openrouter/google/gemini-3.1-flash-lite`.
+- Observed UI routing, conversation/draft continuity, mobile bounds and focus return passed. Canonical advice guidance and concrete profile navigation failed and entered the fix wave.
+- Metrics retain three failed original gold runs plus their separate corrected runs: four tasks at 100%, advise/orient/respond at 50%; friction 6; 14/78 pages and 35/153 APIs in the pre-NodeAdmin inventory. Driver-budget deviation is documented, so this is not seven uninterrupted first-attempt successes.
+- Independently judged capability baseline finalized: 18/26 PASS (69%), 8 FAIL, no ERROR/SKIP, 7/7 refusal categories passed. Three raw state violations were missed intended writes in C3/C4/C5. Historical result remains unchanged despite subsequent harness corrections.
+- Owner added multiple badged global NodeAdmins with unilateral audited technical support, on-behalf proposals and private support chat. Initial assignment was finally narrowed to both exact Ahmed Zaher accounts only, explicitly selected after duplicate-name discovery; no builder/co-creator bulk grant remains authorized.
+- Source fixes/review are in progress; the single final integrated test sweep is held until all fixes finish. Continue through pass 05. [Verdict](passes/04-decision-routing-operator/verdict.md), [synthesis](passes/04-decision-routing-operator/synthesis.md).
+
 ## Production deployment - pass 03 and personal operator - 2026-11-01 - DEPLOYED
 
 - Owner authorized Railway deployment, Pi-key configuration and agent tests; requested a personal governance operator, low cost, Gemini, and no Anthropic for the in-app agent.

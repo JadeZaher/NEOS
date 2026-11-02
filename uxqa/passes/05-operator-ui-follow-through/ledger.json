@@ -1,0 +1,176 @@
+{
+ "pass": "05-operator-ui-follow-through",
+ "entries": [
+  {
+   "id": "p5-org-choice",
+   "severity": "HIGH",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Model guesses an organization before user choice",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/api/chat.py create_proposal dispatch",
+   "evidence": [
+    "agent-evals/transcripts/C3-1.json",
+    "../05-targeted-safety-followup-2/agent-eval.json"
+   ],
+   "repair": "Authenticated-user draft staging, current-scope/TTL checks, atomic one-use choice, approval invalidation and stale-save epoch",
+   "verification": "Second targeted C3 1/1 PASS, 0 state violations; independent persisted-content judge 5/4/5; full source tests pending"
+  },
+  {
+   "id": "p5-draft-content",
+   "severity": "MEDIUM",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Draft adds an unrequested recurring event",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/api/chat.py ambiguous draft content staging",
+   "evidence": [
+    "../05-targeted-safety-followup/agent-eval.json",
+    "../05-targeted-safety-followup-2/agent-eval.json"
+   ],
+   "repair": "Preserve authenticated user request and neutral rationale instead of inferred recurrence/domain/deadline",
+   "verification": "Actual second targeted readback judged PASS; earlier failure preserved"
+  },
+  {
+   "id": "p5-support-update",
+   "severity": "HIGH",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Valid versioned support correction returns HTTP500",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/services/node_admin.py execute_command serialization after flush",
+   "evidence": [
+    "flows/node-admin-capabilities.json",
+    "flows/node-admin-capabilities-followup.json",
+    "flows/node-admin-refresh-direct.json"
+   ],
+   "repair": "Explicit ORM refresh before public serialization and private snapshot",
+   "verification": "Independent PostgreSQL correction/stale refusal/archive/restore and direct-service refresh/readback passed; source suite pending"
+  },
+  {
+   "id": "p5-support-schema",
+   "severity": "HIGH",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Memberless agent cannot prepare a valid proposal command",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/agent/node_admin_tools.py catalog and command schemas",
+   "evidence": [
+    "support-constraints-lane.md",
+    "memberless-support-followup-2.md",
+    "memberless-support-followup-3.md"
+   ],
+   "repair": "Complete bounded catalog index, targeted writable fields, canonical enums and typed proposal preparation with server-owned identity/scope",
+   "verification": "Natural memberless followup3 server review/Yes/one draft/public actual-actor receipt and NodeAdmin readback completed"
+  },
+  {
+   "id": "p5-prose-approval",
+   "severity": "MEDIUM",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Prose-only review has no server pending action",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/api/chat.py support preparation lifecycle",
+   "evidence": [
+    "memberless-support-followup-1.md",
+    "memberless-support-followup-3.md"
+   ],
+   "repair": "Non-writing prepare semantics, no model confirmation flag, bounded corrective turn, hidden unprepared prose excluded from history",
+   "verification": "Followup3 uses actual server card and confirmed execution; no pending approval remains non-authorizing"
+  },
+  {
+   "id": "p5-failure-context",
+   "severity": "MEDIUM",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Failed support action loses organization/category attribution",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/agent/node_admin_tools.py redacted failure logging",
+   "evidence": [
+    "support-constraints-lane.md",
+    "memberless-support-followup-2.md"
+   ],
+   "repair": "Retain validated safe organization, public category and correlation without copying bodies",
+   "verification": "Followup2 anonymous single receipt shows actual Sana, Plan Systems and Agent testing"
+  },
+  {
+   "id": "p5-support-link",
+   "severity": "MEDIUM",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Memberless creation receipt opens Member-only proposal route",
+   "rootCause": "neos-operating-system/agent/src/neos_agent/api/chat.py support receipt link; client NodeAdministration preselection",
+   "evidence": [
+    "memberless-support-followup-3.md"
+   ],
+   "repair": "Strict support-console resource/record/organization deeplink; explicit reasoned inspection remains required",
+   "verification": "Full browser regression GREEN and real-backend memberless probe PASS: correct draft/organization, no automatic inspection, one explicit inspection"
+  },
+  {
+   "id": "p5-memberless-queries",
+   "severity": "MEDIUM",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Memberless console mounts unauthorized Member-only queries",
+   "rootCause": "charting-the-course/client/src hooks and app-shell member query enablement",
+   "evidence": [
+    "runs/qa-node-support--memberless-support-followup-3/trace.zip"
+   ],
+   "repair": "Require actual Member identity for human messaging, queue, moderation, safeguards and emergency queries; hide unavailable controls",
+   "verification": "Full browser regression and real-backend memberless probe PASS with zero identified Member-only requests"
+  },
+  {
+   "id": "p5-r1-grader",
+   "severity": "LOW",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Equivalent correct round-count wording fails rigid matcher",
+   "rootCause": "uxqa/agent-evals/tasks.json R1",
+   "evidence": [
+    "agent-evals/transcripts/R1-1.json",
+    "../05-targeted-safety-followup/agent-evals/transcripts/R1-1.json"
+   ],
+   "repair": "Bounded active/passive equivalents with negative wrong-total and missing-evidence contracts",
+   "verification": "35 offline harness tests passed; both historical failures retained"
+  },
+  {
+   "id": "p5-ts-iterator",
+   "severity": "LOW",
+   "decision": "FIX",
+   "status": "FIXED",
+   "title": "Link parser iterator spread incompatible with TypeScript target",
+   "rootCause": "charting-the-course/client/src/lib/node-admin.ts parseSupportRecordLink",
+   "repair": "Use Array.from for URLSearchParams entries",
+   "verification": "Original TS2802 retained; corrected typecheck/build exit0 and affected helper10 PASS"
+  },
+  {
+   "id": "p5-reading-level",
+   "severity": "MEDIUM",
+   "decision": "RESEARCH_QUESTION",
+   "status": "OPEN",
+   "title": "P1 remains grade10.4 against grade8 heuristic",
+   "evidence": [
+    "agent-eval.json"
+   ],
+   "validation": "Five simple-language newcomer sessions; measure comprehension of facts and next action, retain numerical reading-level result"
+  },
+  {
+   "id": "p5-video-network",
+   "severity": "LOW",
+   "decision": "RESEARCH_QUESTION",
+   "status": "OPEN",
+   "title": "Welcome video fails in restricted test network with working fallback",
+   "evidence": [
+    "gold-ui-lane.md"
+   ],
+   "validation": "Five newcomer sessions under ordinary networking plus content/provider response inspection before source change"
+  },
+  {
+   "id": "p5-human-accessibility-trust",
+   "severity": "MEDIUM",
+   "decision": "RESEARCH_QUESTION",
+   "status": "OPEN",
+   "title": "Agent journeys do not establish full human accessibility or approval comprehension",
+   "evidence": [
+    "synthesis.md",
+    "support-constraints-lane.md"
+   ],
+   "validation": "Five sessions each with keyboard-only users and cross-organization support operators, plus newcomer sessions; first attempts, explicit consent/receipt comprehension and abandonment"
+  }
+ ],
+ "coordinator_verification": "verification.md"
+}
