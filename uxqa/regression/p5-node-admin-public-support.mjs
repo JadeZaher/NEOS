@@ -5,7 +5,8 @@ await regression('p5-node-admin-public-support', { pass: '05-operator-ui-follow-
   const session = await flow.as('qa-new-kofi', { width: 390, height: 844 });
   const page = session.page;
   const me = (await session.request('GET', '/api/v1/auth/me')).body;
-  const actor = me.user?.id || '20000000-0000-4000-8000-000000000001';
+  if (!me.user?.id) throw new Error('Fixture drift: the support actor has no authenticated User identity');
+  const actor = me.user.id;
   const target = '20000000-0000-4000-8000-000000000002';
   const organization = '20000000-0000-4000-8000-000000000003';
   const record = '20000000-0000-4000-8000-000000000004';
@@ -34,13 +35,18 @@ await regression('p5-node-admin-public-support', { pass: '05-operator-ui-follow-
     if (path.endsWith('/audit')) return json(route, { items: [audit, deniedAudit], total: 2, page: 1, per_page: 20 });
     if (path.endsWith(`/audit/${auditId}`)) return json(route, audit);
     if (!admin) return json(route, { error: 'Node admin access required' }, 403);
-    if (path.endsWith('/catalog')) return json(route, { reason_categories: ['Technical support', 'Account recovery', 'Organization support', 'Agent testing', 'Data correction', 'Access management', 'Service recovery'], organizations: [{ id: organization, name: 'Organization without your membership' }], items: [{ key: 'proposals', label: 'Proposals', organization_scoped: true, listing_fields: ['id', 'status', 'ecosystem_id'], actions: ['inspect', 'create', 'update', 'override_state'], fields: [
+    if (path.endsWith('/catalog')) return json(route, { reason_categories: ['Technical support', 'Account recovery', 'Organization support', 'Agent testing', 'Data correction', 'Access management', 'Service recovery'], organizations: [{ id: organization, name: 'Organization without your membership' }], items: [
+      { key: 'users', label: 'Users', organization_scoped: false, listing_fields: ['id', 'display_name'], actions: ['inspect'], fields: [{ name: 'display_name', label: 'Display name', type: 'text', editable: false, required: false }] },
+      { key: 'ecosystems', label: 'Ecosystems', organization_scoped: false, listing_fields: ['id', 'name'], actions: ['inspect'], fields: [{ name: 'name', label: 'Name', type: 'text', editable: false, required: false }] },
+      { key: 'proposals', label: 'Proposals', organization_scoped: true, listing_fields: ['id', 'status', 'ecosystem_id'], actions: ['inspect', 'create', 'update', 'override_state'], fields: [
       { name: 'title', label: 'Title', type: 'text', editable: true, required: true },
       { name: 'proposed_change', label: 'Proposed change', type: 'text', editable: true, required: true },
       { name: 'ecosystem_id', label: 'Ecosystem id', type: 'reference', editable: true, required: true },
       { name: 'status', label: 'Status', type: 'text', editable: true, required: false, options: ['draft', 'advice'] },
       { name: 'proposer_member_id', label: 'Proposer member id', type: 'reference', editable: false, required: false },
     ] }] });
+    if (path.endsWith('/resources/users')) return json(route, { items: [], total: 0, page: 1, per_page: 20 });
+    if (path.endsWith('/resources/ecosystems')) return json(route, { items: [{ id: organization, name: 'Organization without your membership' }], total: 1, page: 1, per_page: 20 });
     if (path.endsWith('/resources/proposals')) { const q = new URL(request.url()).searchParams.get('q'); const items = q ? records.filter(item => item.id === q) : records; return json(route, { items, total: items.length, page: 1, per_page: 20 }); }
     if (path.endsWith('/commands')) {
       const command = request.postDataJSON(); commands.push(command);
@@ -72,6 +78,9 @@ await regression('p5-node-admin-public-support', { pass: '05-operator-ui-follow-
   });
   await page.goto(`${BASE}/admin`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Node Administration', exact: true }).waitFor();
+  await page.getByRole('navigation', { name: 'Node administration tasks', exact: true }).getByRole('link', { name: /^Users\b/ }).waitFor();
+  await page.getByRole('button', { name: 'Advanced resource browser', exact: true }).click();
+  await page.getByLabel('Advanced feature / resource', { exact: true }).selectOption('proposals');
   await page.getByLabel('Support organization', { exact: true }).selectOption(organization);
   await page.getByRole('button', { name: 'Propose for an organization', exact: true }).click();
   await page.getByLabel('Title (required)', { exact: true }).fill('Support-created proposal');
@@ -85,11 +94,11 @@ await regression('p5-node-admin-public-support', { pass: '05-operator-ui-follow-
   if (!(await review.innerText()).includes(organization)) throw flow.red('The review did not identify the target organization.');
   await review.getByRole('button', { name: 'Confirm and record action', exact: true }).click();
   await page.getByRole('link', { name: 'View public audit receipt' }).waitFor();
-  if (commands.length !== 1 || commands[0].organization_id !== organization || commands[0].values.title !== 'Support-created proposal' || 'proposer_member_id' in commands[0].values || 'ecosystem_id' in commands[0].values) throw flow.red('The reviewed on-behalf command lost scope or manufactured a membership identity.');
+  if (commands.length !== 1 || commands[0].resource_type !== 'proposals' || commands[0].organization_id !== organization || commands[0].reason !== audit.reason || commands[0].values.title !== 'Support-created proposal' || commands[0].values.proposed_change !== 'Recover the missing governance draft without impersonating a member.' || 'proposer_member_id' in commands[0].values || 'ecosystem_id' in commands[0].values || 'actor_user_id' in commands[0] || 'actor_user_id' in commands[0].values) throw flow.red('The reviewed on-behalf command lost its frozen scope/content/reason or manufactured an actor or membership identity.');
 
   await page.goto(`${BASE}/admin?resource=proposals&record=${record}&organization_id=${organization}`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Node Administration', exact: true }).waitFor();
-  if (await page.getByLabel('Feature / resource', { exact: true }).inputValue() !== 'proposals' || await page.getByLabel('Support organization', { exact: true }).inputValue() !== organization || await page.getByLabel('Find records', { exact: true }).inputValue() !== record) throw flow.red('The support receipt did not select the catalog resource, organization and record filter.');
+  if (await page.getByLabel('Advanced feature / resource', { exact: true }).inputValue() !== 'proposals' || await page.getByLabel('Support organization', { exact: true }).inputValue() !== organization || await page.getByLabel('Find records', { exact: true }).inputValue() !== record) throw flow.red('The support receipt did not select the catalog resource, organization and record filter.');
   if (await page.getByRole('button', { name: 'Inspect and manage', exact: true }).count() !== 1 || inspections !== 0) throw flow.red('The deep link failed to isolate the record or automatically inspected private content.');
   await page.getByRole('button', { name: 'Inspect and manage', exact: true }).click();
   await page.getByLabel('Public support reason category (required)', { exact: true }).selectOption('Technical support');
@@ -147,4 +156,5 @@ await regression('p5-node-admin-public-support', { pass: '05-operator-ui-follow-
   const officialRoster = page.getByRole('region', { name: 'Official node support operators', exact: true });
   await officialRoster.getByText('Second Operator', { exact: true }).waitFor();
   if (await officialRoster.getByText('Node admin', { exact: true }).count() !== 1) throw flow.red('The official active operator roster lost its server-derived Node admin badge.');
+  if (memberRequests.length) throw flow.red('The memberless support lifecycle started ordinary member requests: ' + memberRequests.join(', '));
 });

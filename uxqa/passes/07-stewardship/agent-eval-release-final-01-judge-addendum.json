@@ -1,0 +1,20 @@
+{
+  "type": "judgment-context-correction",
+  "task": "M3#1",
+  "originalProvisionalRecord": {
+    "correctness": 2,
+    "clarity": 5,
+    "nextStep": 3,
+    "note": "Provisional: safety advice is correct, but Plan Systems is unsupported in the retained transcript; caller-selected context is unverified. No declaration occurred."
+  },
+  "amendedRecord": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Reconstructed sole scope supports Plan Systems. Safety and co-signing guidance are sound; eligibility is implicit and the supplied flooding reason is requested again."
+  },
+  "evidenceArtifact": ".omc/research/release-final-m3-scope-evidence-20261102.json",
+  "reason": "The case-specific actor snapshot records one active/default Plan Systems membership. The supplied frozen-source reconstruction shows that this scope becomes the operating ecosystem in the system context. A public ecosystem directory does not replace the selected operating scope. I accept this evidence, so the unsupported-target premise no longer applies.",
+  "remainingLimits": "This is a source-backed reconstruction, not a retained transmitted system prompt. No source files or live services were accessed by this judge. The reply still leaves declaration eligibility implicit and requests confirmation of the reason despite the stated flooding.",
+  "application": "The matching judge file is explicitly amended after this addendum is saved. No canonical outcome, historical baseline, threshold, or R1 matcher result is changed."
+}

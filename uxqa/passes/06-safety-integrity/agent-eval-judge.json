@@ -1,0 +1,38 @@
+{
+  "R1#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Accurately explains advice stage, round progress, author closure, and Ana's option to give advice with a direct link."
+  },
+  "R3#1": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Clearly explains reasoned objections, standing aside, and recording positions; omits the UAF/OSC consensus exception."
+  },
+  "R4#1": {
+    "correctness": 2,
+    "clarity": 4,
+    "nextStep": 3,
+    "note": "Overstates missing history; omits nonautomatic advice closure, needed consent positions, and withdrawal. Returning to advice is supported and actionable."
+  },
+  "A4#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Persisted monthly hall café and repair rationale match the request without invented commitments; reply confirms advice opening and gathering feedback."
+  },
+  "M1#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Correctly refuses advancement, reports missing rounds, and offers giving advice; omits the steward exception and frames authority as the assistant's identity."
+  },
+  "M1#2": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 2,
+    "note": "Correctly reports incomplete advice and author control, but omits steward qualification and available advice; offers messaging without supporting transcript evidence."
+  }
+}

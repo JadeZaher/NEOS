@@ -61,13 +61,13 @@ proposal to consent, so old ones leave the advice list). Triage checks the
 
 ## Agent evals
 
-Each pass also runs the in-app assistant through 25 fixed tasks (read, act,
+Each pass also runs the in-app assistant through 26 fixed tasks (read, act,
 must-refuse, clarify, plain language) in the plugin's optional AgentEval phase,
 after Metrics and before the Panel: `node uxqa/agent-evals/run.mjs <pass>` seeds
 its own `qa-agent-*` personas with member resets only (gold proposals stay),
 builds `uxqa-p<N> agent-eval` fixtures through REST, drives the real
 `POST /api/v1/chat/send`, grades API state first, then the tool trace and text,
-and a Sonnet judge only where those cannot decide, and writes
+and an independent reviewer only where those cannot decide, and writes
 `passes/<pass>/agent-eval.json`; failed tasks reach triage as `agent-eval`
 defects. It is the one exception to the two-assistant-messages-per-lane rule,
 bounded by `agentEvals.tokenCap` (1.5M tokens, about cents on the default model)
@@ -135,7 +135,7 @@ it wins when they disagree.
   "TESTS: backend fixes add a pytest under neos-operating-system/agent/tests (in-memory sqlite, see tests/conftest.py). Frontend pure logic (lib/ helpers, query-key maps, vocab, validators) gets a node:test file next to it, client/src/**/<name>.test.ts, run by `npm test` in charting-the-course. Frontend behaviour that only shows in the browser adds uxqa/regression/<defect-id>.mjs, a Playwright flow built on uxSession (import from the plugin lib, mode 'probe', task 'regression-<defect-id>', pass from env UXQA_PASS) that drives the real UI on the local stack, asserts the observable outcome, exits 1 when it does not hold, and would go red if the fix were reverted.",
   "GOLD PERSONAS must appear in every personas.json with these seeds: qa-visitor {anonymous:true}; qa-gold-member, qa-gold-advisor, qa-gold-newcomer each {memberships:[{ecosystem:'OmniOne',role:'user',profile:'townhall',status:'active'}]}.",
   "PREBAKE must leave at least 3 OmniOne proposals in the advice stage and tag everything it creates with the pass marker. Advice never advances by itself (owner decision 2026-10-31): the proposer closes advice; a steward who did not write a proposal confirms Test -> Ratified.",
-  "ROLES: Member.role per ecosystem is user|mod|admin|owner; Member.profile is townhall|collaborator|builder|co_creator; since wave C (2026-11-01) platform admin (AdminPanel, isAdmin) is /auth/me is_platform_admin = co_creator/builder on the ACTIVE row of the pinned home ecosystem (OmniOne) only, and a steward of an ecosystem (onboarding, moderation, collaborations, audits) = an active row there that is mod+ or holds co_creator/builder on that row (policy.can_administer_ecosystem); the ACT engine still uses mod+. Ecosystem selection is the cookie neos_selected_ecosystems (JSON array of ids).",
+  "ROLES: Member.role per ecosystem is user|mod|admin|owner; Member.profile is townhall|collaborator|builder|co_creator. Global Node Administration requires an explicit active NodeAdmin assignment, exposed by /auth/me is_node_admin and its compatibility is_platform_admin field; profile labels alone never grant it. A steward of an ecosystem (onboarding, moderation, collaborations, audits) = an active row there that is mod+ or holds co_creator/builder on that row (policy.can_administer_ecosystem); the ACT engine still uses mod+. Ecosystem selection is the cookie neos_selected_ecosystems (JSON array of ids).",
   "AI: the in-app assistant calls OpenRouter with a real key. At most two assistant messages per lane."
  ]
 }

@@ -1,0 +1,245 @@
+{
+    "pass":  "06-safety-integrity",
+    "lane":  "admin-matching-ui",
+    "mode":  "ui-only",
+    "observed_api_hosts":  [
+                               "localhost"
+                           ],
+    "ai_messages_sent":  2,
+    "all_sessions_finished":  true,
+    "source_edits":  0,
+    "direct_api_calls":  0,
+    "runs":  [
+                 {
+                     "run":  "qa-node-support--admin-support-authoring",
+                     "outcome":  "COMPLETED",
+                     "trace_exists":  true,
+                     "mode":  "ui-only",
+                     "constraints":  [
+                                         "mobile"
+                                     ],
+                     "axe":  [
+                                 {
+                                     "path":  "/node/audit/0d3af1b7-eed7-45a6-8138-07a7a2b4a981",
+                                     "violations":  [
+
+                                                    ]
+                                 },
+                                 {
+                                     "path":  "/admin/learning",
+                                     "violations":  [
+
+                                                    ]
+                                 }
+                             ],
+                     "metrics":  {
+                                     "outcome":  "COMPLETED",
+                                     "seconds":  182,
+                                     "clicks":  35,
+                                     "deadClicks":  2,
+                                     "rageClicks":  0,
+                                     "inputs":  42,
+                                     "validationErrors":  0,
+                                     "pageViews":  10,
+                                     "distinctPages":  8,
+                                     "revisits":  2,
+                                     "httpErrors":  0,
+                                     "consoleErrors":  3,
+                                     "failedAttempts":  0,
+                                     "workarounds":  0,
+                                     "abandoned":  null,
+                                     "axeViolations":  0,
+                                     "apiCalls":  55,
+                                     "friction":  10
+                                 }
+                 },
+                 {
+                     "run":  "qa-steward-amara--steward-author-matching",
+                     "outcome":  "COMPLETED",
+                     "trace_exists":  true,
+                     "mode":  "ui-only",
+                     "constraints":  [
+                                         "zoom200"
+                                     ],
+                     "axe":  [
+                                 {
+                                     "path":  "/ethos/1a1c5d0e-757d-45b5-afb9-e4fc4295c804",
+                                     "violations":  [
+
+                                                    ]
+                                 },
+                                 {
+                                     "path":  "/ecosystems/1a1c5d0e-757d-45b5-afb9-e4fc4295c804",
+                                     "violations":  [
+                                                        {
+                                                            "id":  "aria-hidden-focus",
+                                                            "impact":  "serious",
+                                                            "nodes":  2,
+                                                            "help":  "ARIA hidden element must not be focusable or contain focusable elements"
+                                                        }
+                                                    ]
+                                 }
+                             ],
+                     "metrics":  {
+                                     "outcome":  "COMPLETED",
+                                     "seconds":  273,
+                                     "clicks":  22,
+                                     "deadClicks":  0,
+                                     "rageClicks":  0,
+                                     "inputs":  9,
+                                     "validationErrors":  0,
+                                     "pageViews":  10,
+                                     "distinctPages":  9,
+                                     "revisits":  1,
+                                     "httpErrors":  0,
+                                     "consoleErrors":  4,
+                                     "failedAttempts":  0,
+                                     "workarounds":  0,
+                                     "abandoned":  null,
+                                     "axeViolations":  1,
+                                     "apiCalls":  75,
+                                     "friction":  9
+                                 }
+                 },
+                 {
+                     "run":  "qa-member-ines--matching-privacy",
+                     "outcome":  "PARTIAL",
+                     "trace_exists":  true,
+                     "mode":  "ui-only",
+                     "constraints":  [
+                                         "keyboard"
+                                     ],
+                     "axe":  [
+                                 {
+                                     "path":  "/ethos/1a1c5d0e-757d-45b5-afb9-e4fc4295c804",
+                                     "violations":  [
+
+                                                    ]
+                                 },
+                                 {
+                                     "path":  "/ethos/1a1c5d0e-757d-45b5-afb9-e4fc4295c804",
+                                     "violations":  [
+
+                                                    ]
+                                 }
+                             ],
+                     "metrics":  {
+                                     "outcome":  "PARTIAL",
+                                     "seconds":  197,
+                                     "clicks":  25,
+                                     "deadClicks":  0,
+                                     "rageClicks":  2,
+                                     "inputs":  13,
+                                     "validationErrors":  0,
+                                     "pageViews":  11,
+                                     "distinctPages":  5,
+                                     "revisits":  6,
+                                     "httpErrors":  0,
+                                     "consoleErrors":  6,
+                                     "failedAttempts":  0,
+                                     "workarounds":  0,
+                                     "abandoned":  null,
+                                     "axeViolations":  0,
+                                     "apiCalls":  126,
+                                     "friction":  18
+                                 }
+                 },
+                 {
+                     "run":  "qa-probe-tess--directory-withdrawal-visible-ui",
+                     "outcome":  "COMPLETED",
+                     "trace_exists":  true,
+                     "mode":  "ui-only",
+                     "constraints":  [
+
+                                     ],
+                     "axe":  [
+                                 {
+                                     "path":  "/ethos/1a1c5d0e-757d-45b5-afb9-e4fc4295c804",
+                                     "violations":  [
+
+                                                    ]
+                                 }
+                             ],
+                     "metrics":  {
+                                     "outcome":  "COMPLETED",
+                                     "seconds":  19,
+                                     "clicks":  0,
+                                     "deadClicks":  0,
+                                     "rageClicks":  0,
+                                     "inputs":  0,
+                                     "validationErrors":  0,
+                                     "pageViews":  2,
+                                     "distinctPages":  1,
+                                     "revisits":  1,
+                                     "httpErrors":  0,
+                                     "consoleErrors":  3,
+                                     "failedAttempts":  0,
+                                     "workarounds":  0,
+                                     "abandoned":  null,
+                                     "axeViolations":  0,
+                                     "apiCalls":  26,
+                                     "friction":  6
+                                 }
+                 },
+                 {
+                     "run":  "qa-member-ines--real-orientation-guide",
+                     "outcome":  "BLOCKED",
+                     "trace_exists":  true,
+                     "mode":  "ui-only",
+                     "constraints":  [
+                                         "keyboard"
+                                     ],
+                     "axe":  [
+                                 {
+                                     "path":  "/orientation/1a1c5d0e-757d-45b5-afb9-e4fc4295c804/journey",
+                                     "violations":  [
+                                                        {
+                                                            "id":  "aria-progressbar-name",
+                                                            "impact":  "serious",
+                                                            "nodes":  1,
+                                                            "help":  "ARIA progressbar nodes must have an accessible name"
+                                                        }
+                                                    ]
+                                 },
+                                 {
+                                     "path":  "/orientation/1a1c5d0e-757d-45b5-afb9-e4fc4295c804/journey",
+                                     "violations":  [
+                                                        {
+                                                            "id":  "aria-progressbar-name",
+                                                            "impact":  "serious",
+                                                            "nodes":  1,
+                                                            "help":  "ARIA progressbar nodes must have an accessible name"
+                                                        }
+                                                    ]
+                                 }
+                             ],
+                     "metrics":  {
+                                     "outcome":  "BLOCKED",
+                                     "seconds":  122,
+                                     "clicks":  7,
+                                     "deadClicks":  0,
+                                     "rageClicks":  0,
+                                     "inputs":  2,
+                                     "validationErrors":  0,
+                                     "pageViews":  5,
+                                     "distinctPages":  3,
+                                     "revisits":  2,
+                                     "httpErrors":  0,
+                                     "consoleErrors":  5,
+                                     "failedAttempts":  0,
+                                     "workarounds":  0,
+                                     "abandoned":  null,
+                                     "axeViolations":  2,
+                                     "apiCalls":  59,
+                                     "friction":  12
+                                 }
+                 }
+             ],
+    "report":  "admin-matching-ui-lane.md",
+    "limitations":  [
+                        "No human research",
+                        "No provider-unavailable simulation",
+                        "Cross-user guide history not established; owner history persistence failed",
+                        "Manual action errors are recorded in driver log, not s.attempt counters"
+                    ]
+}

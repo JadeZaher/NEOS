@@ -1,6 +1,7 @@
 // NEOS REST side of the evals: a cookie-holding client per persona, fixtures built through the real API,
 // observations for state checks, and teardown. Never logs a header or cookie. See uxqa/agent-evals/AGENTS.md sec. Fixtures.
 import { collectTurn, readEvents } from './stream.mjs';
+import { createRequestPacer } from './request-pacing.mjs';
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
 const REQUEST_SECONDS = 30;
@@ -14,14 +15,15 @@ export function assertLocal(baseUrl) {
 }
 
 /** REST + chat client. cookies: handle -> neos_session value (held in memory only). */
-export function createClient(baseUrl, cookies) {
+export function createClient(baseUrl, cookies, { chatPaceMs = 2000 } = {}) {
 	assertLocal(baseUrl);
 	const cookieHeader = (handle, scopeIds) => {
 		if (!cookies.has(handle)) throw new Error(`no session for ${handle}`);
 		const scope = scopeIds?.length ? `; neos_selected_ecosystems=${encodeURIComponent(JSON.stringify(scopeIds))}` : '';
 		return `neos_session=${cookies.get(handle)}${scope}`;
 	};
-	const stats = { requests: 0 };
+	const stats = { requests: 0, pacedRequests: 0, pacingWaitMs: 0, chatPaceMs };
+	const pacer = createRequestPacer(chatPaceMs);
 
 	async function call(handle, method, path, body, { scopeIds } = {}) {
 		const response = await fetch(baseUrl + path, {
@@ -43,18 +45,23 @@ export function createClient(baseUrl, cookies) {
 
 	/** One user turn through the real chat endpoint; returns the collected turn (text, trace, tokens, session). */
 	async function chat(handle, payload, { scopeIds } = {}) {
+		const delay = await pacer.before();
+		stats.pacingWaitMs += delay;
+		if (delay) stats.pacedRequests++;
 		stats.requests++;
-		const response = await fetch(`${baseUrl}/api/v1/chat/send`, {
-			method: 'POST',
-			headers: { 'content-type': 'application/json', accept: 'text/event-stream', cookie: cookieHeader(handle, scopeIds) },
-			body: JSON.stringify(payload),
-			signal: AbortSignal.timeout(CHAT_SECONDS * 1000),
-		});
-		if (!response.ok) {
-			const data = await response.json().catch(() => null);
-			throw new Error(`chat HTTP ${response.status} ${String(data?.error || '').slice(0, 120)}`);
-		}
-		return collectTurn(await readEvents(response.body));
+		try {
+			const response = await fetch(`${baseUrl}/api/v1/chat/send`, {
+				method: 'POST',
+				headers: { 'content-type': 'application/json', accept: 'text/event-stream', cookie: cookieHeader(handle, scopeIds) },
+				body: JSON.stringify(payload),
+				signal: AbortSignal.timeout(CHAT_SECONDS * 1000),
+			});
+			if (!response.ok) {
+				const data = await response.json().catch(() => null);
+				throw new Error(`chat HTTP ${response.status} ${String(data?.error || '').slice(0, 120)}`);
+			}
+			return collectTurn(await readEvents(response.body));
+		} finally { pacer.complete(); }
 	}
 
 	return { call, must, chat, stats };

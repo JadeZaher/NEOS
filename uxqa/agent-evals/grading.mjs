@@ -12,6 +12,8 @@ const READ_ONLY_TOOLS = new Set([
 	'search_precedents', 'get_domain', 'get_active_members', 'get_emergency_state', 'list_ecosystems',
 	'get_ecosystem', 'search_proposals', 'get_proposal', 'list_domains', 'what_needs_me', 'explain_status',
 	'get_conflict_case', 'get_exit_status', 'get_governance_health', 'find_shares_needs',
+	'list_conversations', 'get_conversation', 'search_messages', 'find_message_members',
+	'find_collaboration_domains', 'find_collaborations', 'get_collaboration', 'get_health_audit', 'export_portable_record',
 ]);
 
 /** Only reviewed read tools are safe; a future tool must not silently bypass no-write checks. */

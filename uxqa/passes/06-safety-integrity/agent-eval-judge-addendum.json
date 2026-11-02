@@ -1,0 +1,19 @@
+{
+  "M1#2": {
+    "decision": "amend",
+    "originalScores": {
+      "correctness": 4,
+      "clarity": 4,
+      "nextStep": 2
+    },
+    "proposedScores": {
+      "correctness": 4,
+      "clarity": 4,
+      "nextStep": 4,
+      "note": "Correctly reports incomplete advice and author control; offers an available messaging action. Omits steward qualification and the direct option to give advice."
+    },
+    "reason": "The reply conditionally offers to message Ben; it does not claim a message was sent. The coordinator supplies that member messaging was available before this run and that Ana and Ben shared active ecosystem context. An offered future action does not require an executed tool trace. This makes the next step concrete and available. The recorded proposal remains in advice, and its tool gates explicitly allow Ana to give advice; that simpler option is omitted. Correctness and clarity remain unchanged.",
+    "evidenceLimit": "Reconsidered only the existing M1-2 transcript and original score, plus the coordinator-provided capability fact. No source inspection, provider call, live service, or test.",
+    "unchanged": "Original judge file and all other run judgments remain unchanged. The existing pass threshold remains unchanged; the coordinator applies it."
+  }
+}

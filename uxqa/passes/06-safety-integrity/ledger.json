@@ -1,0 +1,280 @@
+{
+    "pass":  "06-safety-integrity",
+    "entries":  [
+                    {
+                        "id":  "p6-guide-resume",
+                        "severity":  "HIGH",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Required guide replies disappear after reload",
+                        "evidence":  [
+                                         "admin-matching-ui-lane.md",
+                                         "runtime-recovery-ui-report.md",
+                                         "../07-stewardship/constrained-stewardship-ui-report.md"
+                                     ],
+                        "repair":  "Owner/journey/step-scoped latest-session recovery, verified reply counts and explicit New isolation",
+                        "verification":  "Actual pass06 saved-reply reload and history selection pass without another model call. Fresh pass07 one genuine reply survives reload, actual Continue reaches Journey Complete, and another reload retains completion; no fake proof or replacement request."
+                    },
+                    {
+                        "id":  "p6-agreement-projection",
+                        "severity":  "HIGH",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Support agreement edits omit normalized participation requirements",
+                        "evidence":  [
+                                         "../06-safety-integrity-probe/entry-capability.json",
+                                         "../06-safety-integrity-r2-probe/entry-capability.json"
+                                     ],
+                        "repair":  "Synchronize normalized agreement requirements atomically in audited support mutations",
+                        "verification":  "Independent targeted source review and 24/24 real API entry checks; zero UI successes assigned to probes. Production read-only inventory found no preexisting projection differences."
+                    },
+                    {
+                        "id":  "p6-agreement-first",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Prejoin agreement links lead to inaccessible private records",
+                        "evidence":  [
+                                         "constrained-ui-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Explicit pending-join action before offering private agreement links",
+                        "verification":  "Dara reads the actual agreement before any quiz submission; membership stays pending and no consent is fabricated."
+                    },
+                    {
+                        "id":  "p6-directory-profile",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Directory profile link points to an unregistered route",
+                        "evidence":  [
+                                         "admin-matching-ui-lane.md",
+                                         "runtime-recovery-ui-report.md",
+                                         "../07-stewardship/constrained-stewardship-ui-report.md"
+                                     ],
+                        "repair":  "Use registered /users handle route with supported UUID fallback",
+                        "verification":  "Fresh pass07 actual directory link opens /users/qa_probe_tess and the Tess profile heading. Independent withdrawal checks remain intact; the unavailable pass06 click was not silently converted into a pass."
+                    },
+                    {
+                        "id":  "p6-support-review",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Final support review exposes raw JSON instead of readable quiz and journey changes",
+                        "evidence":  [
+                                         "admin-matching-ui-lane.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Semantic question, answer, scope, named-quiz and journey-step review with optional advanced data",
+                        "verification":  "Actual memberless support review/save/public receipt passes with one synthetic journey command."
+                    },
+                    {
+                        "id":  "p6-support-return",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Public audit receipt return loses support organization and search",
+                        "evidence":  [
+                                         "admin-matching-ui-lane.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Owner/task-scoped allowlisted navigation context and same-route mobile navigation close",
+                        "verification":  "Browser Back restores organization/search without automatic private inspection; sensitive command and inspection state is excluded."
+                    },
+                    {
+                        "id":  "p6-accessible-controls",
+                        "severity":  "HIGH",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Quiz results and history contain unnamed back controls and progress bars",
+                        "evidence":  [
+                                         "gold-ui-lane-report.md",
+                                         "constrained-ui-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Named controls, named domain-result links and actual Radix root progress value",
+                        "verification":  "Actual graded/nongraded result controls and guide progress checked; settled result scans clean. Broader screen-reader validation remains human research."
+                    },
+                    {
+                        "id":  "p6-guide-scroll",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Recovered guide transcript cannot receive keyboard scroll focus",
+                        "evidence":  [
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Named focusable transcript logs with visible focus in step and side panel",
+                        "verification":  "Actual Tab reaches the saved transcript, End scrolls 0 to 234, fresh unsuppressed guide axe scan has zero violations; zero model calls."
+                    },
+                    {
+                        "id":  "p6-toast-proxy",
+                        "severity":  "MEDIUM",
+                        "decision":  "DEFER",
+                        "status":  "RESEARCH_PENDING",
+                        "title":  "Axe flags upstream toast focus proxies after notifications",
+                        "evidence":  [
+                                         "gold-ui-lane-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Retain the upstream focus-routing implementation and preserve the finding",
+                        "verification":  "Real F8/Tab/Shift+Tab leaves no trapped hidden focus and performs no profile write. Axe still flags two aria-hidden-focus nodes; this is not a clean scan or proof of assistive-technology usability. Human validation is deferred in D-09."
+                    },
+                    {
+                        "id":  "p6-narrow-reflow",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Global minimum width and mobile sheet overflow a narrow zoomed viewport",
+                        "evidence":  [
+                                         "constrained-ui-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Remove global 20rem minimum and clamp mobile sheet/dialog widths",
+                        "verification":  "Actual CSS195 viewport measures document195 and sidebar195; emulation is explicitly distinct from native browser zoom."
+                    },
+                    {
+                        "id":  "p6-completion-language",
+                        "severity":  "LOW",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Nongraded readiness results imply grading and show raw false answers",
+                        "evidence":  [
+                                         "constrained-ui-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Completion wording and typed Yes/No answer summaries",
+                        "verification":  "Actual readiness result displays completed questionnaire and No answers without a pass/score judgment; axe clean."
+                    },
+                    {
+                        "id":  "p6-required-domain",
+                        "severity":  "LOW",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Publishing an offer requires an unmarked Domain field",
+                        "evidence":  [
+                                         "gold-ui-lane-report.md",
+                                         "../07-stewardship/gold-ui-lane-report.md"
+                                     ],
+                        "repair":  "Mark Domain and Title as required without guessing a group",
+                        "verification":  "Fresh pass07 gold-share sees the required Domain marker, selects it before the first submit, publishes through the actual create request and finds the new listed offer without the prior validation failure."
+                    },
+                    {
+                        "id":  "p6-pagination-contrast",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Disabled Previous pagination text has insufficient contrast",
+                        "evidence":  [
+                                         "gold-ui-lane-report.md",
+                                         "runtime-recovery-ui-report.md"
+                                     ],
+                        "repair":  "Native disabled pagination buttons with opaque semantic text",
+                        "verification":  "Actual Previous control is disabled with opacity1 through its ancestors; settled list axe scan clean."
+                    },
+                    {
+                        "id":  "p6-provider-admission",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Transient provider admission denial aborts the live agent run",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "agent-eval-live-retry-01.json",
+                                         "../07-stewardship/agent-eval-release-final-01.json",
+                                         "../../../.omc/research/completion-final-confirmation-20261102.log",
+                                         "../../../.omc/research/completion-message-intent-20261102.log"
+                                     ],
+                        "repair":  "Bounded generation-only 429/503 retries with Retry-After and original caller deadline, SDK retries disabled, safe post-commit availability receipt",
+                        "verification":  "Provider deadline/Retry-After/no-replay and exact committed-action SSE coverage pass in full/affected execution; final SSE86 and message-intent68 pass. Later actual model/operator attempts have no availability errors. Production SDK preserves explicit zero retries. Historical429 remains; no live-production deployment or universal provider-availability guarantee is claimed."
+                    },
+                    {
+                        "id":  "p6-queue-links",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Priority queue answer omits actual navigation links",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "agent-eval-live-retry-01.json",
+                                         "agent-eval-live-retry-01-judge.json",
+                                         "../07-stewardship/agent-eval.json",
+                                         "../07-stewardship/agent-eval-judge.json"
+                                     ],
+                        "repair":  "Retain first two validated model-visible queue links for deterministic missing-link footer and preserve the full bounded model-visible capture",
+                        "verification":  "Pass06 retry R2 passes actual checks and scores3/5/5; its original clipped capture remains a limitation. Fresh pass07 full6000-character capture verifies actual queue total26 and correct priorities/links with independent scores5/4/4; neither historical failure nor clipped evidence was rewritten."
+                    },
+                    {
+                        "id":  "p6-explicit-objection",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Explicit own objection with a concrete reason is not recorded",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "agent-eval-live-retry-01.json"
+                                     ],
+                        "repair":  "Accept concrete supplied burden/safety reasons without demanding a formal harm argument; retain current actor/stage enforcement",
+                        "verification":  "Fresh A3 records the intended own objection and passes actual state checks; vague-concern safety remains separate."
+                    },
+                    {
+                        "id":  "p6-status-grounding",
+                        "severity":  "LOW",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Proposal explanation overstates missing history and omits actual caller options",
+                        "evidence":  [
+                                         "agent-eval-judge.json",
+                                         "agent-eval-live-retry-01-judge.json",
+                                         "../07-stewardship/agent-eval.json",
+                                         "../07-stewardship/agent-eval-judge.json",
+                                         "../07-stewardship/agent-eval-release-final-01.json",
+                                         "../07-stewardship/agent-eval-release-final-01-judge.json"
+                                     ],
+                        "repair":  "Typed current-state facts plus evidence-led follow-up on final answer policy",
+                        "verification":  "Fresh release-final R4 scores4/4/5 under unchanged thresholds and accurately gives current consent positions, author rights, nonautomatic Advice and limited history knowledge. Earlier3/4/3 failures remain unchanged. The judge notes omitted completed-round context/repetition as bounded quality limits, not a passing perfect-answer claim."
+                    },
+                    {
+                        "id":  "p6-draft-commitments",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Generated draft adds volunteer staffing absent from the user request",
+                        "evidence":  [
+                                         "agent-eval-live-retry-01.json",
+                                         "agent-eval-live-retry-01-judge.json",
+                                         "../07-stewardship/agent-eval.json",
+                                         "../07-stewardship/agent-eval-release-final-01.json",
+                                         "../07-stewardship/agent-eval-release-final-01-judge.json"
+                                     ],
+                        "repair":  "Remove tool expansion incentive and ground factual draft content and optional commitments in authenticated user-supplied information; resolve the subsequent drafting-skill conflict",
+                        "verification":  "Fresh release-final A4 actually persists the requested monthly hall repair cafe and opens Advice, without invented staffing or other commitments; independent scores3/5/5 pass the unchanged rubric. Rationale remains an explicit non-substantive placeholder rather than invented facts. Historical incorrect-content and no-write failures remain unchanged."
+                    },
+                    {
+                        "id":  "p6-reading-level",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Three replies exceed the unchanged plain-language reading target",
+                        "evidence":  [
+                                         "agent-eval-live-retry-01.json",
+                                         "../07-stewardship/agent-eval.json",
+                                         "../07-stewardship/agent-eval-judge.json"
+                                     ],
+                        "repair":  "General concise framework and record-help guidance; retain existing grade, word and jargon checks",
+                        "verification":  "Original retry R3 FK8.4, P1 FK10.6 and P2 first-turn FK8.3 failures are preserved. Fresh canonical pass07 R3, P1 and P2 pass the unchanged reading/word/jargon checks and independent quality judgments; no threshold was relaxed."
+                    },
+                    {
+                        "id":  "p6-human-research",
+                        "severity":  "LOW",
+                        "decision":  "DEFER",
+                        "status":  "RESEARCH_PENDING",
+                        "title":  "Automated personas do not establish human comprehension or screen-reader usability",
+                        "evidence":  [
+                                         "human-validation-plan.md"
+                                     ],
+                        "repair":  "Retain five sessions per segment with representative participants",
+                        "verification":  "No human participants or outcomes are claimed. Owner decision D-09 is deferred and does not block authorized automated QA/deployment."
+                    }
+                ]
+}

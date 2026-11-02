@@ -1,0 +1,118 @@
+{
+  "pass": "06-safety-integrity-probe",
+  "kind": "API_CAPABILITY_ONLY",
+  "created_at": "2026-11-02T15:10:19.122Z",
+  "results": [
+    {
+      "name": "unconfigured-entry-is-active",
+      "outcome": "PASS"
+    },
+    {
+      "name": "nongraded-checklist-is-a-real-completion-gate",
+      "outcome": "PASS"
+    },
+    {
+      "name": "forged-completion-flag-cannot-complete-checklist",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/4926f34d-af22-43cb-8812-ee32e52e70a0/join -> 409 Complete the configured entry requirements before joining"
+    },
+    {
+      "name": "incomplete-checklist-does-not-authorize-entry",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/4926f34d-af22-43cb-8812-ee32e52e70a0/join -> 409 Complete the configured entry requirements before joining"
+    },
+    {
+      "name": "valid-false-preference-answers-complete-without-a-pass",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/4926f34d-af22-43cb-8812-ee32e52e70a0/join -> 409 You are already a member of Readiness checklist (uxqa-p6-d4460b9e)."
+    },
+    {
+      "name": "configured-entry-is-pending",
+      "outcome": "PASS"
+    },
+    {
+      "name": "candidate-quiz-hides-keys",
+      "outcome": "PASS"
+    },
+    {
+      "name": "forged-score-and-identity-are-rejected",
+      "outcome": "PASS"
+    },
+    {
+      "name": "wrong-answer-does-not-pass",
+      "outcome": "PASS"
+    },
+    {
+      "name": "quiz-before-consent-remains-pending",
+      "outcome": "FAIL",
+      "detail": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'ready'\n- 'agreement_consent_required'\n"
+    },
+    {
+      "name": "quiz-then-consent-activates",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/1df1f666-e597-4741-b583-9af914917961/join -> 409 You are already a member of Shared tools (uxqa-p6-d4460b9e)."
+    },
+    {
+      "name": "consent-before-quiz-does-not-activate",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/1df1f666-e597-4741-b583-9af914917961/join -> 409 Complete the configured entry requirements before joining"
+    },
+    {
+      "name": "consent-then-quiz-activates",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/1df1f666-e597-4741-b583-9af914917961/join -> 409 You are already a member of Shared tools (uxqa-p6-d4460b9e)."
+    },
+    {
+      "name": "unpublished-configured-quiz-fails-closed",
+      "outcome": "PASS"
+    },
+    {
+      "name": "domain-requires-parent-and-target-quizzes",
+      "outcome": "PASS"
+    },
+    {
+      "name": "parent-only-pass-does-not-authorize-child",
+      "outcome": "PASS"
+    },
+    {
+      "name": "all-domain-passes-authorize-participation",
+      "outcome": "PASS"
+    },
+    {
+      "name": "domain-passes-do-not-authorize-team",
+      "outcome": "PASS"
+    },
+    {
+      "name": "changed-quiz-invalidates-old-pass-for-new-participation",
+      "outcome": "PASS"
+    },
+    {
+      "name": "quiz-change-does-not-demote-existing-membership-or-participation",
+      "outcome": "FAIL",
+      "detail": "POST /api/v1/ecosystems/1df1f666-e597-4741-b583-9af914917961/join -> 409 You are already a member of Shared tools (uxqa-p6-d4460b9e)."
+    },
+    {
+      "name": "node-admin-bypasses-only-quizzes",
+      "outcome": "FAIL",
+      "detail": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'active'\n- 'pending_consent'\n"
+    },
+    {
+      "name": "admin-exemption-does-not-fabricate-attempts",
+      "outcome": "FAIL",
+      "detail": "Expected values to be strictly equal:\n\n0 !== 1\n"
+    },
+    {
+      "name": "revoked-builder-loses-quiz-exemption",
+      "outcome": "PASS"
+    },
+    {
+      "name": "quiz-bypass-is-public-and-utc",
+      "outcome": "PASS"
+    }
+  ],
+  "summary": {
+    "passed": 14,
+    "failed": 10,
+    "ui_success_count": 0
+  }
+}

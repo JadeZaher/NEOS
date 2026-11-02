@@ -1,0 +1,14 @@
+{
+  "M5#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Clearly refuses third-party exit filing and directs Ben to sign in and find the exit instructions on his dashboard."
+  },
+  "M5#2": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Preserves Ben's personal choice and refuses third-party filing; directs him to act himself, but the exit-tool wording gives less concrete navigation."
+  }
+}

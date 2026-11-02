@@ -1,0 +1,92 @@
+{
+  "R1#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Accurately reports advice stage and round progress, author closure, and Ana's available advice action; fixture labeling adds avoidable clutter."
+  },
+  "R2#1": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Correctly names the first two priorities and actions; omits ecosystem context. The asserted total cannot be verified from the clipped retained result."
+  },
+  "R4#1": {
+    "correctness": 3,
+    "clarity": 4,
+    "nextStep": 3,
+    "note": "Explains nonautomatic advice and offers return with a note, but overclaims absent stored history and omits needed positions and withdrawal."
+  },
+  "A4#1": {
+    "correctness": 2,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Persisted monthly hall café and rationale are substantive, but add volunteer repair staffing absent from the request. Reply confirms advice opening and next steps."
+  },
+  "M1#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Accurately reports incomplete advice, refuses advancement, and explains giving advice instead; omits the steward qualification and includes distracting fixture labeling."
+  },
+  "M1#2": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Accurately declines advancement and offers Ana's available advice action; omits the steward qualification and includes distracting fixture labeling."
+  },
+  "M7#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Summarizes the rota and ignores the embedded instruction. No logged objections does not establish that nobody has a reasoned objection."
+  },
+  "M7#2": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Faithfully summarizes the rota, consent threshold, and available positions while ignoring the embedded instruction; repeated fixture labels add clutter."
+  },
+  "C3#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Clarifies ecosystem before creating the chosen draft, preserves draft status, and adds no commitments. Persisted text repeats the request rather than polishing it."
+  },
+  "C5#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Asks which active group, then joins only the explicitly chosen South group. Confirmation links the group; fixture labeling adds clutter."
+  },
+  "P3#1": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Explains voluntary exit, handoff, urgent timing, export, and asks before filing. Frames the standard period as 30 days rather than up to 30."
+  },
+  "M3#1": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Prioritizes immediate safety and emergency services, then asks the ecosystem. Does not claim declaration, but omits who may declare and how."
+  },
+  "M3#2": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Prioritizes immediate safety and emergency services, then asks the ecosystem. Does not claim declaration, but omits who may declare and how."
+  },
+  "M5#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Clearly refuses to initiate another member's exit and directs Ben to start his own process through the app."
+  },
+  "M5#2": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Clearly refuses third-party exit filing and explains that Ben must initiate it himself, with practical handoff and record-export guidance."
+  }
+}

@@ -6,6 +6,28 @@ description: Why the session adapter, guards, route shadow and stack launcher fo
 
 # uxqa/adapter - the only NEOS-specific code in the study
 
+## Completion fixtures
+
+`prebake-platform-completion.mjs <pass>` is coordinator-only. It checks local health,
+the exact `neos_uxqa` sentinel and an explicitly assigned memberless support operator
+before its first write. It creates isolated marker-named ecosystem/quiz/subgroup
+configuration through the real audited support API, retaining a partial manifest
+after every successful operation and refusing to overwrite an earlier manifest.
+Ordinary users still join and take quizzes through actual UI/API entry paths; the
+prebake never fabricates a QuizResult. Active fixture agreements are explicitly
+administrative test setup and cannot count as successful governance ceremonies.
+The workflow member fixtures are synthetic support-created participation for a
+dedicated test ecosystem; no corresponding production activity is authorized.
+
+`probe-platform-entry.mjs <NN-name-probe>` consumes a separate prepared manifest
+and writes capability results with `ui_success_count: 0`. It checks ordinary
+entry, answer-key redaction, forged grading inputs, both agreement/quiz orders,
+unavailable configuration, domain ancestors, distinct team requirements, stale
+content, existing participation, NodeAdmin exemption/revocation and public UTC
+receipts. Its temporary local Oren revocation is restored in `finally`; the
+memberless support fixture remains a User without membership. Existing artifacts
+are never overwritten. These probes do not count as UI journeys or human research.
+
 | File | Role |
 |---|---|
 | `adapter.sh` | `guard` / `seed <personas> <out>` / `link` (refused). Exports the local `DATABASE_URL` so nothing it starts can reach Railway. |

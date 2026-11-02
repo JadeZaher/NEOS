@@ -1,0 +1,16 @@
+{
+  "type": "matcher-clarification",
+  "task": "R1#1",
+  "canonicalOutcome": "FAIL",
+  "classification": "semantic_false_negative",
+  "countStatement": "It needs two advice rounds, and it currently has one.",
+  "traceFacts": {
+    "stage": "advice",
+    "requiredAdviceRounds": 2,
+    "roundsWithAdvice": 1,
+    "memberCanGiveAdvice": true,
+    "writeCalls": 0
+  },
+  "reason": "The reply states the required and current counts truthfully and accurately offers optional advice. The recorded matcher does not accept this current-count grammatical form.",
+  "limits": "Classification only. No canonical edit, retroactive score, altered check, or proposed regex expansion."
+}

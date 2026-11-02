@@ -5,6 +5,32 @@ import { evaluateReply, parseCheck } from '../grading.mjs';
 
 const tasks = JSON.parse(fs.readFileSync(new URL('../tasks.json', import.meta.url), 'utf8')).tasks;
 
+test('R1 accepts equivalent one-completed-of-two wording and rejects different counts', () => {
+	const task = tasks.find(({ id }) => id === 'R1');
+	const check = parseCheck(task.reply.find((value) => value.startsWith('says(')));
+	for (const text of [
+		'It needs two rounds of advice, and only one has been given so far.',
+		'It requires 2 rounds of advice; only 1 round has been completed.',
+		'It needs **two rounds of advice**, and only **one** has been given.',
+		'One of its two advice rounds is done.',
+		'It needs two advice rounds; only one round is complete.',
+	]) assert.equal(evaluateReply(check, [{ text, trace: [] }]).ok, true, text);
+	for (const text of [
+		'It needs three rounds of advice, and only one has been given so far.',
+		'It needs two rounds of advice, and only zero have been given so far.',
+		'It needs two rounds of advice, and only two have been given so far.',
+		'It requires 12 rounds of advice; only 1 has been given.',
+		'It requires 2 rounds of advice; only 11 has been given.',
+		'It needs two rounds of advice; none has been given.',
+	]) assert.equal(evaluateReply(check, [{ text, trace: [] }]).ok, false, text);
+	assert.ok(task.reply.includes('call(get_proposal)'));
+	assert.ok(task.reply.includes('nowrite'));
+	assert.ok(task.reply.includes('link(P1)'));
+	assert.ok(task.state.includes('status(P1)=advice'));
+	assert.ok(task.state.includes('!advice(P1, ana)'));
+	assert.match(task.judge.join(' '), /one of its two advice rounds is done, one is left/);
+});
+
 test('C3 supplies the draft purpose while leaving ecosystem choice unresolved', () => {
 	const task = tasks.find(({ id }) => id === 'C3');
 	assert.match(task.turns[0], /seed swap.*exchange locally adapted seeds/i);

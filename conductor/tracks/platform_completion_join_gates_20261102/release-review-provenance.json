@@ -1,0 +1,12 @@
+{
+    "type":  "Independent Release Review Provenance",
+    "source":  ".omc/research/release-evidence-verification-20261102.md",
+    "curated_copy":  "conductor/tracks/platform_completion_join_gates_20261102/release-review.md",
+    "source_sha256":  "43A1CF4D54930078DB7FF13181DB929E6FA0555B59E3FDC1EB0C2F998EDAB46A",
+    "curated_sha256":  "43A1CF4D54930078DB7FF13181DB929E6FA0555B59E3FDC1EB0C2F998EDAB46A",
+    "copied_verbatim":  true,
+    "source_authorship":  "Independent release verifier; the coordinating documentation lane did not author or rewrite the approval",
+    "verdict":  "APPROVED_COMPLETE",
+    "copied_at_utc":  "2026-11-02T18:33:35Z",
+    "evidence_link_policy":  "The verbatim reviewer report intentionally retains local links to private ignored evidence artifacts; raw private bodies and credentials were excluded by the reviewer"
+}

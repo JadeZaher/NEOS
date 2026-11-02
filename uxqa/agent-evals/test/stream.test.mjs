@@ -74,3 +74,16 @@ test('skill routing evidence keeps native mode and explicit skill selection dist
 		{ mode: 'skill', skill: 'proposal-creation', source: 'member' },
 	]);
 });
+
+
+test('safe provider availability is preserved as availability without inferring exhausted credits',()=>{
+ const turn=collectTurn([
+  {type:'availability',data:JSON.stringify({status:'unavailable',provider_status:429,retryable:true,retry_after_seconds:10,attempts:3,private_body:'must not be retained'})},
+  {type:'usage',data:JSON.stringify({total_tokens:123})},
+  {type:'session',data:JSON.stringify({session_id:'saved-session'})},
+  {type:'done',data:''},
+ ]);
+ assert.equal(turn.serviceUnavailable,true);assert.equal(turn.ownerBlocked,false);
+ assert.deepEqual(turn.availability,{status:'unavailable',provider_status:429,retryable:true,retry_after_seconds:10,attempts:3});
+ assert.equal(turn.tokens,123);assert.equal(turn.sessionId,'saved-session');assert.equal(turn.done,true);
+});

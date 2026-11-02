@@ -1,0 +1,536 @@
+{
+    "seed":  {
+                 "marker":  "uxqa-p7",
+                 "ecosystems":  [
+                                    "OmniOne",
+                                    "Oasis",
+                                    "Escherbridge",
+                                    "Plan Systems"
+                                ],
+                 "adapterNote":  "Retain all 17 explicit identities and role fixtures for regression compatibility. Coordinator-only guarded local seeding. New configured-scope fixtures use real APIs and are recorded in prebake.json; no fixture exists until its successful API result is recorded.",
+                 "prebake":  {
+                                 "planned":  [
+                                                 "Dedicated qa-marked ecosystem with no quiz",
+                                                 "Dedicated ecosystem with published entry quiz and explicit agreement requirement",
+                                                 "Domain ancestor/target quizzes and distinct team quiz",
+                                                 "Unpublished configured entry requirement",
+                                                 "Governed matching profile and opt-in participants",
+                                                 "Synthetic ordinary-operator workflow records"
+                                             ],
+                                 "fixtures":  [
+
+                                              ],
+                                 "rules":  [
+                                               "No fixture creation before the coordinator proves both local guards",
+                                               "Create through real APIs and record refusals honestly",
+                                               "No changes to the seven gold task predicates or historical pass results",
+                                               "No fake passing QuizResult or fabricated governance participation"
+                                           ]
+                             },
+                 "assistantBudget":  {
+                                         "node-admin-tasks":  2,
+                                         "agent-evals":  "Separate bounded capability runner",
+                                         "join-and-orientation":  2,
+                                         "subgroup-keyboard-mobile":  2,
+                                         "scope-and-privacy-probe":  2,
+                                         "gold-reentry":  0,
+                                         "ordinary-operator":  2
+                                     },
+                 "harnessNotes":  [
+                                      "Before any lane spends an assistant message, check once that the assistant answers (pass 02 lost every assistant step to a missing model key). If it does not, record an OWNER defect and run the lane\u0027s UI fallback.",
+                                      "runGold reused one run directory per task id in pass 02: keep each run\u0027s artifacts separate with a run index.",
+                                      "Radix tablists use roving tabindex; Radix Select listboxes need a short wait between ArrowDown and Enter; Radix tab dead clicks come from switching on mousedown and are not product defects.",
+                                      "Cap scripted retries of one step at 2 so a slip cannot burn a lane\u0027s budget; write driver snippets atomically.",
+                                      "Slow-network emulation on the Vite dev server took about 60 s per page in pass 02: give the slow persona generous waits; a rig timeout is a lane error, not product friction."
+                                  ]
+             },
+    "personas":  [
+                     {
+                         "handle":  "qa-visitor",
+                         "name":  "Visitor",
+                         "archetype":  "signed-out visitor (gold)",
+                         "segment":  "visitors",
+                         "goal":  "A friend told me about NEOS. I want my own account and to get into the app.",
+                         "context":  "Gold persona for gold-signup. No account, ordinary web skills, no idea what an ecosystem is yet. Each run signs up with a fresh username uxqa_p3_gold_\u003c4 random chars\u003e and a display name carrying uxqa-p3. Unconstrained so gold trends stay comparable across passes.",
+                         "patience":  3,
+                         "constraints":  {
+
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "anonymous":  true
+                                  }
+                     },
+                     {
+                         "handle":  "qa-gold-member",
+                         "name":  "Gold Member",
+                         "archetype":  "active member (gold)",
+                         "segment":  "members",
+                         "goal":  "Put a proposal forward and open it for members\u0027 advice; offer seed-saving workshops publicly and check others can find the offer.",
+                         "context":  "Gold persona for gold-propose and gold-share. An ordinary OmniOne member (townhall) who has used NEOS a little but never written a proposal or a share. Handle and seed are stable for cross-pass gold trends. Each task runs 3 times; between runs the lane withdraws the previous run\u0027s \u0027(uxqa gold)\u0027 item through the UI, outside the timed run.",
+                         "patience":  3,
+                         "constraints":  {
+
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-gold-advisor",
+                         "name":  "Gold Advisor",
+                         "archetype":  "active member (gold)",
+                         "segment":  "members",
+                         "goal":  "Give my advice on a proposal that is waiting for it, change the name other members see for me, and answer another ecosystem\u0027s request for help with rainwater harvesting.",
+                         "context":  "Gold persona for gold-advise, gold-profile and gold-respond. An ordinary OmniOne member (townhall) who reads proposals but rarely writes. The seed resets the display name to \u0027Gold Advisor\u0027 and forgets earlier answers to the gold need each pass. Each gold-advise run picks a proposal it has not advised on in an earlier run.",
+                         "patience":  3,
+                         "constraints":  [
+                                             "keyboard-only"
+                                         ],
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-gold-newcomer",
+                         "name":  "Gold Newcomer",
+                         "archetype":  "newcomer (gold)",
+                         "segment":  "newcomers",
+                         "goal":  "Find out how to get oriented in an ecosystem I\u0027m curious about and start its orientation journey.",
+                         "context":  "Gold persona for gold-orient. Signed in for the first time after joining OmniOne; knows nothing about ethos, orientation or ACT. The seed clears orientation progress each pass.",
+                         "patience":  3,
+                         "constraints":  [
+                                             "accessibility-tree-only"
+                                         ],
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-member-ines",
+                         "name":  "Ines Valcourt",
+                         "archetype":  "long-standing member who posts and manages needs and offers, keyboard only",
+                         "segment":  "members",
+                         "goal":  "Join the circle and team I need, complete their own learning checks, and return to the right place.",
+                         "context":  "OmniOne member for three years who runs the tool library. Repetitive strain injury: keyboard only (Tab, Enter, Space, arrows), never a pointer. Expects to be told who will see a post before she publishes and to be told when someone answers. RE-POWERED from profile builder to collaborator: since wave C a builder profile on OmniOne makes her a platform admin and an OmniOne steward, and stewards see every post in their ecosystem whatever its visibility, which would hide the ordinary member\u0027s view this pass tests. A collaborator is an ordinary member who is not a steward.",
+                         "patience":  4,
+                         "constraints":  {
+                                             "keyboardOnly":  true
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "collaborator",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-kofi",
+                         "name":  "Kofi Asante",
+                         "archetype":  "new member and expert screen-reader user",
+                         "segment":  "newcomers",
+                         "goal":  "Join a community, understand its entry requirements, and complete the next step without losing my place.",
+                         "context":  "Blind since birth; reads the accessibility tree and navigates by keyboard. Fluent in English and French. Hidden labels, unannounced errors and lost focus block progress. Has three attempts before recording abandonment.",
+                         "patience":  3,
+                         "constraints":  [
+                                             "accessibility-tree-only",
+                                             "keyboard-only",
+                                             "finite-patience"
+                                         ],
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-member-dara",
+                         "name":  "Dara Lemaire",
+                         "archetype":  "member of Escherbridge and Oasis who answers needs, leaves Escherbridge and returns",
+                         "segment":  "cross-ecosystem",
+                         "goal":  "Offer my skills to people in other ecosystems, ask for a translator for our maker-space safety sheet, then step away from Escherbridge for a while and come back without losing my place.",
+                         "context":  "NEW. Maker and translator from Lyon who works in Escherbridge\u0027s Amsterdam maker space and is also an Oasis member. Browser in French (fr-FR), so she notices mixed date and number formats and untranslated words. Has no OmniOne membership, so anything she answers in OmniOne is a real cross-ecosystem answer. She checks that posts meant only for another ecosystem or domain stay hidden from her. Her leaving uses the app\u0027s own exit path and is her own decision (the scenario covers leave-and-return); the next seed sets her Escherbridge row back to active.",
+                         "patience":  3,
+                         "constraints":  [
+                                             "390px viewport",
+                                             "200% zoom"
+                                         ],
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "Escherbridge",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          },
+                                                          {
+                                                              "ecosystem":  "Oasis",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-tomas",
+                         "name":  "Tomas Lindqvist",
+                         "archetype":  "stuck newcomer who becomes a collaboration proposer",
+                         "segment":  "newcomers",
+                         "goal":  "Get my membership working so I can offer the repair cafe\u0027s skills and set up repair days with Plan Systems\u0027 broadband people.",
+                         "context":  "NEW. Has run OmniOne\u0027s repair cafe in person for months, but his NEOS membership has said \u0027waiting\u0027 since he asked to join under a membership charter that no longer exists, so there is nothing left for him to consent to (stuck: pending_consent with no gate in OmniOne). Not a steward anywhere, so a collaboration he proposes needs a steward on each side. Comfortable with computers, unfamiliar with governance words. The next seed puts him back to pending_consent, so the stuck path is repeatable.",
+                         "patience":  3,
+                         "constraints":  [
+                                             "200% zoom"
+                                         ],
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "pending_consent"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-steward-amara",
+                         "name":  "Amara Teague",
+                         "archetype":  "OmniOne steward (mod): moderation, newcomers, collaboration approval; low vision",
+                         "segment":  "stewards",
+                         "goal":  "Prepare a clear orientation journey and a governed matching profile, then understand how a source change affects published fit evidence.",
+                         "context":  "Has stewarded in OmniOne for two years (role mod, profile collaborator), so she is a steward there but not a platform admin, and review-due agreement items are meant for admins and owners, not her. Low vision: always browses at 200% zoom. Moved from opus to sonnet this pass: the two expert seats go to the auditor and the methodologist.",
+                         "patience":  4,
+                         "constraints":  {
+                                             "zoom":  2
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "mod",
+                                                              "profile":  "collaborator",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-steward-lena",
+                         "name":  "Lena Brightwater",
+                         "archetype":  "Plan Systems steward (admin) on a phone: gate owner, collaboration approval, agreement review",
+                         "segment":  "stewards",
+                         "goal":  "Use the personal operator to finish an authorized governance task and follow its record in the interface.",
+                         "context":  "NEW: the steward of a second ecosystem the cast notes asked for, so a collaboration has two real sides. Founding steward of Plan Systems (role admin, profile collaborator) in Portland, so she is a steward of Plan Systems and nothing else, and she sees review-due items. Does steward work on a phone (390 px) between field visits and taps again when the phone lags, which tests double approval. She authors Plan Systems\u0027 membership agreement in prebake, so newcomers there meet a consent gate.",
+                         "patience":  3,
+                         "constraints":  {
+                                             "width":  390
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "Plan Systems",
+                                                              "role":  "admin",
+                                                              "profile":  "collaborator",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-member-oren",
+                         "name":  "Oren Feldmann",
+                         "archetype":  "OmniOne steward and explicitly assigned node support admin",
+                         "segment":  "stewards",
+                         "goal":  "Use the administration tasks to manage a community and its users with a clear review and public audit trail.",
+                         "context":  "Founding OmniOne co-creator (role admin, profile co_creator); that organization profile grants no node support authority: a steward with a separate explicit node admin assignment, so review-due items 14 days ahead are meant for him and the independent-auditor rule should stop him auditing his own ecosystem. Trains stewards and judges method. Browser in German (de-DE), so he checks that due dates and audit dates read consistently under the one date rule. His older (uxqa-p1/p2) items may prompt him; he acts only on uxqa-p3 work.",
+                         "patience":  4,
+                         "constraints":  {
+                                             "locale":  "de-DE"
+                                         },
+                         "modelTier":  "opus",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "admin",
+                                                              "profile":  "co_creator",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  true
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-priya",
+                         "name":  "Priya Raman",
+                         "archetype":  "independent governance auditor, member of Oasis and OmniOne",
+                         "segment":  "cross-ecosystem",
+                         "goal":  "Record and publish an honest health audit of OmniOne from what the app computes, and check that ordinary members can read the result.",
+                         "context":  "Software engineer and privacy-minded auditor who reads every prompt. RE-POWERED: in pass 02 she joined OmniOne from Oasis to test a consent gate OmniOne does not have; that question now goes to Mateo in gated Plan Systems, and her own auditor background fits the scenario\u0027s independent auditor. She is an active OmniOne member who is not a steward there (role user, profile townhall), so she may record OmniOne\u0027s audit without it counting as a self-assessment. Her OmniOne row from pass 02 is declared explicitly so the seed owns it.",
+                         "patience":  4,
+                         "constraints":  [
+                                             "390px viewport"
+                                         ],
+                         "modelTier":  "opus",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "Oasis",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          },
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-joy",
+                         "name":  "Joy Adewale",
+                         "archetype":  "member with low literacy who asks for help",
+                         "segment":  "newcomers",
+                         "goal":  "Understand what I must do to join, finish the learning check, and know whether I can take part.",
+                         "context":  "Prefers short familiar words, reads only visible text, and does not infer meanings from technical labels or inspect source. Use the recorded low-literacy constraint and finite attempt budget.",
+                         "patience":  2,
+                         "constraints":  {
+                                             "lowLiteracy":  true
+                                         },
+                         "modelTier":  "haiku",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-rafi",
+                         "name":  "Rafi Haddad",
+                         "archetype":  "impatient member on a poor connection who presses twice",
+                         "segment":  "newcomers",
+                         "goal":  "Ask the personal operator to help me contact another test member and follow through on the right record.",
+                         "context":  "OmniOne member on a rural connection (slow network) between shifts; gives up after one failed try. RE-POWERED per the cast notes: he presses Publish and Send a second time whenever nothing seems to happen, which tests duplicate refusal and one-conversation-per-responder under a real double press. His cousin Mateo is new to NEOS.",
+                         "patience":  1,
+                         "constraints":  {
+                                             "slow":  true
+                                         },
+                         "modelTier":  "haiku",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-new-mateo",
+                         "name":  "Mateo Alvarez",
+                         "archetype":  "signed-out newcomer joining a gated ecosystem from a phone",
+                         "segment":  "newcomers",
+                         "goal":  "Join Plan Systems because I care about rural broadband: make an account, understand what I am agreeing to, and get in.",
+                         "context":  "NEW: the sign-up persona who hits validation errors and the newcomer in a gated ecosystem the cast notes asked for. Farmer near Portland, Rafi\u0027s cousin, Spanish-language browser (es-US) on a 390 px phone; skims long text and gives up after two failed tries. No account at the start: he signs up in the lane with a username uxqa_p3_mateo_\u003c4 random chars\u003e and display name \u0027Mateo Alvarez uxqa-p3\u0027. Plan Systems asks newcomers to consent to its membership agreement (prebaked by Lena), so his first stop is the consent gate.",
+                         "patience":  2,
+                         "constraints":  {
+                                             "width":  390,
+                                             "locale":  "es-US"
+                                         },
+                         "modelTier":  "haiku",
+                         "seed":  {
+                                      "anonymous":  true
+                                  }
+                     },
+                     {
+                         "handle":  "qa-probe-tess",
+                         "name":  "Tess Marlow",
+                         "archetype":  "API authority probe",
+                         "segment":  "probe",
+                         "goal":  "Probe scope, forged quiz results, private data boundaries and confirmation replay on synthetic fixtures, reporting capability results separately from user success.",
+                         "context":  "Not a UX persona: she drives the probe lane only, and authors the moderation target and the gold-advise pool in prebake (so bell noise lands on her, never on gold personas). Memberships give the deny cases: OmniOne mod (a steward there, so she may not audit OmniOne); Oasis user with co_creator (a steward of Oasis by profile, so \u0027a steward of another ecosystem\u0027 for Plan Systems and Escherbridge posts and collaborations); Escherbridge user/townhall now ACTIVE (was pending_consent in pass 02: the pending read-only case was proven then, and a pending row in an ungated ecosystem would show as a stuck newcomer to Escherbridge\u0027s stewards). She is not a member of Plan Systems.",
+                         "patience":  5,
+                         "constraints":  {
+
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberships":  [
+                                                          {
+                                                              "ecosystem":  "OmniOne",
+                                                              "role":  "mod",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          },
+                                                          {
+                                                              "ecosystem":  "Oasis",
+                                                              "role":  "user",
+                                                              "profile":  "co_creator",
+                                                              "status":  "active"
+                                                          },
+                                                          {
+                                                              "ecosystem":  "Escherbridge",
+                                                              "role":  "user",
+                                                              "profile":  "townhall",
+                                                              "status":  "active"
+                                                          }
+                                                      ],
+                                      "node_admin":  false
+                                  }
+                     },
+                     {
+                         "handle":  "qa-node-support",
+                         "name":  "Sana Support Uxqa",
+                         "archetype":  "technical support operator with no organization membership",
+                         "segment":  "probe",
+                         "goal":  "Find the platform administration page, configure entry learning and help a user with their ecosystem role, then read the public record of my action.",
+                         "context":  "An explicitly assigned NodeAdmin with no Member rows. Uses visible task navigation on a narrow screen. Administrative access does not imply ordinary ecosystem participation or a fabricated quiz pass.",
+                         "patience":  3,
+                         "constraints":  {
+                                             "width":  390
+                                         },
+                         "modelTier":  "sonnet",
+                         "seed":  {
+                                      "memberless":  true,
+                                      "memberships":  [
+
+                                                      ],
+                                      "node_admin":  true
+                                  }
+                     }
+                 ],
+    "lanes":  [
+                  {
+                      "journey":  "All seven existing gold tasks, finite attempts, fresh observable mutations.",
+                      "id":  "gold-reentry",
+                      "mode":  "ui-only",
+                      "personas":  [
+                                       "qa-visitor",
+                                       "qa-gold-member",
+                                       "qa-gold-advisor",
+                                       "qa-gold-newcomer"
+                                   ]
+                  },
+                  {
+                      "journey":  "Configured and unconfigured ecosystem join, failure/pass recovery, agreement order, real private orientation help; plain words and mobile.",
+                      "id":  "join-and-orientation",
+                      "mode":  "ui-only",
+                      "personas":  [
+                                       "qa-new-kofi",
+                                       "qa-new-joy",
+                                       "qa-new-mateo"
+                                   ]
+                  },
+                  {
+                      "journey":  "Circle ancestor/target and team requirements; keyboard, zoom, mobile, matching consent/coverage and directory opt-out.",
+                      "id":  "subgroup-keyboard-mobile",
+                      "mode":  "ui-only",
+                      "personas":  [
+                                       "qa-member-ines",
+                                       "qa-new-priya",
+                                       "qa-new-tomas",
+                                       "qa-member-dara"
+                                   ]
+                  },
+                  {
+                      "journey":  "Persistent memberless admin navigation, structured quiz setup and supported ecosystem role assignment with review/public receipt; steward journey editor.",
+                      "id":  "node-admin-tasks",
+                      "mode":  "ui-only",
+                      "personas":  [
+                                       "qa-node-support",
+                                       "qa-member-oren",
+                                       "qa-steward-amara"
+                                   ]
+                  },
+                  {
+                      "journey":  "Ordinary personal-operator workflow follow-through with exact confirmation and useful record navigation; synthetic recipients only.",
+                      "id":  "ordinary-operator",
+                      "mode":  "ui-only",
+                      "personas":  [
+                                       "qa-new-rafi",
+                                       "qa-steward-lena"
+                                   ]
+                  },
+                  {
+                      "journey":  "Configured quiz spoof/stale/scope/rejoin bypasses, explicit admin exemption/revocation, owner privacy, confirmation replay, public UTC and immutable evidence.",
+                      "id":  "scope-and-privacy-probe",
+                      "mode":  "probe",
+                      "personas":  [
+                                       "qa-probe-tess",
+                                       "qa-node-support",
+                                       "qa-steward-amara"
+                                   ]
+                  }
+              ],
+    "retired":  [
+                    "qa-new-sol"
+                ],
+    "rationale":  {
+                      "scope":  "Retain pass06 personas and actual recorded constraints; rotate completion order and scope for stewardship/revocation/stale-evidence follow-through. Carry all unresolved pass06 findings.",
+                      "constraints":  "Existing constrained identities remain; lane execution must record which constraints were actually applied. Designed modelTier labels do not prove different execution models.",
+                      "review":  "Exactly two dev-drive cycles with independent advocate/adversary branches and nonrepeated lenses; native collaboration substitutes for unavailable Workflow tool."
+                  }
+}

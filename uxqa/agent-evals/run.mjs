@@ -11,6 +11,12 @@ import { createdIds, evaluateReply, evaluateState, isRowCheck, parseCheck, runOu
 import { applyJudgeScores, buildTrend, defectsFor, exitChecks, judgeBrief, RESULT_VERSION, summarize, summaryLine } from './report.mjs';
 import { ACTIVE_EMERGENCY, assertLocal, buildFixtures, captureCreatedProposals, createClient, fixtureNamespace, loadPeople, observe, stewardIn, teardown } from './neos-api.mjs';
 import { retainedQueueSkipReason } from './preconditions.mjs';
+import { prepareActiveReadiness } from './readiness.mjs';
+import { evalOutputNames } from './request-pacing.mjs';
+import { captureToolData } from './transcript-evidence.mjs';
+
+class HarnessExit extends Error { constructor(code) { super('Harness finished'); this.code = code; } }
+async function main() {
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = process.env.UXQA_PLUGIN_ROOT || 'C:/Users/atooz/.claude/plugins/cache/local/ux-qa-research/0.1.0';
@@ -20,26 +26,30 @@ const SESSIONS_FILE = 'uxqa/.secrets/agent-sessions.json'; // read in-process on
 const MAX_MINUTES = 30;
 const DEFAULT_TOKEN_CAP = 1_500_000;
 const DEFAULT_PAGE = '/dashboard';
-const TRANSCRIPT_DATA_CHARS = 4000;
 
-const refuse = (reason) => { console.log(`REFUSED ${reason}`); process.exit(2); };
-const readJson = (file) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null);
+const refuse = (reason) => { console.log(`REFUSED ${reason}`); throw new HarnessExit(2); };
+const readJson = (file) => { if (!fs.existsSync(file)) return null; try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { throw new Error(`Invalid JSON file ${path.basename(file)}`); } };
 class Abort extends Error {}
 
 function parseArgs(argv) {
-	const options = { pass: null, only: null, repeats: 1, tokenCap: null, base: null, dryRun: false, finalize: false };
+	const options = { pass: null, only: null, repeats: 1, tokenCap: null, base: null, readinessAnswers: null, runLabel: null, resultFile: null, chatPaceMs: 2000, dryRun: false, finalize: false };
 	for (let i = 0; i < argv.length; i++) {
 		const arg = argv[i];
 		if (arg === '--only') options.only = String(argv[++i] || '').split(',').filter(Boolean);
 		else if (arg === '--repeats') options.repeats = Number(argv[++i]);
 		else if (arg === '--token-cap') options.tokenCap = Number(argv[++i]);
 		else if (arg === '--base') options.base = argv[++i];
+		else if (arg === '--run-label') options.runLabel = argv[++i] || refuse('--run-label requires a label');
+		else if (arg === '--result-file') options.resultFile = argv[++i] || refuse('--result-file requires a filename');
+		else if (arg === '--chat-pace-ms') options.chatPaceMs = Number(argv[++i]);
+		else if (arg === '--readiness-answers') options.readinessAnswers = argv[++i];
 		else if (arg === '--dry-run') options.dryRun = true;
 		else if (arg === '--finalize') options.finalize = true;
 		else if (!options.pass && !arg.startsWith('--')) options.pass = arg;
 		else refuse(`unknown argument ${arg}`);
 	}
 	if (!options.pass) refuse('usage: run.mjs <pass> [--only R1,M2] [--repeats N] [--token-cap N] [--base URL] [--dry-run | --finalize]');
+	if (!Number.isSafeInteger(options.chatPaceMs) || options.chatPaceMs < 0 || options.chatPaceMs > 30000) refuse('--chat-pace-ms must be an integer from 0 to 30000');
 	if (!(options.repeats >= 1)) refuse('--repeats must be 1 or more');
 	return options;
 }
@@ -52,9 +62,11 @@ if (!fs.existsSync(passDir)) refuse(`no pass directory for ${options.pass}`);
 const pass = path.basename(passDir);
 const passNumber = Number(pass.split('-')[0]);
 const settings = study.config.agentEvals || {};
-const resultName = settings.resultFile || 'agent-eval.json';
+const output = evalOutputNames({runLabel:options.runLabel,resultFile:options.resultFile,defaultName:settings.resultFile || 'agent-eval.json'});
+const resultName = output.result;
 const resultFile = path.join(passDir, resultName);
-const judgeFile = path.join(passDir, 'agent-eval-judge.json');
+const judgeFile = path.join(passDir, output.judge);
+if (!options.finalize && fs.existsSync(resultFile)) refuse('result evidence already exists; choose a new --run-label or --result-file');
 const studyPath = (file) => path.relative(study.studyDir, file).replaceAll('\\', '/');
 const repoPath = (file) => path.relative(study.repoRoot, file).replaceAll('\\', '/');
 
@@ -74,7 +86,7 @@ if (options.finalize) {
 	applyJudgeScores(result.tasks, readJson(judgeFile) || {});
 	writeResult(result);
 	console.log(summaryLine(result, repoPath(resultFile)));
-	process.exit(0);
+	return;
 }
 
 // ---- load and validate the eval set (refuse before anything touches the stack) ----
@@ -111,16 +123,34 @@ function seedPersonas() {
 	return line;
 }
 console.log(seedPersonas());
-const client = createClient(baseUrl, cookies);
+const client = createClient(baseUrl, cookies, {chatPaceMs:options.chatPaceMs});
+const runId = `r${crypto.randomBytes(6).toString('hex')}`;
+const readinessFile = path.join(passDir, `agent-eval-readiness-${runId}.json`);
+const readiness = { runId, status: 'PREPARING', entries: [] };
+const writeReadiness = () => fs.writeFileSync(readinessFile, JSON.stringify(readiness, null, 1));
+writeReadiness();
+try {
+	await prepareActiveReadiness(client, personas, {
+		answerSources: options.readinessAnswers ? readJson(options.readinessAnswers) || refuse('readiness answer source file is missing') : {},
+		record: (entry) => { readiness.entries.push(entry); writeReadiness(); },
+	});
+	readiness.status = 'READY';
+	writeReadiness();
+} catch (error) {
+	readiness.status = 'FAILED';
+	readiness.error = String(error.message).slice(0, 1000);
+	writeReadiness();
+	console.log(`ABORT readiness: ${readiness.error}`);
+	throw new HarnessExit(3);
+}
 const people = await loadPeople(client, personas);
 const ecosystemNames = new Map([...people.values()].flatMap((p) => Object.entries(p.ecosystems).map(([name, id]) => [id, name])));
 const displayNameOf = (short) => people.get(`qa-agent-${short}`)?.name ?? short;
 
 const marker = `${study.config.marker}-p${passNumber}`;
-const runId = `r${crypto.randomBytes(6).toString('hex')}`;
 const budget = { tokenCap: options.tokenCap || settings.tokenCap || DEFAULT_TOKEN_CAP, tokensUsed: 0, requests: 0, maxMinutes: MAX_MINUTES, aborted: null };
 const startedAt = Date.now();
-const transcriptDir = path.join(passDir, 'agent-evals', 'transcripts');
+const transcriptDir = path.join(passDir, 'agent-evals', 'runs', runId, 'transcripts');
 const fillRefs = (text, refs) => text.replace(/\{([A-Z]\d+)\.(\w+)\}/g, (whole, name, field) => refs[name]?.[field] ?? whole);
 const fillStems = (text, task) => text.replace(/\{([A-Z]\d+)\.stem\}/g, (whole, name) => {
 	const spec = task.fixtures?.[name];
@@ -184,15 +214,12 @@ async function settleEmergencies(task, refs, baseline) {
 function writeTranscript(task, runIndex, refs, pageContext, turns, createdProposals = []) {
 	fs.mkdirSync(transcriptDir, { recursive: true });
 	const file = path.join(transcriptDir, `${task.id}-${runIndex}.json`);
-	const capped = (data) => {
-		const text = JSON.stringify(data ?? null);
-		return text.length > TRANSCRIPT_DATA_CHARS ? { truncated: text.length, preview: text.slice(0, TRANSCRIPT_DATA_CHARS) } : data;
-	};
+
 	fs.writeFileSync(file, JSON.stringify({
 		task: task.id, run: runIndex, runId, fixtureNamespace: fixtureNamespace(runId, task.id, runIndex), persona: `qa-agent-${task.persona}`, page: pageContext.path,
 		fixtures: Object.fromEntries(Object.entries(refs).map(([name, ref]) => [name, { kind: ref.kind, key: ref.key, title: ref.title, path: ref.path }])),
 		createdProposals,
-		turns: turns.map((turn) => ({ user: turn.user, text: turn.text, tokens: turn.tokens, seconds: turn.seconds, skillRoutes: turn.skillRoutes || [], trace: turn.trace.map((call) => ({ ...call, data: capped(call.data) })) })),
+		turns: turns.map((turn) => ({ user: turn.user, text: turn.text, tokens: turn.tokens, seconds: turn.seconds, skillRoutes: turn.skillRoutes || [], availability: turn.availability || null, trace: turn.trace.map((call) => ({ ...call, data: captureToolData(call.data) })) })),
 	}, null, 1));
 	return studyPath(file);
 }
@@ -276,7 +303,7 @@ async function runOnce(task, runIndex) {
 }
 
 // ---- the run ----
-const result = { pass, evalVersion: allTasks.evalVersion, resultVersion: RESULT_VERSION, runId, startedAt: new Date(startedAt).toISOString(), baseUrl, dryRun: options.dryRun, budget, tasks: [] };
+const result = { pass, runLabel: options.runLabel, evalVersion: allTasks.evalVersion, resultVersion: RESULT_VERSION, runId, readinessFile: studyPath(readinessFile), startedAt: new Date(startedAt).toISOString(), baseUrl, dryRun: options.dryRun, budget, tasks: [] };
 let abortReason = null;
 for (const task of tasks) {
 	const record = {
@@ -302,6 +329,7 @@ for (const task of tasks) {
 		record.stateViolation = record.runs.some((run) => run.stateViolation);
 	}
 	budget.requests = client.stats.requests;
+	budget.pacing = {intervalMs:client.stats.chatPaceMs,waitMs:client.stats.pacingWaitMs,pacedRequests:client.stats.pacedRequests};
 	result.tasks.push(record);
 	if (!options.dryRun) writeResult(result);
 	const firstProblem = record.runs.flatMap((run) => [run.error, ...[...run.state, ...run.reply].filter((r) => !r.ok).map((r) => `${r.check}: ${r.detail}`)]).find(Boolean);
@@ -314,8 +342,14 @@ budget.aborted ??= abortReason;
 if (options.dryRun) {
 	const errors = result.tasks.filter((task) => task.runs.some((run) => run.outcome === 'ERROR')).length;
 	console.log(`AGENT-EVAL ${pass} DRY-RUN tasks=${result.tasks.length} errors=${errors} skipped=${result.tasks.filter((t) => t.outcome === 'SKIPPED').length} chatRequests=${client.stats.requests} (fixtures built and torn down; no model calls)`);
-	process.exit(errors ? 1 : 0);
+	process.exitCode = errors ? 1 : 0; return;
 }
 writeResult(result);
 console.log(summaryLine(result, repoPath(resultFile)));
-process.exit(['OWNER_BLOCKED', 'SERVICE_UNAVAILABLE', 'EMERGENCY LEFT OPEN'].includes(abortReason) ? 3 : 0);
+process.exitCode = ['OWNER_BLOCKED', 'SERVICE_UNAVAILABLE', 'EMERGENCY LEFT OPEN'].includes(abortReason) ? 3 : 0;
+
+}
+await main().catch(error => {
+ if (error instanceof HarnessExit) process.exitCode = error.code;
+ else { console.error(`ERROR ${String(error.message || 'Harness failed').slice(0, 500)}`); process.exitCode = 1; }
+});

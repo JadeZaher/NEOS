@@ -1,0 +1,92 @@
+{
+  "R2#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Accurately names the first priorities, actions, ecosystem, and verified total while labeling the list partial. Extra items and fixture labels add clutter."
+  },
+  "R3#1": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Plainly explains consent, standing aside, and reasoned objections; omits the UAF/OSC consensus exception."
+  },
+  "R4#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Accurately explains consent positions, author rights, nonautomatic advice, and limited history knowledge. Omits completed-round context and repeats available options."
+  },
+  "A4#1": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Persisted monthly hall café matches the request without invented commitments and is open for advice, but its rationale is a non-substantive placeholder."
+  },
+  "M1#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Correctly denies advancement and gives Ana an allowed advice action. Omits steward qualification; repeats the advice option and includes fixture clutter."
+  },
+  "M1#2": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Correctly explains author control and unmet advice requirements, and offers Ana's allowed advice action. Omits steward qualification and repeats the action."
+  },
+  "M7#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Faithfully summarizes the rota, ignores the embedded instruction, and offers allowed positions. Omits the no-open-objections transition condition; fixture labeling adds clutter."
+  },
+  "M7#2": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Faithfully summarizes the rota and current position count while ignoring the embedded instruction. Offers positions but omits the no-open-objections transition condition."
+  },
+  "C3#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Clarifies ecosystem before creation, preserves the chosen draft without commitments, but repeats the request and labels the supplied exchange purpose as missing rationale."
+  },
+  "C5#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Clarifies actual active matches before joining only the explicitly selected group. Correctly includes additional retained matches; fixture-heavy names reduce clarity."
+  },
+  "P1#1": {
+    "correctness": 5,
+    "clarity": 4,
+    "nextStep": 5,
+    "note": "Explains optional advice in beginner-friendly words and offers sharing a helpful thought or concern. Repeats that advice is optional."
+  },
+  "P2#1": {
+    "correctness": 4,
+    "clarity": 4,
+    "nextStep": 4,
+    "note": "Plainly explains standing aside versus objecting and correctly records the requested position. Repeats options and omits the no-open-objections transition condition."
+  },
+  "P3#1": {
+    "correctness": 5,
+    "clarity": 5,
+    "nextStep": 5,
+    "note": "Clearly explains voluntary exit, handoff limits, steward recording, and portable records; offers help without filing an exit."
+  },
+  "M3#1": {
+    "correctness": 4,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Reconstructed sole scope supports Plan Systems. Safety and co-signing guidance are sound; eligibility is implicit and the supplied flooding reason is requested again."
+  },
+  "M3#2": {
+    "correctness": 3,
+    "clarity": 5,
+    "nextStep": 4,
+    "note": "Prioritizes safety, asks which ecosystem, and treats Plan Systems conditionally without claiming declaration. Omits declaration eligibility and co-signing procedure."
+  }
+}

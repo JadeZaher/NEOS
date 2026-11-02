@@ -5,6 +5,11 @@ type: Track Index
 
 ## Active
 
+- [x] **platform_completion_join_gates_20261102** — Completed audited gaps, configured onboarding quiz gates and clear NodeAdmin task navigation; deployed and independently verified on 2026-11-02.
+  - Spec: `conductor/tracks/platform_completion_join_gates_20261102/spec.md`
+  - Plan: `conductor/tracks/platform_completion_join_gates_20261102/plan.md`
+  - Owner policy: entry quizzes are required only where configured; complete and verify ordinary-member, steward and NodeAdmin journeys.
+
 - [~] **governance_matching_ux_enforcement_20260727** — Governance Matching UX Enforcement (collapse + hardening)
   - Two-mode IA (Explore | Ecosystem) collapse shipped + hostile-review sweep; Phase 2 hardening queued (receipts ledger, ceremony backend contracts, fit-check, role tiers). Binding guides: GOVERNANCE-ECOSYSTEM-MATCHING-UX/QA-GUIDE.md.
   - Spec: `conductor/tracks/governance_matching_ux_enforcement_20260727/spec.md`

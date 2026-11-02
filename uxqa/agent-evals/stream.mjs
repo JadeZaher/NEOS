@@ -43,7 +43,7 @@ const parseJson = (text) => {
 
 /** Folds one response's events into the assistant turn and its availability flags. */
 export function collectTurn(events) {
-	const turn = { text: '', trace: [], skillRoutes: [], tokens: 0, sessionId: null, done: false, ownerBlocked: false, serviceUnavailable: false };
+	const turn = { text: '', trace: [], skillRoutes: [], tokens: 0, sessionId: null, done: false, ownerBlocked: false, serviceUnavailable: false, availability: null };
 	for (const { type, data } of events) {
 		if (type === 'append') {
 			if (data.trim()) turn.text += data; // same rule as use-chat.ts: what the member sees
@@ -63,13 +63,16 @@ export function collectTurn(events) {
 			if (typeof route.mode === 'string' && route.mode && (route.skill === null || typeof route.skill === 'string') && typeof route.source === 'string' && route.source) {
 				turn.skillRoutes.push({ mode: route.mode, skill: route.skill, source: route.source });
 			}
+		} else if (type === 'availability') {
+			const status = parseJson(data);
+			if (status.status === 'unavailable') turn.availability = { status: 'unavailable', provider_status: Number.isInteger(status.provider_status) ? status.provider_status : null, retryable: status.retryable === true, retry_after_seconds: Number.isFinite(status.retry_after_seconds) ? status.retry_after_seconds : null, attempts: Number.isSafeInteger(status.attempts) ? status.attempts : null };
 		} else if (type === 'usage') turn.tokens += parseJson(data).total_tokens || 0;
 		else if (type === 'session') turn.sessionId = parseJson(data).session_id || null;
 		else if (type === 'done') turn.done = true;
 	}
 	for (const call of turn.trace) if (call.success === null) call.success = false; // started, never answered
 	turn.ownerBlocked = OWNER_BLOCKED.test(turn.text);
-	turn.serviceUnavailable = SERVICE_UNAVAILABLE.test(turn.text);
+	turn.serviceUnavailable = Boolean(turn.availability) || SERVICE_UNAVAILABLE.test(turn.text);
 	return turn;
 }
 
@@ -79,11 +82,13 @@ export async function readEvents(body) {
 	const decoder = new TextDecoder();
 	const events = [];
 	const reader = body.getReader();
-	for (;;) {
-		const { done, value } = await reader.read();
-		if (done) break;
-		events.push(...parser.feed(decoder.decode(value, { stream: true })));
-	}
-	events.push(...parser.feed(decoder.decode() + '\n\n'));
+	try {
+		for (;;) {
+			const { done, value } = await reader.read();
+			if (done) break;
+			events.push(...parser.feed(decoder.decode(value, { stream: true })));
+		}
+		events.push(...parser.feed(decoder.decode() + '\n\n'));
+	} finally { reader.releaseLock(); }
 	return events;
 }

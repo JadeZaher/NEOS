@@ -23,7 +23,7 @@ await regression("p2-gold-propose-share-signup-2", { pass: "02-act-lifecycle" },
   admin.step("Find Node Administration with an explicit node admin assignment and open it");
   const adminLinks = await sidebarLinks(admin.page);
   if (!adminLinks.includes("Node Administration")) throw flow.red(`an assigned node admin cannot find Node Administration (links: ${adminLinks.join(", ")})`);
-  await admin.page.locator('[data-sidebar="sidebar"]').getByRole("link", { name: "Node Administration", exact: true }).click();
+  await admin.page.locator('[data-sidebar="sidebar"]').first().getByRole("link", { name: "Node Administration", exact: true }).first().click();
   await admin.page.waitForURL(/\/admin/, { timeout: 10000 });
   await admin.page.waitForLoadState("networkidle");
   await admin.page.getByRole("heading", { name: "Node Administration", exact: true }).waitFor({ timeout: 10000 });

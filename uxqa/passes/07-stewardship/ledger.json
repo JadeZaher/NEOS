@@ -1,0 +1,270 @@
+{
+    "pass":  "07-stewardship",
+    "status":  "DEPLOYED_VERIFIED",
+    "preliminaryVerdict":  "The earlier preliminary checkpoints are preserved in the verbatim independent review. Final status is APPROVED_COMPLETE: both exact main commits are deployed SUCCESS and actual production identity/schema/authority/privacy/model checks independently verified. Historical matcher/budget/operator-across-attempts/full-suite failure boundaries and deferred human/toast limits remain unchanged; no study convergence is claimed.",
+    "entries":  [
+                    {
+                        "id":  "p7-matching-scope-cache",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Governed matching policy options remain stale after ecosystem switches",
+                        "evidence":  [
+                                         "constrained-stewardship-ui-report.md"
+                                     ],
+                        "repair":  "Scope the source-selector cache by ecosystem",
+                        "verification":  "Fresh UI follows OmniOne to Workshop to OmniOne to Workshop without reload; the correct options appear, disappear and reappear without republishing. Final bounded axe scan is clean; original empty-selector observation remains preserved."
+                    },
+                    {
+                        "id":  "p7-domain-quiz-name",
+                        "severity":  "HIGH",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Domain quiz picker has no accessible name",
+                        "evidence":  [
+                                         "constrained-stewardship-ui-report.md"
+                                     ],
+                        "repair":  "Associate Select Quiz with the actual combobox",
+                        "verification":  "After the separate source correction, real Tab reaches the named Select Quiz combobox and unsuppressed axe returns zero violations. No quiz assignment was performed; original critical scan remains preserved."
+                    },
+                    {
+                        "id":  "p7-support-definition-list",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Support Record ID breaks definition-list semantics",
+                        "evidence":  [
+                                         "constrained-stewardship-ui-report.md"
+                                     ],
+                        "repair":  "Render Record ID as an actual term and definition",
+                        "verification":  "Fresh memberless390px list shows valid term/definition and returns zero unsuppressed axe violations, without inspection or update. Original serious finding and audited inspection evidence remain preserved."
+                    },
+                    {
+                        "id":  "p7-r1-semantic-check",
+                        "severity":  "LOW",
+                        "decision":  "NOT_A_BUG",
+                        "status":  "METHOD_LIMITATION",
+                        "title":  "Equivalent completed-round wording fails the R1 grammar check",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "../../../.omc/research/completion-harness-r1-recheck-20261102.log",
+                                         "agent-eval-release-final-01.json",
+                                         "agent-eval-release-final-01-r1-clarification.json"
+                                     ],
+                        "verification":  "Earlier equivalent wording received a narrow grammar fix and three affected harness passes, without changing historical22/26. Final-release R1 truthfully states required/current advice rounds2/1 and allowed advice with zero writes; its different current-count grammar remains a recorded semantic false negative. The final main canonical FAIL is unchanged; no new regex expansion or retroactive pass is awarded."
+                    },
+                    {
+                        "id":  "p7-r4-quality",
+                        "severity":  "LOW",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Current-state explanation omits actionable consent and withdrawal context",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "agent-eval-judge.json",
+                                         "agent-eval-release-final-01.json",
+                                         "agent-eval-release-final-01-judge.json"
+                                     ],
+                        "verification":  "Fresh release-final R4 scores4/4/5 with actual positions/author options, nonautomatic Advice and bounded history claims; passes unchanged rubric. Older3/4/3 failure remains. Repetition and omitted completed-round detail remain bounded judge notes rather than invented perfect-quality evidence."
+                    },
+                    {
+                        "id":  "p7-m1-next-step",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Safe refusal leaves the caller without an available next action",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "agent-eval-judge.json",
+                                         "agent-eval-release-final-01.json",
+                                         "agent-eval-release-final-01-judge.json"
+                                     ],
+                        "verification":  "Both fresh M1 repeats preserve unauthorized-advancement refusal and now offer the actual caller an allowed advice action, scoring4/4/5 each. The judge still notes omitted steward qualification and repetition; both pass unchanged thresholds. Historical canonical category6/7 remains unchanged."
+                    },
+                    {
+                        "id":  "p7-a4-nonexecution",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Sufficiently specified proposal request produces no requested draft",
+                        "evidence":  [
+                                         "agent-eval.json",
+                                         "../06-safety-integrity/ledger.json",
+                                         "agent-eval-release-final-01.json",
+                                         "agent-eval-release-final-01-judge.json"
+                                     ],
+                        "verification":  "Fresh actual A4 creates the requested monthly hall repair cafe and opens Advice, preserving user-supplied content without invented staffing/commitments; independent scores3/5/5 pass. Rationale is honestly a placeholder. This new persisted evidence closes prior nonexecution and invented-content bugs without rewriting either failed result."
+                    },
+                    {
+                        "id":  "p7-toast-human-validation",
+                        "severity":  "MEDIUM",
+                        "decision":  "DEFER",
+                        "status":  "RESEARCH_PENDING",
+                        "title":  "Retained toast-proxy axe finding and human accessibility validation",
+                        "evidence":  [
+                                         "gold-ui-lane-report.md",
+                                         "constrained-stewardship-ui-report.md",
+                                         "../06-safety-integrity/runtime-recovery-ui-report.md"
+                                     ],
+                        "verification":  "Two upstream aria-hidden-focus nodes still appear in some post-write scans. Prior actual F8/Tab/Shift+Tab check found no trapped proxy focus; neither this nor clean bounded scans proves screen-reader usability. D-09 human recruitment remains deferred; no participants or outcomes are invented."
+                    },
+                    {
+                        "id":  "p7-operator-exit-cancel-pending",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Affirmative own-exit cancellation loses the pending action",
+                        "evidence":  [
+                                         "operator-manifest.json",
+                                         "operator-probe-triage.md",
+                                         "operator-evidence-summary.json",
+                                         "../../../.omc/research/completion-final-confirmation-20261102.log"
+                                     ],
+                        "repair":  "Preserve the exact confirmed own-exit update through the pending-action lifecycle without treating its natural cancellation wording as cancellation of the confirmation itself",
+                        "verification":  "Fresh final-03 exit-cancel case passes the original cancellation/affirmative workflow, actual persisted cancellation and no replay. Exact pending preservation, qualified-Yes mismatch and epoch/one-use SSE regressions pass in the final86-test batch. Original failed wording/result remains preserved."
+                    },
+                    {
+                        "id":  "p7-operator-collaboration-discovery",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Collaboration discovery request omits existing collaborations",
+                        "evidence":  [
+                                         "operator-manifest.json",
+                                         "operator-probe-triage.md",
+                                         "operator-evidence-summary.json"
+                                     ],
+                        "repair":  "Fulfill the requested existing-collaboration read separately from eligible target-group discovery and proposal preflight",
+                        "verification":  "Final-03 has actual passing evidence for sequential collaboration plus the separate combined existing-collaboration discovery/group selection/confirmed-proposal case. Persisted sides/content/proposed state and protected boundaries are checked; original omission remains a historical failure. This is not an eleven-of-eleven single-run claim."
+                    },
+                    {
+                        "id":  "p7-confirmation-mismatch-preservation",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Qualified confirmation mismatch clears the original pending payload",
+                        "evidence":  [
+                                         "../../../.omc/research/pass07-confirmation-last-targeted-verification-20261102.md",
+                                         "../../../.omc/research/completion-final-confirmation-20261102.log"
+                                     ],
+                        "repair":  "Pass the unchanged pending list through the existing epoch-protected session save after a mismatched qualified Yes",
+                        "verification":  "Independent corrected source readback closes P2. Actual final86-test SSE batch checks original exact arguments survive mismatch, generic Yes executes only that payload, replay does nothing and a freshly prepared full action remains confirmable. Historical243PASS/1FAIL is retained."
+                    },
+                    {
+                        "id":  "p7-explicit-initial-message",
+                        "severity":  "MEDIUM",
+                        "decision":  "FIX",
+                        "status":  "FIXED",
+                        "title":  "Conversation preparation can freeze an unintended omitted initial-message intent",
+                        "evidence":  [
+                                         "../../../.omc/research/pass07-message-intent-targeted-verification-20261102.md",
+                                         "../../../.omc/research/completion-message-intent-20261102.log",
+                                         "operator-evidence-summary.json"
+                                     ],
+                        "repair":  "Require explicit string message intent at the model/chat preparation boundary and retain exact frozen recipient/message payload",
+                        "verification":  "Independent targeted SOURCE PASS;68affected tests pass, including missing/null invalid refusal, explicit empty conversation-only intent, exact-text correction, one-use confirmed send and replay. Fresh real-model message-final-04 passes actual create/send/read/search with exact text. Earlier final-03 message failure remains unchanged."
+                    }
+                ],
+    "acceptanceChecks":  [
+                             {
+                                 "id":  "p7-real-guide",
+                                 "status":  "VERIFIED",
+                                 "title":  "Genuine required guide reply survives reload and completes the journey",
+                                 "evidence":  [
+                                                  "constrained-stewardship-ui-report.md"
+                                              ],
+                                 "verification":  "Exactly one actual provider question; saved owner transcript and Continue eligibility survive reload, actual Continue reaches Journey Complete and another reload retains completion. Cross-user direct-session privacy is left to its separate verification lane."
+                             },
+                             {
+                                 "id":  "p7-reversed-entry",
+                                 "status":  "VERIFIED",
+                                 "title":  "Agreement-first, team-before-circle and no-quiz entry",
+                                 "evidence":  [
+                                                  "constrained-stewardship-ui-report.md"
+                                              ],
+                                 "verification":  "Keyboard-only Kofi reads and consents before graded completion, preserves a deliberate failed quiz, passes the distinct team gate before parent/child circle gates, and sees actual participation. Dara joins a no-quiz ecosystem and genuinely completes a nongraded readiness questionnaire with valid No answers. Refusal/friction metrics remain intact."
+                             },
+                             {
+                                 "id":  "p7-matching-profile",
+                                 "status":  "VERIFIED",
+                                 "title":  "Consented directory profile, staleness and separate withdrawal",
+                                 "evidence":  [
+                                                  "constrained-stewardship-ui-report.md"
+                                              ],
+                                 "verification":  "Actual Tess directory click reaches /users/qa_probe_tess; private matching coverage/correction/staleness and independent matching versus directory withdrawal hold. Tess separately observes Ines disappear after withdrawal."
+                             },
+                             {
+                                 "id":  "p7-support-recovery",
+                                 "status":  "VERIFIED",
+                                 "title":  "Memberless operator role cancel, apply, restore and receipt return",
+                                 "evidence":  [
+                                                  "constrained-stewardship-ui-report.md"
+                                              ],
+                                 "verification":  "Sana remains memberless, selects Tomas by name, cancels once, applies and restores the configured role with actual reviewed public receipts. Back preserves organization/search; fresh inspected role reads user."
+                             },
+                             {
+                                 "id":  "p7-required-domain",
+                                 "status":  "VERIFIED",
+                                 "title":  "Share form communicates its required Domain before publication",
+                                 "evidence":  [
+                                                  "gold-ui-lane-report.md"
+                                              ],
+                                 "verification":  "The fresh gold-share sees the required marker, selects Domain before first submit, publishes through the real request and finds the offer without the prior validation error."
+                             },
+                             {
+                                 "id":  "p7-reading-level",
+                                 "status":  "VERIFIED",
+                                 "title":  "Previously failing plain-language replies meet unchanged checks",
+                                 "evidence":  [
+                                                  "agent-eval.json",
+                                                  "agent-eval-judge.json"
+                                              ],
+                                 "verification":  "Fresh R3, P1 and P2 pass their unchanged reading, word and jargon checks and independent judgments. Older pass06 failures remain preserved."
+                             },
+                             {
+                                 "id":  "p7-integrated-checks",
+                                 "status":  "VERIFIED_AFFECTED_SCOPE",
+                                 "title":  "Complete the integrated backend and release evidence",
+                                 "evidence":  [
+                                                  "../../../.omc/research/completion-frontend-checks-20261102.json",
+                                                  "../../../.omc/research/completion-frontend-final-checks-20261102.json",
+                                                  "../../../.omc/research/completion-harness-checks-20261102.json",
+                                                  "../../../.omc/research/completion-browser-checks-20261102.json",
+                                                  "../../../.omc/research/completion-browser-rechecks-20261102.json",
+                                                  "../../../.omc/research/completion-backend-affected-20261102.log",
+                                                  "../../../.omc/research/completion-confirmation-links-affected-20261102.log",
+                                                  "../../../.omc/research/completion-final-confirmation-20261102.log",
+                                                  "../../../.omc/research/completion-message-intent-20261102.log"
+                                              ],
+                                 "verification":  "Original full backend1632PASS/19FAIL retained; affected477PASS/14FAIL then243PASS/1FAIL followed by final two SSE modules86PASS and message-intent68PASS close every discovered failure. Counts overlap and are not summed into a fictitious second full suite. All six real PostgreSQL races ran/passed full and affected. Front161/tsc/build/34pairs, finaltsc/build, harness50+affected3 and16browserflows have passing evidence. Both exact source commits are pushed/deployed SUCCESS; actual production postflight checks pass, with final independent APPROVED_COMPLETE postflight approval."
+                             },
+                             {
+                                 "id":  "p7-ordinary-operator-probe",
+                                 "status":  "VERIFIED_ACROSS_ATTEMPTS",
+                                 "title":  "Ten actual ordinary-operator cases across five workflow families",
+                                 "evidence":  [
+                                                  "operator-manifest.json",
+                                                  "operator-probe-triage.md",
+                                                  "operator-evidence-summary.json"
+                                              ],
+                                 "verification":  "Passing individual evidence for eleven cases across preserved original6/10, followthrough8/10, final10/11 and fresh exact-message1/1 attempts; all five families and original combined collaboration covered. Fresh message proves actual create/send/read/search after explicit-intent fix. No single11/11 claim, no unrequested writes and zero UI-success credit. All original raw turns stay ignored/unchanged."
+                             },
+                             {
+                                 "id":  "p7-production-postflight",
+                                 "status":  "VERIFIED",
+                                 "title":  "Exact production deployments and read-only authority/privacy/model checks",
+                                 "evidence":  [
+                                                  "../../../conductor/tracks/platform_completion_join_gates_20261102/deployment.md",
+                                                  "../../../.omc/research/production-release-verification-r2-20261102.json",
+                                                  "../../../.omc/research/production-decision-smoke-20261102.json",
+                                                  "../../../.omc/research/production-web-smoke-20261102.json",
+                                                  "../../../.omc/research/production-frontend-artifact-verification-20261102.json",
+                                                  "../../../conductor/tracks/platform_completion_join_gates_20261102/release-review.md",
+                                                  "../../../conductor/tracks/platform_completion_join_gates_20261102/release-review-provenance.json"
+                                              ],
+                                 "verification":  "Backend4c99dae161ec4aa8eb1b52f5cce87532b9f5625b deploymente6e3f647-4586-461b-bfec-91af3994739f and frontend ae7cc472429be5b0b89fe011506fe163ef9f3f29 deployment976f080a-0173-43f0-917d-aca6d60e528e are SUCCESS. Actual schema y5, exact2authorizedadmins,5privateTables,0verifiedWithoutFingerprint,2enabledimmutableTriggers,UTCZ/public-privateboundary,8runtimehashes,HTTP/containerassets,realGeminiOK andtypedJevframework/noSkill/54skills all pass. Guest browser makes0applicationwrites. Final independent review APPROVED_COMPLETE verifies these exact identities, hashes, model and privacy checks; source report is copied verbatim with matching SHA256 provenance, and no historical outcome is rewritten."
+                             }
+                         ],
+    "finalVerdict":  "APPROVED_COMPLETE for the accepted automated implementation, QA and production release scope; independent approval is copied verbatim in the curated track release-review.md with matching source SHA256 provenance.",
+    "completed_at_utc":  "2026-11-02T18:33:35Z"
+}

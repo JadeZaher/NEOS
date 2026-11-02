@@ -1,0 +1,9 @@
+{
+  "kind": "AUDITED_FIXTURE_RECONCILIATION",
+  "agreement_id": "8cefe2d3-4fdd-4649-9ae3-2eb873e21a83",
+  "audit_id": "5d77a42d-0b52-485a-856c-f6b382445e3d",
+  "audit_url": "/node/audit/5d77a42d-0b52-485a-856c-f6b382445e3d",
+  "required_agreement_visible": true,
+  "observed_consents": 0,
+  "ui_success_count": 0
+}

@@ -1,0 +1,32 @@
+{
+  "source": "uxqa/passes/06-safety-integrity/prebake.json",
+  "kind": "FAILED_FIXTURE_RETIREMENT",
+  "marker": "uxqa-p6-db333862",
+  "items": [
+    {
+      "id": "40855b13-01da-4328-ae00-114c97d54417",
+      "audit_id": "50fff64d-359f-4b95-9f73-e9e37edf0ca8",
+      "audit_url": "/node/audit/50fff64d-359f-4b95-9f73-e9e37edf0ca8"
+    },
+    {
+      "id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "6a7e41c7-0ee5-4bc3-979e-6ee09f90e4b8",
+      "audit_url": "/node/audit/6a7e41c7-0ee5-4bc3-979e-6ee09f90e4b8"
+    },
+    {
+      "id": "cd8b8f96-eb34-4e74-b4da-73674e848928",
+      "audit_id": "dcb14485-7b84-4232-bcd1-4fc1a8ce77fb",
+      "audit_url": "/node/audit/dcb14485-7b84-4232-bcd1-4fc1a8ce77fb"
+    },
+    {
+      "id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "b64c596e-1732-49bf-8e58-519a63801b82",
+      "audit_url": "/node/audit/b64c596e-1732-49bf-8e58-519a63801b82"
+    },
+    {
+      "id": "88c0570b-38a0-4e5f-8783-f23472b924bb",
+      "audit_id": "73d44737-a285-49a0-b7b1-467a1f576823",
+      "audit_url": "/node/audit/73d44737-a285-49a0-b7b1-467a1f576823"
+    }
+  ]
+}

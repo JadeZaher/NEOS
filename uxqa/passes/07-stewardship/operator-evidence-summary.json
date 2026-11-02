@@ -1,0 +1,110 @@
+{
+  "type": "Operator Evidence Summary",
+  "backend_commit": "4c99dae161ec4aa8eb1b52f5cce87532b9f5625b",
+  "method": "Passing capability evidence across separately preserved attempts, not an eleven-of-eleven single-run claim.",
+  "attempts": [
+    {
+      "path": "agent-evals/operator-capability-r788c9fc42448.json",
+      "sha256": "349a12c2109aead114cb3e5c20dcaf2c9408ec02a88a89ed592fcbf70e25c51c",
+      "cases": 10,
+      "passed": 6,
+      "tokens": 444835,
+      "ui_success_count": 0
+    },
+    {
+      "path": "agent-evals/operator-capability-followthrough-02.json",
+      "sha256": "155ff031317b9ae441438f6086c32cce2fdd2faae3aa7065f5d4bc99b0db8ce5",
+      "cases": 10,
+      "passed": 8,
+      "tokens": 647124,
+      "ui_success_count": 0
+    },
+    {
+      "path": "agent-evals/operator-capability-final-03.json",
+      "sha256": "a22822abbf9c50deb364e4ebda46a62ed29e02a575201740ff17caac71b12678",
+      "cases": 11,
+      "passed": 10,
+      "tokens": 725775,
+      "ui_success_count": 0
+    },
+    {
+      "path": "agent-evals/operator-message-final-04.json",
+      "sha256": "807eff3ea135835041b9b7781746d18cf0f559c5532b599666c9cbca1aaa6c5f",
+      "cases": 1,
+      "passed": 1,
+      "tokens": 93341,
+      "ui_success_count": 0
+    }
+  ],
+  "case_evidence": [
+    {
+      "case": "messaging-create",
+      "status": "PASS",
+      "source": "agent-evals/operator-message-final-04.json",
+      "qualification": "Fresh actual create/send/read/search after explicit-message preparation fix; original final-03 failure remains."
+    },
+    {
+      "case": "messaging-cancel-replay",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "messaging-private",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "collaboration",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "audit-publication",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "audit-abandon",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "conflict-repair",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "exit-cancel",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "exit-complete",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "exit-export",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    },
+    {
+      "case": "collaboration-combined-followthrough",
+      "status": "PASS",
+      "source": "agent-evals/operator-capability-final-03.json"
+    }
+  ],
+  "coverage": {
+    "families": [
+      "messaging",
+      "collaboration",
+      "governance audit",
+      "conflict and repair",
+      "exit and portable export"
+    ],
+    "cases_with_passing_evidence": 11,
+    "combined_search_and_proposal": "PASS",
+    "ui_success_count": 0
+  },
+  "privacy": "Raw turns and tool payloads remain ignored. This summary contains no message body, export body, cookie, key or private record payload."
+}

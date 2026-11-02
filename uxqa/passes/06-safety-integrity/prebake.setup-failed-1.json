@@ -1,0 +1,188 @@
+{
+  "pass": "06-safety-integrity",
+  "marker": "uxqa-p6-db333862",
+  "created_at": "2026-11-02T14:50:23.159Z",
+  "status": "FAILED_PARTIAL",
+  "guards": {
+    "host": "localhost",
+    "database": "neos_uxqa",
+    "operator": "explicit-memberless-node-admin"
+  },
+  "method": "Actual audited support API creates synthetic test configuration; it does not prove governance ceremonies.",
+  "fixtures": {
+    "openEcosystem": {
+      "id": "40855b13-01da-4328-ae00-114c97d54417",
+      "resource_type": "ecosystems",
+      "organization_id": null,
+      "audit_id": "1c3c9d98-054a-4adc-aab3-eb4fe6fa2b81",
+      "audit_url": "/node/audit/1c3c9d98-054a-4adc-aab3-eb4fe6fa2b81",
+      "title": "Open learning (uxqa-p6-db333862)",
+      "url": "/ecosystems/40855b13-01da-4328-ae00-114c97d54417"
+    },
+    "gatedEcosystem": {
+      "id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "resource_type": "ecosystems",
+      "organization_id": null,
+      "audit_id": "8c96f9e2-6909-42f1-8bc5-ac1e8909c053",
+      "audit_url": "/node/audit/8c96f9e2-6909-42f1-8bc5-ac1e8909c053",
+      "title": "Shared tools (uxqa-p6-db333862)",
+      "url": "/ecosystems/42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3"
+    },
+    "unavailableEcosystem": {
+      "id": "cd8b8f96-eb34-4e74-b4da-73674e848928",
+      "resource_type": "ecosystems",
+      "organization_id": null,
+      "audit_id": "a1d48154-57d0-4b4e-8856-0a270c17f7ee",
+      "audit_url": "/node/audit/a1d48154-57d0-4b4e-8856-0a270c17f7ee",
+      "title": "Unpublished learning (uxqa-p6-db333862)",
+      "url": "/ecosystems/cd8b8f96-eb34-4e74-b4da-73674e848928"
+    },
+    "workflowsEcosystem": {
+      "id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "resource_type": "ecosystems",
+      "organization_id": null,
+      "audit_id": "c557fbeb-72b8-4e7e-859d-7b4a25fb1a39",
+      "audit_url": "/node/audit/c557fbeb-72b8-4e7e-859d-7b4a25fb1a39",
+      "title": "Operator workshop (uxqa-p6-db333862)",
+      "url": "/ecosystems/649464ae-30d0-4369-86b3-1e17e8d0428d"
+    },
+    "completionEcosystem": {
+      "id": "88c0570b-38a0-4e5f-8783-f23472b924bb",
+      "resource_type": "ecosystems",
+      "organization_id": null,
+      "audit_id": "4c187570-25db-4a23-9503-59e22c64b2ed",
+      "audit_url": "/node/audit/4c187570-25db-4a23-9503-59e22c64b2ed",
+      "title": "Readiness checklist (uxqa-p6-db333862)",
+      "url": "/ecosystems/88c0570b-38a0-4e5f-8783-f23472b924bb"
+    },
+    "gatedQuiz": {
+      "id": "b3c4d03f-1df8-4e40-ab0a-891f265142be",
+      "resource_type": "quizzes",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "55683408-4401-4ab2-b496-67629e06bf86",
+      "audit_url": "/node/audit/55683408-4401-4ab2-b496-67629e06bf86",
+      "title": "Shared tool entry check (uxqa-p6-db333862)"
+    },
+    "unavailableQuiz": {
+      "id": "7494d68c-d800-4716-b753-9fbc4df9004c",
+      "resource_type": "quizzes",
+      "organization_id": "cd8b8f96-eb34-4e74-b4da-73674e848928",
+      "audit_id": "ddc8b4a9-c30b-40b2-9fa6-aa531fbd09ab",
+      "audit_url": "/node/audit/ddc8b4a9-c30b-40b2-9fa6-aa531fbd09ab",
+      "title": "Shared tool entry check (uxqa-p6-db333862)"
+    },
+    "completionQuiz": {
+      "id": "c97e6c38-57a6-48e3-98ae-6c1830f79eda",
+      "resource_type": "quizzes",
+      "organization_id": "88c0570b-38a0-4e5f-8783-f23472b924bb",
+      "audit_id": "1da4d685-ad09-4387-8b66-94ddab23a280",
+      "audit_url": "/node/audit/1da4d685-ad09-4387-8b66-94ddab23a280",
+      "title": "Onboarding readiness (uxqa-p6-db333862)"
+    },
+    "parentDomain": {
+      "id": "870782f0-e4f8-4bee-b659-ee7c2a9315a0",
+      "resource_type": "domains",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "133e7333-aed8-48dc-8c79-fac297058b8f",
+      "audit_url": "/node/audit/133e7333-aed8-48dc-8c79-fac297058b8f",
+      "title": "Shared tools circle (uxqa-p6-db333862)"
+    },
+    "childDomain": {
+      "id": "8052fdec-fa35-43b6-8c94-e820d5f7bfad",
+      "resource_type": "domains",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "24fa0f45-d95d-4963-8997-975a7a3d0c0e",
+      "audit_url": "/node/audit/24fa0f45-d95d-4963-8997-975a7a3d0c0e",
+      "title": "Tool repair circle (uxqa-p6-db333862)"
+    },
+    "team": {
+      "id": "f9ea4a99-059d-4f5c-98e6-2878c83de7f6",
+      "resource_type": "teams",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "d1fb5527-0737-4fe2-b2d4-9422cdcfdd2a",
+      "audit_url": "/node/audit/d1fb5527-0737-4fe2-b2d4-9422cdcfdd2a",
+      "title": "Tool care team (uxqa-p6-db333862)"
+    },
+    "parentQuiz": {
+      "id": "d212c178-4d24-4c71-8b4c-311cbb6915f3",
+      "resource_type": "quizzes",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "1c3e4d6c-0a5e-4019-b8de-2def019d9ad4",
+      "audit_url": "/node/audit/1c3e4d6c-0a5e-4019-b8de-2def019d9ad4",
+      "title": "parent entry check (uxqa-p6-db333862)"
+    },
+    "childQuiz": {
+      "id": "b95d533e-ea24-4615-be30-ac0edc63cbf4",
+      "resource_type": "quizzes",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "d8161ebe-e202-4337-b12c-ca8c5f8c30e9",
+      "audit_url": "/node/audit/d8161ebe-e202-4337-b12c-ca8c5f8c30e9",
+      "title": "child entry check (uxqa-p6-db333862)"
+    },
+    "teamQuiz": {
+      "id": "0b52ad32-3de2-4311-b42f-6110e51d7ada",
+      "resource_type": "quizzes",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "8b146bfc-f3ed-40ac-b0f0-b12e96df77ef",
+      "audit_url": "/node/audit/8b146bfc-f3ed-40ac-b0f0-b12e96df77ef",
+      "title": "team entry check (uxqa-p6-db333862)"
+    },
+    "membershipAgreement": {
+      "id": "effbcb22-355c-482a-97d0-b211291e04ff",
+      "resource_type": "agreements",
+      "organization_id": "42d2fdfe-56a3-4b2a-afe2-18751dfd7dd3",
+      "audit_id": "6e7c1b19-d9c9-4c3f-a713-013461fa9760",
+      "audit_url": "/node/audit/6e7c1b19-d9c9-4c3f-a713-013461fa9760",
+      "title": "Shared tool membership agreement (uxqa-p6-db333862)"
+    },
+    "workflowMember-qa-steward-amara": {
+      "id": "90f79a3a-8f25-4a25-95cb-2072f0f705df",
+      "resource_type": "members",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "ab3fd4bf-c40d-4947-97e2-57e064875e87",
+      "audit_url": "/node/audit/ab3fd4bf-c40d-4947-97e2-57e064875e87",
+      "title": "Amara Teague"
+    },
+    "workflowAccess-qa-steward-amara": {
+      "id": "d0ae2455-d3db-4c6a-8e6b-7317e578ee24",
+      "resource_type": "ethos_user_access",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "54f33531-5c8f-4e0a-8c8e-86bed51d8ffd",
+      "audit_url": "/node/audit/54f33531-5c8f-4e0a-8c8e-86bed51d8ffd",
+      "title": "workflowAccess-qa-steward-amara"
+    },
+    "workflowMember-qa-member-ines": {
+      "id": "2e6d33bb-6782-41b9-b4d3-64a2acf3a4c8",
+      "resource_type": "members",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "b3837d74-e706-4702-b3f3-09a7ee39d2dd",
+      "audit_url": "/node/audit/b3837d74-e706-4702-b3f3-09a7ee39d2dd",
+      "title": "Ines Valcourt"
+    },
+    "workflowAccess-qa-member-ines": {
+      "id": "744e5a66-07a5-4ef0-bd6e-afaa2e8e4352",
+      "resource_type": "ethos_user_access",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "a2015459-a8ce-46ab-8c2a-4e24795a61e2",
+      "audit_url": "/node/audit/a2015459-a8ce-46ab-8c2a-4e24795a61e2",
+      "title": "workflowAccess-qa-member-ines"
+    },
+    "workflowMember-qa-probe-tess": {
+      "id": "507bfd7a-60eb-4e61-8052-1e96ba636f64",
+      "resource_type": "members",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "fa3b7847-8d78-46e4-b6af-4efcbe6db93c",
+      "audit_url": "/node/audit/fa3b7847-8d78-46e4-b6af-4efcbe6db93c",
+      "title": "Tess Marlow"
+    },
+    "workflowAccess-qa-probe-tess": {
+      "id": "f0b57906-887c-45a5-9956-7b151b46ae14",
+      "resource_type": "ethos_user_access",
+      "organization_id": "649464ae-30d0-4369-86b3-1e17e8d0428d",
+      "audit_id": "77706d98-dbd6-497a-a49d-8f157dfee1a9",
+      "audit_url": "/node/audit/77706d98-dbd6-497a-a49d-8f157dfee1a9",
+      "title": "workflowAccess-qa-probe-tess"
+    }
+  },
+  "failures": []
+}

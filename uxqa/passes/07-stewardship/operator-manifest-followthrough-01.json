@@ -1,0 +1,234 @@
+{
+  "syntheticOnly": true,
+  "baseUrl": "http://localhost:5173",
+  "sessionsFile": "uxqa/.secrets/agent-sessions.json",
+  "pass": "07-stewardship",
+  "runId": "re700da6426ad",
+  "marker": "uxqa-p7",
+  "status": "FAILED",
+  "readiness": [
+    {
+      "actor": "qa-agent-ana",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "4e109da6-2fe4-5767-b7c0-e38912bb4fd5",
+      "title": "OmniOne Community Onboarding",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-ana",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "8dca79b3-70b9-509d-8eef-606bb1d773ea",
+      "title": "OmniOne Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-ben",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "4e109da6-2fe4-5767-b7c0-e38912bb4fd5",
+      "title": "OmniOne Community Onboarding",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-ben",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "8dca79b3-70b9-509d-8eef-606bb1d773ea",
+      "title": "OmniOne Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-cleo",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "4e109da6-2fe4-5767-b7c0-e38912bb4fd5",
+      "title": "OmniOne Community Onboarding",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-cleo",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "8dca79b3-70b9-509d-8eef-606bb1d773ea",
+      "title": "OmniOne Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-dev",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "4e109da6-2fe4-5767-b7c0-e38912bb4fd5",
+      "title": "OmniOne Community Onboarding",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-dev",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "8dca79b3-70b9-509d-8eef-606bb1d773ea",
+      "title": "OmniOne Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-eli",
+      "ecosystem_id": "465567a5-e85b-5694-9f09-db5265ae8cb2",
+      "quiz_id": "4bbb9408-1dd5-5664-af3c-e7876c290b34",
+      "title": "Escherbridge Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-fay",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "4e109da6-2fe4-5767-b7c0-e38912bb4fd5",
+      "title": "OmniOne Community Onboarding",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-fay",
+      "ecosystem_id": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+      "quiz_id": "8dca79b3-70b9-509d-8eef-606bb1d773ea",
+      "title": "OmniOne Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-fay",
+      "ecosystem_id": "25af625f-8ee4-5285-ac74-24acaee7b705",
+      "quiz_id": "6a67306a-974c-5e2d-954e-6e08ccf567c8",
+      "title": "Digital Sovereignty Fundamentals",
+      "status": "already-ready",
+      "prerequisite_status": "passed"
+    },
+    {
+      "actor": "qa-agent-fay",
+      "ecosystem_id": "25af625f-8ee4-5285-ac74-24acaee7b705",
+      "quiz_id": "b7e1a3f3-4834-5a88-bbde-95de9a657e53",
+      "title": "Oasis Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-gus",
+      "ecosystem_id": "8d69ebef-8c6e-50a8-90ef-edf4037c3640",
+      "quiz_id": "68a2934d-af04-5dee-8acb-aa0e726e19dc",
+      "title": "Plan Systems Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    },
+    {
+      "actor": "qa-agent-hal",
+      "ecosystem_id": "8d69ebef-8c6e-50a8-90ef-edf4037c3640",
+      "quiz_id": "68a2934d-af04-5dee-8acb-aa0e726e19dc",
+      "title": "Plan Systems Onboarding Readiness",
+      "status": "already-ready",
+      "prerequisite_status": "completed"
+    }
+  ],
+  "fixtures": {
+    "D1": {
+      "kind": "domain",
+      "id": "435b68da-adcf-4c08-8497-31c7d133749d",
+      "key": "DOM-2C4318E2",
+      "stem": "Operator source seeds",
+      "title": "Operator source seeds (uxqa-p7 agent-eval re700da6426ad-O1-1)",
+      "path": "/domains/435b68da-adcf-4c08-8497-31c7d133749d",
+      "owner": "qa-agent-cleo"
+    },
+    "D2": {
+      "kind": "domain",
+      "id": "07094723-c27d-4463-9489-2e5647e37ebb",
+      "key": "DOM-11076D21",
+      "stem": "Operator target seeds",
+      "title": "Operator target seeds (uxqa-p7 agent-eval re700da6426ad-O1-1)",
+      "path": "/domains/07094723-c27d-4463-9489-2e5647e37ebb",
+      "owner": "qa-agent-cleo"
+    },
+    "thread": {
+      "id": "95c55e20-ac13-4dc4-93a8-07e08fd51836",
+      "owner": "qa-agent-ben",
+      "path": "/messaging?conversation=95c55e20-ac13-4dc4-93a8-07e08fd51836"
+    },
+    "publishAudit": {
+      "id": "d92f99b4-5623-4f94-a928-1d3fad274a48",
+      "owner": "qa-agent-ana"
+    },
+    "abandonAudit": {
+      "id": "5e412ead-cee6-4d37-aff3-90de405d13b1",
+      "owner": "qa-agent-ana"
+    },
+    "auditRatings": [
+      {
+        "indicator_id": "GHI-01",
+        "indicator_name": "Proposal authorship diversity",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-02",
+        "indicator_name": "Approval rate by author role",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-03",
+        "indicator_name": "Resource concentration",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-04",
+        "indicator_name": "Participation trend",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-05",
+        "indicator_name": "Leadership tenure",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-06",
+        "indicator_name": "Objection integration rate",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-07",
+        "indicator_name": "Review compliance rate",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      },
+      {
+        "indicator_id": "GHI-08",
+        "indicator_name": "Cross-unit engagement",
+        "status": "healthy",
+        "notes": "Synthetic fixture rating; not a human research finding."
+      }
+    ],
+    "conflict": {
+      "id": "ca933698-3c9c-487a-8d91-c552995b92c3",
+      "owner": "qa-agent-ben"
+    },
+    "repair": {
+      "id": "2e0c2fd5-f148-4cae-aba7-92362be1bfd9",
+      "case_id": "ca933698-3c9c-487a-8d91-c552995b92c3"
+    }
+  },
+  "bindings": {
+    "home": "8919d0c6-6cfe-5b8b-b88f-95e8f9f9cb5e",
+    "anaMember": "57f5f0f8-80b7-4c6a-8295-72eb3815d002",
+    "benMember": "49cca7f4-3440-457a-810a-810421207a96",
+    "fayMember": "7787d9f6-2027-491c-bab7-588403068dae",
+    "anaName": "Ana Uxqa-Agent",
+    "messageText": "I can help with seeds (uxqa-p7 agent-eval re700da6426ad)",
+    "cancelText": "Please do not send this note (uxqa-p7 agent-eval re700da6426ad)",
+    "baselineConversations": 2
+  },
+  "cases": [],
+  "error": "POST /api/v1/exit/ -> 409 You already have an exit in progress here."
+}

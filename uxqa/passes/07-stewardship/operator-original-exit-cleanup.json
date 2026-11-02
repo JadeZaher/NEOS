@@ -1,0 +1,9 @@
+{
+  "type": "synthetic-fixture-cleanup",
+  "originalRun": "r788c9fc42448",
+  "actor": "qa-agent-dev",
+  "exit_id": "218c548b-0809-4968-9f1e-410b58699120",
+  "before": "declared",
+  "after": "cancelled",
+  "method": "Ordinary owner REST cancellation; setup cleanup, zero UI/model successes."
+}

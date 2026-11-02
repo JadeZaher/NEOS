@@ -6,6 +6,42 @@ description: Why the runner, check grammar, fixtures, teardown and result file f
 
 # uxqa/agent-evals - fixed tasks for the in-app assistant
 
+## Ordinary operator capability coverage
+
+`readiness.mjs` prepares only existing active synthetic fixture memberships
+through published join-gate summaries, forced candidate DTOs (`candidate=1`)
+and actual `/quizzes/:id/submit` calls. It answers all supported completion
+fields, including native false booleans, and requires server verification and
+current completed/passed status. Graded quizzes require an explicit vetted
+answer source; keys are never fetched intentionally, logged or sent to the
+model. Pending/fresh or `seed.join_gate_test:true` /
+`seed.prepare_readiness:false` fixtures remain untouched. Agreement consent
+and governance/must-refuse states are preserved. Each full run saves genuine
+completion evidence separately before building task fixtures.
+
+`prepare-operator-probe.mjs` makes the five-family probe executable from existing
+ordinary QA identities and normal REST-created fixtures, retaining partial
+setup evidence. `operator-probe-lib.mjs` continues independent cases after a
+failure, blocks declared dependencies, preserves budget stops, and rejects
+unrequested successful mutations. See the typed Verification Plan for commands.
+
+The five additional workflow families have a separate guarded real-model
+probe and fixture/state plan in `operator-capability-probe.mjs` and
+`operator-capability-plan.md`. It consumes prepared synthetic sessions and
+the running local sentinel, preserves failed runs, and reports zero UI
+successes. It does not replace the original eval set or change thresholds.
+
+The reviewed read-only allowlist in `grading.mjs` includes ordinary message
+lists/reads/search/member lookup, collaboration discovery/detail, audit
+detail, and preparation of the own portable-record link. Reading a thread
+can advance its own read watermark, as the real GET does; it sends no
+message or governance mutation. Preparing an export link is not the GET
+download and records no export completion. `preconditions.mjs` imports the
+same classifier. All new mutations and unknown future tools remain writes;
+contract tests in `test/operator-read-classification.test.mjs` verify both
+`nowrite` and queue-precondition behavior. Confirmation/cancel/replay and
+actual persisted state remain separate required checks.
+
 | File | Role |
 |---|---|
 | `design.md` / `review.md` | Original 25-task design and the assistant defects it targets; evalVersion 2 adds C5 domain ambiguity |
@@ -176,6 +212,8 @@ assertions remain. P3 accepts equivalent `30-day` / `30 days` wording with
 word boundaries; the full exit-facts judge and no-exit-write assertion still
 apply. Contract coverage: `test/task-wording.test.mjs`.
 
+R1 accepts both “one of two” and “needs two rounds of advice, and only one has been given” grammar. The counts remain one completed and two required; tests reject different completed/required counts. The read, no-write, record-link, state and independent judge checks remain unchanged. This changes future grading only; preserved failed attempts are not rewritten.
+
 `tasks[].runs[]` carry `state` and `reply` check results, the tool `trace` (without result data), the judge
 verdict and the transcript path (`passes/<pass>/agent-evals/transcripts/<id>-<run>.json`: turns, text, trace
 with capped data; never a cookie). Derived on every write: `summary` (pass rate over all selected tasks,
@@ -195,3 +233,19 @@ MEDIUM; judge-only failure LOW. Skipped tasks are not defects.
   secret, as for lanes).
 - Personas must match `^qa-agent-[a-z]+$` and every persona or fixture owner a task names must be in
   `personas.json`, or the runner refuses before touching the stack. Dangerous tasks (M3, M5) run last.
+
+
+## Preserved attempts, pacing and availability
+
+`run.mjs` accepts `--run-label retry-01` (writes `agent-eval-retry-01.json` plus a matching judge filename) or `--result-file <new-basename.json>`. New execution refuses an existing result file before seed/readiness calls; only explicit `--finalize` revises that selected result. Every new execution keeps transcripts under `agent-evals/runs/<runId>/transcripts`, so neither labelled attempts nor default runs overwrite the old failed transcript directory. To continue selected skipped/error cases, use `--only` with a NEW label; fresh fixtures and run namespace remain mandatory, and earlier metrics stay separate. This is not a transcript/session replay or an aggregation that converts old failures into passes.
+
+Chat requests wait after the prior completed chat request (default 2000ms; `--chat-pace-ms` accepts 0?30000). REST fixture/observation calls are not padded. The client never retries an entire chat request. Time budgets include pacing; result/probe evidence records request count, paced request count and requested wait milliseconds. The capability probe accepts the same bounded `chatPaceMs` field in its prepared manifest. Safe `availability` SSE metadata retains HTTP status, retryability, Retry-After and attempt count without private provider bodies; a 429 is SERVICE_UNAVAILABLE rather than an inferred funding denial.
+
+The runner unwinds through `process.exitCode` rather than immediate process.exit, and SSE readers release their lock. This targets the Node 24 Windows abrupt-exit assertion without changing Node globally. Protected readiness answer JSON parse errors show only a basename, never answer contents. Existing state/no-write/replay graders and thresholds are unchanged.
+
+Example new attempt: `node uxqa/agent-evals/run.mjs 06-safety-integrity --run-label retry-01 --chat-pace-ms 2000 --readiness-answers uxqa/.secrets/readiness-answer-sources.json`. Finalize that attempt with the same `--run-label retry-01 --finalize`. Preserve the original agent-eval.json and its judge evidence.
+
+
+## Complete private model-visible tool evidence
+
+Future transcripts use `captureToolData` with a 6000-character bound, matching the normal server-fitted tool result budget. This retains scalar count fields that previously followed a queue's first 4000 characters and were lost only in transcript capture. Overflow preserves bounded typed count/status/title/ecosystem facts plus captured/model-data lengths. It does not increase the model-visible result, fetch new private data or rewrite old artifacts. The run rfc53857bfad7 R2 preview has length metadata 4838 and only the first 4000 characters; source proves the count field was available, but that old preview does not independently preserve its value. Treat that as missing captured evidence, rather than proof that the model fabricated the total.

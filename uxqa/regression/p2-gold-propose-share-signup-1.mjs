@@ -31,7 +31,7 @@ await regression("p2-gold-propose-share-signup-1", { pass: "02-act-lifecycle" },
     if (!(await editButton.count())) throw flow.red("the member's own share has no Edit control on Me");
     await editButton.click();
     const editor = page.getByRole("dialog", { name: "Edit share" });
-    await editor.getByLabel("Title", { exact: true }).fill(edited);
+    await editor.getByLabel("Title (required)", { exact: true }).fill(edited);
     await editor.getByRole("button", { name: "Save changes" }).click();
     await eventually(flow, "the edited title does not show on Me after saving", async () => (await listed(edited).count()) > 0, 8000);
 
