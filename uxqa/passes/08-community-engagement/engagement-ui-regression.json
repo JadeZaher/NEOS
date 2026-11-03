@@ -1,0 +1,18 @@
+{
+  "mode": "probe",
+  "fixtureSetup": [
+    "Synthetic two-person conversation created through authorized local API",
+    "First real local message produces the actual recipient event",
+    "Original preferences restored; only follows created by this probe removed"
+  ],
+  "checks": [
+    "Preferences persist with no registered browser endpoint; external verification controls stay disabled",
+    "Broad community follow saved through named selector without external consent",
+    "Actual private message appears generically in inbox, is absent from community activity, and read does not complete next steps",
+    "Source deep link resolves by authorized name and explicit narrow mute blocks later message updates",
+    "Settings fit 390px viewport and expose native keyboard targets",
+    "Anonymous entry previews public community and preserves selected community through login/signup"
+  ],
+  "externalSends": 0,
+  "outcome": "COMPLETED"
+}

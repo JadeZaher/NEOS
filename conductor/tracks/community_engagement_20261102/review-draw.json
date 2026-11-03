@@ -1,0 +1,30 @@
+{
+    "order":  [
+                  "documentation/contracts",
+                  "resource lifecycle",
+                  "architecture",
+                  "security",
+                  "correctness",
+                  "performance"
+              ],
+    "cycle1":  [
+                   {
+                       "lens":  "documentation/contracts",
+                       "stance":  "advocate"
+                   },
+                   {
+                       "lens":  "resource lifecycle",
+                       "stance":  "adversary"
+                   }
+               ],
+    "cycle2":  [
+                   {
+                       "lens":  "architecture",
+                       "stance":  "adversary"
+                   },
+                   {
+                       "lens":  "security",
+                       "stance":  "advocate"
+                   }
+               ]
+}

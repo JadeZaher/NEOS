@@ -1,0 +1,25 @@
+{
+  "username": "uxqa_p8_1793670507601",
+  "target": "cebd616f-ac68-46c7-8f5b-15fea3120739",
+  "checks": [
+    "Anonymous directory -> chosen preview -> password signup creates only target membership, pending requirements, ordinary user",
+    "Configured quiz and agreement gates are visibly presented after signup; no automatic admission",
+    "Real visible quiz answered and submitted; return target preserved; passing does not bypass agreement consent",
+    "Actual agreement consent recorded through UI, target membership activated only after both configured requirements"
+  ],
+  "outcome": "COMPLETED",
+  "externalSends": 0,
+  "userId": "d58b4d15-eb4f-4197-9fbe-42deb1c6c443",
+  "initialMembership": [
+    {
+      "id": "cebd616f-ac68-46c7-8f5b-15fea3120739",
+      "status": "pending_consent"
+    }
+  ],
+  "finalMembership": [
+    {
+      "id": "cebd616f-ac68-46c7-8f5b-15fea3120739",
+      "status": "active"
+    }
+  ]
+}

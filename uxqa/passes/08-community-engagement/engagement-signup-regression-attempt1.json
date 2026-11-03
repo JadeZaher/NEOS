@@ -1,0 +1,8 @@
+{
+  "username": "uxqa_p8_1793670458523",
+  "target": "cebd616f-ac68-46c7-8f5b-15fea3120739",
+  "checks": [],
+  "outcome": "FAILED",
+  "externalSends": 0,
+  "error": "AssertionError [ERR_ASSERTION]: UI registration failed\n\n200 !== 201\n\n    at file:///C:/Users/atooz/Programming/NEOS/.omc/research/engagement-signup-browser-20261102.mjs:47:9\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processImmediate (node:internal/timers:472:9)"
+}

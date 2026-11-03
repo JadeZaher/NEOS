@@ -5,6 +5,12 @@ type: Track Index
 
 ## Active
 
+- [x] **community_engagement_20261102** — Community entry, activity, personal updates and granular subscriptions deployed and verified after two advocate/adversary design cycles and parallel implementation. External delivery remains at the owner credential/sender/activation gate.
+  - Spec: `conductor/tracks/community_engagement_20261102/spec.md`
+  - Plan: `conductor/tracks/community_engagement_20261102/plan.md`
+  - Design/contracts: `conductor/tracks/community_engagement_20261102/design.md`, `contracts.md`
+  - Owner gate: provider keys, verified sender identity and explicit external activation; in-app work proceeds independently.
+
 - [x] **platform_completion_join_gates_20261102** — Completed audited gaps, configured onboarding quiz gates and clear NodeAdmin task navigation; deployed and independently verified on 2026-11-02.
   - Spec: `conductor/tracks/platform_completion_join_gates_20261102/spec.md`
   - Plan: `conductor/tracks/platform_completion_join_gates_20261102/plan.md`

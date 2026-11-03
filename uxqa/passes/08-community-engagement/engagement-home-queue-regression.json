@@ -1,0 +1,14 @@
+{
+  "outcome": "COMPLETED",
+  "checks": [
+    "Five initial next steps with preserved full count",
+    "Keyboard expand and collapse with truthful aria-expanded and retained focus",
+    "Every ordered action link preserved when expanded",
+    "Community activity follows bounded queue"
+  ],
+  "totalNextSteps": 27,
+  "communityActivityTop": {
+    "collapsed": 2009.546875,
+    "expanded": 4779.546875
+  }
+}

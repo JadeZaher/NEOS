@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "backend": {
+    "schema_heads": [
+      "z6f0c4e8b2d5"
+    ],
+    "expected_engagement_table_count": 11,
+    "engagement_tables_present": true,
+    "authorized_admins_exact": true,
+    "switches": {
+      "ENGAGEMENT_EXTERNAL_ENABLED": false,
+      "ENGAGEMENT_EMAIL_ENABLED": false,
+      "ENGAGEMENT_PUSH_ENABLED": false,
+      "ENGAGEMENT_SMS_ENABLED": false
+    },
+    "internal_keys_present": true,
+    "source_sha256": {
+      "api/engagement.py": "3144127f22a822e00b301a36950ce48721e36207f4499f882063f74fedc98235",
+      "api/engagement_delivery.py": "eb5507ebd2aacea8c7bf9a3e04d4532780b32d6f3bb74f105ea7110ad384869a",
+      "api/communities.py": "91804b4cf232d8d9ca14c24cb8eb00b4828200a0c042c8afe5909afda91b76bd",
+      "api/oauth.py": "3bde6f958d20f3d803440f364a4a060fb452af773f247714e6a8cfb6c42ec6a8",
+      "services/engagement.py": "ac470f3074bd160c973e0ed799e4632c7ad34a67c6af405e35d169bcf3c8e989",
+      "services/engagement_delivery.py": "c91c61f1ab59da58b1e82ed8fc9c318c602177db49908c152ca3f1716c48d9c5",
+      "services/engagement_providers.py": "e6994988073cc949de132da673d8d9981ba43f1901034398e878f8d583f2df33",
+      "services/engagement_events.py": "9afef733694ed8d3550666e801bf590bc7f90ba888ff1d560f07b9aa1b8eb8b2",
+      "db/models/engagement.py": "5b9b2c206217a2ddcbc33ea7325e0d52d2d4cc35052b4437936fe74141c23452"
+    },
+    "external_calls": 0,
+    "passed": true,
+    "local_sources_match": true
+  },
+  "frontend": {
+    "passed": true,
+    "html_and_assets_match_running_container": true,
+    "assets": [
+      {
+        "path": "/assets/index-DWScRYtr.js",
+        "sha256": "0a0afcc6bbaa0d93cf3ce22fd6e7028dfc52d459334549173739e2468959d5e8"
+      },
+      {
+        "path": "/assets/index-AZOCC0or.css",
+        "sha256": "a1e7fc0dd1e47444a732bd8b6e86910de1c8b3ba7e5b22547e007bb4a7c51254"
+      }
+    ],
+    "mutating_requests": 0
+  },
+  "commits": {
+    "backend": "a495e5f561e963092622bd0107da4fb3d566efcc",
+    "frontend": "3ba7f4509442baf6f8250bc3962919debeeca0da"
+  },
+  "deployments": {
+    "backend": "546ab917-c42e-4151-930d-18fcaf310aee",
+    "frontend": "9278b18c-b9d4-40e0-b0ba-0803db62a821"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "track_id": "community_engagement_20261102",
+  "type": "feature",
+  "status": "completed",
+  "phase": "provider_activation_gate",
+  "created_at": "2026-11-02",
+  "provider_gate": "external delivery disabled pending owner credentials and activation",
+  "release": {
+    "backend": "a495e5f561e963092622bd0107da4fb3d566efcc",
+    "frontend": "3ba7f4509442baf6f8250bc3962919debeeca0da"
+  },
+  "baseline": {
+    "backend": "4c99dae161ec4aa8eb1b52f5cce87532b9f5625b",
+    "frontend": "ae7cc472429be5b0b89fe011506fe163ef9f3f29"
+  }
+}
