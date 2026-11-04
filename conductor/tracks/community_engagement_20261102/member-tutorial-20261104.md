@@ -8,7 +8,7 @@ status: deployed-and-verified
 
 After a member has an active ecosystem membership, Home offers a short popup walkthrough of the platform. Required joining quizzes and agreement consent remain separate. The walkthrough explains community scope, next steps, shared decisions, collaboration, resources, updates and the assistant, with deliberate links to the relevant screens. It does not navigate automatically or carry out actions on the member's behalf.
 
-Back, Next, pause, resume, restart and completion make the tutorial optional and recoverable. A persistent Platform tour control in the authenticated header makes it discoverable after dismissal. Automatic opening is restricted to Home (`/` or `/dashboard`) so returning to a deep link or editing screen is not interrupted.
+Back, Next, pause, resume, restart and completion make the tutorial optional and recoverable. A persistent question-mark help icon in the authenticated header makes it discoverable after dismissal. Automatic opening is restricted to Home (`/` or `/dashboard`) so returning to a deep link or editing screen is not interrupted.
 
 ## Implementation decisions
 
@@ -35,3 +35,11 @@ The first browser attempt stopped at its initial guard because the synthetic Ine
 Independent review approved release after inspecting the final source, test logs, browser report and desktop/mobile screenshots. Frontend commit `128308e781f8162c4e95d49c1fedc461f38fedc8` deployed successfully in Railway deployment `de162ab1-3430-4f5f-95a7-9b10819db0e0`. The live site at https://neos.primusneo.com serves `/assets/index-UYLMjzc8.js`, verified to contain the tutorial introduction, persistence copy and completion controls.
 
 Read-only production browser checks passed at 1366px and 390px: anonymous community discovery remains usable, the dashboard preserves its sign-in return target, and no member tutorial appears for guests. Zero mutating production requests were made. Authenticated first-membership and tutorial behavior was exercised locally, not against production members. External notification delivery remains behind its existing credential/activation gate.
+
+## Help icon refinement
+
+The owner requested that the introduction appear once and remain available through a help icon. The header now uses a 44px question-mark icon with the accessible name Platform tour and the title Help: Platform tour, without the persistent text label. Tutorial instructions identify the icon. Existing version-one progress is retained, so the update does not reoffer the tutorial to a user who has already started, dismissed or completed it. Automatic offering remains once per user in the current browser; clearing browser storage or using another browser can offer it again. Independent review approved this focused change.
+
+The final refinement sweep passed all 176 frontend tests, TypeScript and the production build. A read-only local browser probe verified first automatic display, dismissal surviving reload and a return to Home, and keyboard replay/focus return through the 44px help icon at 1366px and 320px. No API mutations occurred. Logs and screenshots are retained in `.omc/research/tutorial-help-*20261104*`.
+
+The refinement deployed successfully as frontend commit `1ead707dda7004784b1c64f6d2b35d75fe585d28`, Railway deployment `60447a23-e2c6-4a0c-b2fe-17208dec497b`. Live bundle `/assets/index-y_2crkiJ.js` contains the new help-control label; read-only production discovery and sign-in checks passed at desktop and mobile widths with no mutating requests.
