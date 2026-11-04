@@ -1,0 +1,33 @@
+{
+  "username": "uxqa_p9_1793799115696",
+  "target": "cebd616f-ac68-46c7-8f5b-15fea3120739",
+  "outcome": "COMPLETED",
+  "checks": [
+    "Ordinary first-community signup remains pending; neither automatic tutorial nor replay bypasses configured entry requirements",
+    "First active membership does not interrupt a consent-success page or a deep-linked working page",
+    "First active member gets an automatic tutorial on the dashboard, after both required joining steps",
+    "Back/Next work; keyboard focus stays inside the dialog; Escape pauses and returns focus; reload does not nag and replay resumes the saved step",
+    "Restart returns to the introduction; every step can be completed; completion remains dismissed after reload",
+    "A tutorial destination opens only on deliberate activation and pauses the tour",
+    "A same-page Discover tab destination closes the popup without losing keyboard focus",
+    "At 320px the selected community name remains visible, the picker and close target are at least 44px, and replay/header/dialog fit without horizontal overflow",
+    "Same-browser account switch starts the other member at step one on the / dashboard alias and preserves the first member’s saved state",
+    "Tour navigation writes no API state, changes no membership requirements or role, and sends no provider messages"
+  ],
+  "fixtureSetup": [
+    "Unique ordinary account joined the selected local fixture through its real visible quiz and agreement-consent forms; retained for study reset",
+    "Synthetic auth cookies switched in memory in one browser solely to test owner isolation, then the new member identity restored"
+  ],
+  "tutorialMutations": [],
+  "externalSends": 0,
+  "titles": [
+    "Welcome to your ecosystem",
+    "Start with your next steps",
+    "Take part in shared decisions",
+    "Find people and working groups",
+    "Share resources and collaborate",
+    "Choose how to stay involved",
+    "Get help as you go",
+    "Make it your own"
+  ]
+}

@@ -6,6 +6,10 @@ description: Browser-only fixes from the UX passes, each guarded by a Playwright
 
 # uxqa/regression - one flow per browser-only fix
 
+## Member platform tutorial
+
+`p9-member-tutorial.mjs` uses the pass-06 configured ecosystem/quiz/agreement fixture and a unique ordinary local signup. It refuses nonlocal origins, a database without the `neos_uxqa` sentinel, or enabled external delivery. Real visible quiz and consent forms establish first active membership; tutorial assertions never manufacture completion. It checks pending/deep-link noninterruption, dashboard auto-offer, keyboard focus and Escape, Back/Next, reload/resume/restart/finish, deliberate destination navigation, 320px layout, and owner isolation in one browser. Synthetic identity cookies are switched only in memory for that isolation probe, then restored. The tutorial portion must issue no API writes and leave membership/authority unchanged. Screenshots, trace, and `tutorial-regression.json` land in pass `09-member-tutorial` (or `UXQA_PASS`). The unique signup and genuine requirement records remain for study reset. Execute only in the coordinator's final integrated sweep.
+
 A fix whose effect only shows in a browser (focus after a submit, a list refresh
 clearing a badge, a confirmation before an irreversible act, which sidebar links
 a member sees, a fallback for a video that cannot play) gets
